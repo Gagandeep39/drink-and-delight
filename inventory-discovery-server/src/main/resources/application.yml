@@ -1,0 +1,9 @@
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+server:
+  port: ${server_port:8761}
+spring:
+  application:
+    name: inventory-discovery-server
