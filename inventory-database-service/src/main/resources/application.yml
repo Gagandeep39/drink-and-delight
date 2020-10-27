@@ -1,0 +1,11 @@
+server:
+  port: 9500
+spring:
+  profiles:
+    active: dev
+  application:
+    name: inventory-database-service
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${eureka_url:http://localhost:8761/eureka/}
