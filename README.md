@@ -47,6 +47,9 @@
 
 ## `inventory-supplier-service`
 
+- Used to add Supplier, Distributor, Warehouse details
+- Default Port: 9600
+
 ## Steps To Start
 
 ### Localhost
