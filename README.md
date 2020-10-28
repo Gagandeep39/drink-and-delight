@@ -52,7 +52,7 @@
 ### Localhost
 
 1. Open the project on Ecllipse/ VS Code
-2. Launch Eureka Discovery Server
+2. Launch Eureka Discovery Server, database server
 3. Launch All other Services
 
 ## Documentations
