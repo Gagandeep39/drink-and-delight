@@ -1,0 +1,12 @@
+server:
+  port: ${server_port:9600}
+spring:
+  profiles:
+    active: dev
+  application:
+    name: inventory-supplier-service
+eureka:
+  client:
+    serviceUrl:
+      # Changed because previous once was ausing errors with gateway
+      defaultZone: ${eureka_url:http://localhost:8761/eureka/}
