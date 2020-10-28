@@ -19,7 +19,6 @@ import com.cg.inventoryauthservice.dto.LoginRequest;
 import com.cg.inventoryauthservice.dto.RegisterRequest;
 import com.cg.inventoryauthservice.dto.UpdateRequest;
 import com.cg.inventoryauthservice.dto.UserDetailsDto;
-import com.cg.inventoryauthservice.entity.Address;
 import com.cg.inventoryauthservice.entity.User;
 import com.cg.inventoryauthservice.entity.UserDetails;
 import com.cg.inventoryauthservice.exception.InvalidCredentialException;
@@ -55,10 +54,8 @@ public class AuthServiceImpl implements AuthService {
   public Map<String, String> register(RegisterRequest registerRequest) {
     checkIfUsernameExists(registerRequest.getUsername());
     registerRequest.setPassword(encodePassword(registerRequest.getPassword()));
+    registerRequest.setAddress(addressRepository.save(registerRequest.getAddress()));
     UserDetails userDetails = userDetailsRepository.save(UserDetailsMapper.registerToUserDetails(registerRequest));
-    Address address = registerRequest.getAddress();
-    address.setUserDetails(userDetails);
-    addressRepository.save(address);
     return Collections.singletonMap("success", "User created with ID: " + userDetails.getUserDetailsId());
   }
 

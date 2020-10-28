@@ -11,9 +11,10 @@ spring:
     username: sa
     password:
     driver-class-name: org.h2.Driver
+    platform: h2
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
 logging:
   level:
@@ -21,4 +22,5 @@ logging:
     ROOT: info
     # debug leavel for all user defined classes log
     com.cg: info
+
 

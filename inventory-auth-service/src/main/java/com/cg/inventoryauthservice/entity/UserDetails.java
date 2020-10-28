@@ -57,7 +57,8 @@ public class UserDetails {
   @Column(length = 10)
   private String securityAnswer;
   
-  @OneToOne(mappedBy = "userDetails")
+  @OneToOne
+  @JoinColumn(name = "addressId", referencedColumnName = "addressId", foreignKey = @ForeignKey(name = "FK_ADDR_ID"))
   private Address address;
 
   @OneToOne

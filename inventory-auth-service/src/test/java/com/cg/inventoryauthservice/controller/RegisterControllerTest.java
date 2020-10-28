@@ -37,9 +37,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 @AutoConfigureMockMvc
 public class RegisterControllerTest {
 
-  // static {
-  // System.setProperty("spring.profiles.active", "test");
-  // }
+  static {
+    System.setProperty("spring.profiles.active", "test");
+  }
 
   @Autowired
   private MockMvc mockMvc;

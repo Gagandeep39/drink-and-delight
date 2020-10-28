@@ -25,6 +25,7 @@ public class UserDetailsMapper {
       .build();
     return UserDetails.builder()
       .user(user)
+      .address(registerRequest.getAddress())
       .firstName(registerRequest.getFirstName())
       .lastName(registerRequest.getLastName())
       .securityQuestion("Default Question")
@@ -48,6 +49,8 @@ public class UserDetailsMapper {
       .dob(userDetails.getDob())
       .emailId(userDetails.getEmailId())
       .address(userDetails.getAddress())
+      .firstName(userDetails.getFirstName())
+      .lastName(userDetails.getLastName())
       .build();
   }
 
