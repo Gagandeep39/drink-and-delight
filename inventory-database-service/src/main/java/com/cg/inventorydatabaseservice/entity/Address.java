@@ -9,11 +9,10 @@ package com.cg.inventorydatabaseservice.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -28,6 +27,8 @@ import lombok.NoArgsConstructor;
 public class Address {
   @Id
   @JsonIgnore
+  @SequenceGenerator(name = "address_id_sequence", initialValue = 100000, allocationSize = 1)
+  @GeneratedValue(generator = "address_id_sequence", strategy = GenerationType.SEQUENCE)
   private Long addressId;
   @Column(length = 25)
   private String city;
@@ -37,9 +38,5 @@ public class Address {
   private String area;
   @Column(length = 6)
   private String pincode;
-  @MapsId
-  @OneToOne
-  @JoinColumn(name = "address_id", foreignKey = @ForeignKey(name = "FK_Address_USER_ID"))
-  private UserDetails userDetails;
 
 }

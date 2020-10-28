@@ -9,30 +9,28 @@ package com.cg.inventoryauthservice.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@ToString(exclude = "userDetails")
 public class Address {
   @Id
   @JsonIgnore
+  @SequenceGenerator(name = "address_id_sequence", initialValue = 100000, allocationSize = 1)
+  @GeneratedValue(generator = "address_id_sequence", strategy = GenerationType.SEQUENCE)
   private Long addressId;
   @Column(length = 25)
   @Size(min = 6, max = 20)
@@ -50,10 +48,5 @@ public class Address {
   @Column(length = 6)
   @NotBlank
   private String pincode;
-  @MapsId
-  @OneToOne
-  @JoinColumn(name = "address_id", foreignKey = @ForeignKey(name = "FK_Address_USER_ID"))
-  @JsonBackReference
-  private UserDetails userDetails;
 
 }
