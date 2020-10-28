@@ -10,7 +10,6 @@ package com.cg.inventoryauthservice.service;
 import java.util.List;
 import java.util.Map;
 
-import com.cg.inventoryauthservice.dto.ChangePasswordRequest;
 import com.cg.inventoryauthservice.dto.ForgotPasswordRequest;
 import com.cg.inventoryauthservice.dto.LoginRequest;
 import com.cg.inventoryauthservice.dto.RegisterRequest;
@@ -21,8 +20,6 @@ public interface AuthService {
   Map<String, String> login(LoginRequest loginRequest);
 
   Map<String, String> register(RegisterRequest registerRequest);
-
-  Map<String, String> changePassword(ChangePasswordRequest changePasswordRequest);
 
   Map<String, String> updateUser(UpdateRequest updateRequest);
 

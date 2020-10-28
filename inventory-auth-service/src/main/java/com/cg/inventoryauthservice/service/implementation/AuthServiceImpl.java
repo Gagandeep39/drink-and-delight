@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.cg.inventoryauthservice.dto.ChangePasswordRequest;
 import com.cg.inventoryauthservice.dto.ForgotPasswordRequest;
 import com.cg.inventoryauthservice.dto.LoginRequest;
 import com.cg.inventoryauthservice.dto.RegisterRequest;
@@ -60,14 +59,6 @@ public class AuthServiceImpl implements AuthService {
   }
 
   @Override
-  public Map<String, String> changePassword(ChangePasswordRequest changePasswordRequest) {
-    User user = findUserByCredentials(changePasswordRequest.getUsername(), changePasswordRequest.getOldPassword());
-    user.setPassword(encodePassword(changePasswordRequest.getNewPassword()));
-    userRepository.save(user);
-    return Collections.singletonMap("success", "Successfully Updated Password");
-  }
-
-  @Override
   public Map<String, String> updateUser(UpdateRequest updateRequest) {
     userDetailsRepository.save(UserDetailsMapper.updateRequestToUserDetails(updateRequest));
     return Collections.singletonMap("success", "Successfully Updated user with ID: " + updateRequest.getUserId());
@@ -81,7 +72,6 @@ public class AuthServiceImpl implements AuthService {
       .stream()
       .map(UserDetailsMapper::userDetailsToDto)
       .collect(Collectors.toList());
-      // return null;
   }
 
   @Override
