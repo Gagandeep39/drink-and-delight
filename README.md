@@ -39,6 +39,10 @@
 
 ## `inventory-rawmaterial-order-service`
 
+- Crete Raw Material Order
+- Update Raw Material Order
+- Default Port 9300
+
 ## `inventory-stock-management-service`
 
 ## `inventory-supplier-service`
