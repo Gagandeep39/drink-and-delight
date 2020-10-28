@@ -32,6 +32,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 @AutoConfigureMockMvc
 class AuthControllerTest {
 
+        static {
+                System.setProperty("spring.profiles.active", "test");
+        }
+
         @Autowired
         private MockMvc mockMvc;
 
