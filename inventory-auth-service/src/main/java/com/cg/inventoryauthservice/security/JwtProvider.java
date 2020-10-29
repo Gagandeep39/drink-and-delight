@@ -7,7 +7,6 @@
  */
 package com.cg.inventoryauthservice.security;
 
-import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.time.Instant;
 import java.util.Date;
