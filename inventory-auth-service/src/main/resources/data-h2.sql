@@ -24,7 +24,8 @@ INSERT INTO user_details (user_details_id, first_name, last_name, designation, d
 INSERT INTO user_details (user_details_id, first_name, last_name, designation, dob, email_id, gender, phone_no, security_question, security_answer, address_id) VALUES (100006, 'John', 'Doe', 'Sales Team', '1990-03-12', 'raghav@mail.com', 'Male', '9966553322', 'Default Question', 'answer', 100006);
 
 -- MYSQL sequence
--- UPDATE user_id_sequence SET next_val = 100021;
+-- UPDATE user_id_sequence SET next_val = 100007;
+-- UPDATE address_id_sequence SET next_val = 100007;
 -- H2 sequence
 ALTER sequence user_id_sequence restart with 100007;
 ALTER sequence address_id_sequence restart with 100007;

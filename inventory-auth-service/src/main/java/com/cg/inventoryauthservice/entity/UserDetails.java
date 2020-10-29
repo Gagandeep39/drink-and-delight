@@ -5,7 +5,7 @@
  * @modify date 2020-09-19 18:33:13
  * @desc User details Entity
  */
-package com.cg.inventorydatabaseservice.entity;
+package com.cg.inventoryauthservice.entity;
 
 import java.time.LocalDate;
 
@@ -19,9 +19,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
-import com.cg.inventorydatabaseservice.enums.Gender;
+import com.cg.inventoryauthservice.enums.Gender;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -29,6 +30,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 public class UserDetails {
 
   @Id
