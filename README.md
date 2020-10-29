@@ -53,7 +53,9 @@
 
 1. Open the project on Ecllipse/ VS Code
 2. Launch Eureka Discovery Server
-3. Launch All other Services
+3. Launch Database Server
+4. Launch Gateway Server
+5. Launch All other Services
 
 ## Documentations
 
