@@ -32,7 +32,7 @@ public class StockManagementService {
 	}
 
 	public RawMaterial getRawMaterialById(Long id) {
-		return null;
+		return rawMaterialRepository.findById(id.intValue());
 	}
 
 	public Product saveProduct(Product product) {
