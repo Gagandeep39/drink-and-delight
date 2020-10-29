@@ -44,4 +44,4 @@ build/
 **/.editorconfig
 **/.aws
 **/dist
-/.metadata
+**/.metadata
