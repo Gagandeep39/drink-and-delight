@@ -39,5 +39,5 @@ public class Distributor {
   private String materialName;
   @Column(length = 100)
   private String description;
- 
+
 }
