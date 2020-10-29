@@ -1,13 +1,13 @@
 package com.cg.inventorysupplierservice.exception;
 
-public class NullParameterException extends RuntimeException {
+public class InvalidDataException extends RuntimeException {
 
-	public NullParameterException() {
+	public InvalidDataException() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public NullParameterException(String message) {
+	public InvalidDataException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}

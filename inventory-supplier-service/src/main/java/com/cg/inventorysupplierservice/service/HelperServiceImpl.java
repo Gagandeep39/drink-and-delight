@@ -12,7 +12,8 @@ import com.cg.inventorysupplierservice.dao.WarehouseDao;
 import com.cg.inventorysupplierservice.entity.Distributor;
 import com.cg.inventorysupplierservice.entity.Supplier;
 import com.cg.inventorysupplierservice.entity.Warehouse;
-import com.cg.inventorysupplierservice.exception.NullParameterException;
+import com.cg.inventorysupplierservice.exception.EntityNotFoundException;
+import com.cg.inventorysupplierservice.exception.InvalidDataException;
 
 @Service
 public class HelperServiceImpl implements HelperService {
@@ -46,19 +47,29 @@ public class HelperServiceImpl implements HelperService {
 	@Override
 	public List<Warehouse> getWarehouses() {
 		// TODO Auto-generated method stub
-		return wDao.findAll();
+		List<Warehouse> warehouses = wDao.findAll();
+		if (warehouses == null)
+			throw new EntityNotFoundException("Couldn't fetch the list!");
+		else
+			return warehouses;
 	}
 
 	@Override
 	public List<Distributor> getDistributors() {
 		// TODO Auto-generated method stub
-		return dDao.findAll();
+		List<Distributor> distributors = dDao.findAll();
+		if (distributors == null)
+			throw new EntityNotFoundException("Couldn't fetch the list!");
+		return distributors;
 	}
 
 	@Override
 	public List<Supplier> getSuppliers() {
 		// TODO Auto-generated method stub
-		return sDao.findAll();
+		List<Supplier> suppliers = sDao.findAll();
+		if (suppliers == null)
+			throw new EntityNotFoundException("Couldn't fetch the list!");
+		return suppliers;
 	}
 
 	@Override
