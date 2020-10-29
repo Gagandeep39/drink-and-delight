@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 import com.cg.inventoryauthservice.dto.ForgotPasswordRequest;
 import com.cg.inventoryauthservice.dto.LoginRequest;
+import com.cg.inventoryauthservice.dto.LoginResponse;
 import com.cg.inventoryauthservice.dto.RegisterRequest;
 import com.cg.inventoryauthservice.dto.UpdateRequest;
 import com.cg.inventoryauthservice.dto.UserDetailsDto;
@@ -25,6 +26,7 @@ import com.cg.inventoryauthservice.helper.UserDetailsMapper;
 import com.cg.inventoryauthservice.repository.AddressRepository;
 import com.cg.inventoryauthservice.repository.UserDetailsRepository;
 import com.cg.inventoryauthservice.repository.UserRepository;
+import com.cg.inventoryauthservice.security.JwtProvider;
 import com.cg.inventoryauthservice.service.AuthService;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -42,11 +44,12 @@ public class AuthServiceImpl implements AuthService {
   private final AddressRepository addressRepository;
   private final UserRepository userRepository;
   private final PasswordEncoder passwordEncoder;
+  private final JwtProvider jwtProvider;
 
   @Override
-  public Map<String, String> login(LoginRequest loginRequest) {
-    return Collections.singletonMap("userId",
-        findUserByCredentials(loginRequest.getUsername(), loginRequest.getPassword()).getUserId().toString());
+  public LoginResponse login(LoginRequest loginRequest) {
+    User user = findUserByCredentials(loginRequest.getUsername(), loginRequest.getPassword());
+    return new LoginResponse(user.getUserId(), jwtProvider.generateTokenWithUsername(user.getUsername()));
   }
 
   @Override

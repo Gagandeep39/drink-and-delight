@@ -12,12 +12,13 @@ import java.util.Map;
 
 import com.cg.inventoryauthservice.dto.ForgotPasswordRequest;
 import com.cg.inventoryauthservice.dto.LoginRequest;
+import com.cg.inventoryauthservice.dto.LoginResponse;
 import com.cg.inventoryauthservice.dto.RegisterRequest;
 import com.cg.inventoryauthservice.dto.UpdateRequest;
 import com.cg.inventoryauthservice.dto.UserDetailsDto;
 
 public interface AuthService {
-  Map<String, String> login(LoginRequest loginRequest);
+  LoginResponse login(LoginRequest loginRequest);
 
   Map<String, String> register(RegisterRequest registerRequest);
 

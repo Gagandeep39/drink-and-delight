@@ -13,6 +13,7 @@ import javax.validation.Valid;
 
 import com.cg.inventoryauthservice.dto.ForgotPasswordRequest;
 import com.cg.inventoryauthservice.dto.LoginRequest;
+import com.cg.inventoryauthservice.dto.LoginResponse;
 import com.cg.inventoryauthservice.service.AuthService;
 
 import org.springframework.http.HttpStatus;
@@ -35,7 +36,7 @@ public class AuthController {
   private final AuthService authService;
 
   @PostMapping("/login")
-  public ResponseEntity<Map<String, String>> login(@Valid @RequestBody LoginRequest loginRequest) {
+  public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
     return ResponseEntity.status(HttpStatus.OK).body(authService.login(loginRequest));
   }
 

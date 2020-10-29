@@ -1,0 +1,31 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: inventory-gateway-service
+  profiles:
+    active: dev
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: ${eureka_url:http://localhost:8761/eureka/}
+
+# JTW Config
+jwt:
+  key: ${jwt_key:thisisathirtycharacterlongstring}
+  expiration: 36000
+
+# Fix CORS error in docker container after adding zuul gatemway
+# also add a CORS bean in main class
+zuul:
+  sensitiveHeaders:
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin  
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

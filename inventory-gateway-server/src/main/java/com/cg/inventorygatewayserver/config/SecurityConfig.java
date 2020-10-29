@@ -1,8 +1,15 @@
-package com.cg.inventoryauthservice.config;
+/**
+ * @author Gagandeep Singh
+ * @email singh.gagandeep3911@gmail.com
+ * @create date 2020-10-29 16:50:12
+ * @modify date 2020-10-29 16:50:12
+ * @desc Security COnfiguration
+ */
+package com.cg.inventorygatewayserver.config;
 
-import com.cg.inventoryauthservice.security.CustomAuthenticationEntryPoint;
-import com.cg.inventoryauthservice.security.JwtAuthenticationFilter;
-import com.cg.inventoryauthservice.service.implementation.JwtUserDetailsServiceImpl;
+import com.cg.inventorygatewayserver.security.CustomAuthenticationEntryPoint;
+import com.cg.inventorygatewayserver.security.JwtAuthenticationFilter;
+import com.cg.inventorygatewayserver.service.implementation.JwtUserDetailsServiceImpl;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().disable()
-      .authorizeRequests().antMatchers("/auth/**", "/h2", "/swagger*/**", "/v2/api-docs").permitAll().antMatchers().permitAll()
+      .authorizeRequests().antMatchers("/inventory-auth-service/**", "/actuator/**", "/**/h2", "/**/swagger*/**", "/**/v2/api-docs").permitAll().antMatchers("/h2").permitAll()
       .anyRequest().authenticated()
       .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
       .and().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint());
