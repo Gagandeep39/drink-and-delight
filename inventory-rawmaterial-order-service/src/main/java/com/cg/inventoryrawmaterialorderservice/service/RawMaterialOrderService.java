@@ -1,9 +1,7 @@
 package com.cg.inventoryrawmaterialorderservice.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.cg.inventoryrawmaterialorderservice.entity.RawMaterial;
 import com.cg.inventoryrawmaterialorderservice.entity.RawMaterialOrder;
 
 public interface RawMaterialOrderService {
@@ -15,7 +13,7 @@ public interface RawMaterialOrderService {
 	RawMaterialOrder updateRawMaterialOrderDeliveryStatus(RawMaterialOrder order);
 	
 	//Find a particular Raw material order by its Id                                  
-	Optional<RawMaterialOrder> fetchRawMaterialOrderById(Long id) ;
+	RawMaterialOrder fetchRawMaterialOrderById(Long id) ;
 	
 	//Fetch all Raw material orders
 	List<RawMaterialOrder> fetchAllOrders();
