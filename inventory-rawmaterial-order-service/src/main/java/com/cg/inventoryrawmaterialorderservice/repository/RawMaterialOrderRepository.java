@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.cg.inventoryrawmaterialorderservice.entity.RawMaterialOrder;
 
 @Repository
-public interface RawMaterialOrderRepository extends JpaRepository<RawMaterialOrder, Integer>{
+public interface RawMaterialOrderRepository extends JpaRepository<RawMaterialOrder, Long>{
 
-	//fetch raw material by id
-	List<RawMaterialOrder> fetchRawMaterialById(int rawMaterialId);
+
+	
 }

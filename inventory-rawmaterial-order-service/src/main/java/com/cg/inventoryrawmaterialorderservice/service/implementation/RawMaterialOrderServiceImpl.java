@@ -1,11 +1,11 @@
 package com.cg.inventoryrawmaterialorderservice.service.implementation;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cg.inventoryrawmaterialorderservice.entity.RawMaterial;
 import com.cg.inventoryrawmaterialorderservice.entity.RawMaterialOrder;
 import com.cg.inventoryrawmaterialorderservice.repository.RawMaterialOrderRepository;
 import com.cg.inventoryrawmaterialorderservice.service.RawMaterialOrderService;
@@ -21,14 +21,14 @@ public class RawMaterialOrderServiceImpl implements RawMaterialOrderService {
 		return this.repository.save(order);
 	}
 	
-	//Update the Delivery status of the raw material ordered                       //Incomplete
-	public RawMaterialOrder updateRawMaterialOrderDeliveryStatus() {
-		return null;
+	//Update the Delivery status of the raw material ordered                       
+	public RawMaterialOrder updateRawMaterialOrderDeliveryStatus(RawMaterialOrder order) {
+		return this.repository.save(order);
 	}
 	
-	//Find a particular Raw material by its Id                                  //Incomplete
-	public RawMaterial fetchRawMaterialById(Integer id) {
-		return null;
+	//Find a particular Raw material order by its Id                                  
+	public Optional<RawMaterialOrder> fetchRawMaterialOrderById(Long id) {
+		return this.repository.findById(id);
 	}
 	
 	//Fetch all Raw material orders
