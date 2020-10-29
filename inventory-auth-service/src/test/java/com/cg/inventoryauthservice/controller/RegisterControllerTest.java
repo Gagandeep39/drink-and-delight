@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import com.cg.inventoryauthservice.dto.RegisterRequest;
 import com.cg.inventoryauthservice.dto.UpdateRequest;
 import com.cg.inventoryauthservice.entity.Address;
+import com.cg.inventoryauthservice.security.JwtProvider;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -44,13 +45,16 @@ public class RegisterControllerTest {
   @Autowired
   private MockMvc mockMvc;
 
+  @Autowired
+  private JwtProvider jwtProvider;
+
   /**
    * @title Extras
    * @desc Fetch All User
    */
   @Test
   void fetchAllUsers() throws Exception {
-    RequestBuilder builder = MockMvcRequestBuilders.get("/register");
+    RequestBuilder builder = MockMvcRequestBuilders.get("/register").header("Authorization", "Bearer " + fetchToken());
     MvcResult result = mockMvc.perform(builder).andReturn();
     assertEquals(200, result.getResponse().getStatus());
   }
@@ -61,8 +65,11 @@ public class RegisterControllerTest {
    */
   @Test
   void fetchUserById() throws Exception {
-    mockMvc.perform(MockMvcRequestBuilders.get("/register/" + 100001).contentType(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON))
+    mockMvc.perform(MockMvcRequestBuilders.get("/register/" + 100001)
+        .header("Authorization", "Bearer " + fetchToken())
+        .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$.userId", Matchers.is(100001)));
   }
 
@@ -72,7 +79,9 @@ public class RegisterControllerTest {
    */
   @Test
   void invalidFetchUserById() throws Exception {
-    mockMvc.perform(MockMvcRequestBuilders.get("/register/" + 100999).contentType(MediaType.APPLICATION_JSON))
+    mockMvc.perform(MockMvcRequestBuilders.get("/register/" + 100999)
+        .header("Authorization", "Bearer " + fetchToken())
+        .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().is4xxClientError());
   }
 
@@ -88,8 +97,8 @@ public class RegisterControllerTest {
     mapper.registerModule(new JavaTimeModule());
     mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     mockMvc
-        .perform(MockMvcRequestBuilders.post("/register").contentType(MediaType.APPLICATION_JSON)
-            .content(mapper.writeValueAsString(createRegisterRequest())))
+        .perform(MockMvcRequestBuilders.post("/register").header("Authorization", "Bearer " + fetchToken())
+            .contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(createRegisterRequest())))
         .andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$.success").exists());
   }
@@ -107,8 +116,10 @@ public class RegisterControllerTest {
     // Fix date issue
     mapper.registerModule(new JavaTimeModule());
     mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-    mockMvc.perform(MockMvcRequestBuilders.post("/register").contentType(MediaType.APPLICATION_JSON)
-        .content(mapper.writeValueAsString(request))).andExpect(status().is4xxClientError());
+    mockMvc
+        .perform(MockMvcRequestBuilders.post("/register").header("Authorization", "Bearer " + fetchToken())
+        .contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(request)))
+        .andExpect(status().is4xxClientError());
   }
 
   /**
@@ -130,8 +141,8 @@ public class RegisterControllerTest {
         .dob(LocalDate.of(1999, 5, 14)).emailId("test@mail.com").phoneNo("9988776655").gender("Male")
         .firstName("Gagandeep").lastName("Singh").securityQuestion("New question").securityAnswer("answer").build();
     mockMvc
-        .perform(MockMvcRequestBuilders.put("/register").contentType(MediaType.APPLICATION_JSON)
-            .content(mapper.writeValueAsString(updateRequest)))
+        .perform(MockMvcRequestBuilders.put("/register").header("Authorization", "Bearer " + fetchToken())
+            .contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(updateRequest)))
         .andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$.success").exists());
   }
@@ -152,8 +163,10 @@ public class RegisterControllerTest {
     UpdateRequest updateRequest = UpdateRequest.builder().userId(100001L).address(address).designation("Salesman")
         .dob(LocalDate.of(1999, 5, 14)).emailId("test@mail.com").phoneNo("9988776655").gender("Male")
         .firstName("Gagandeep").lastName("Singh").securityQuestion("New question").securityAnswer("answer").build();
-    mockMvc.perform(MockMvcRequestBuilders.put("/register").contentType(MediaType.APPLICATION_JSON)
-        .content(mapper.writeValueAsString(updateRequest))).andExpect(status().is4xxClientError());
+    mockMvc
+        .perform(MockMvcRequestBuilders.put("/register").header("Authorization", "Bearer " + fetchToken())
+            .contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(updateRequest)))
+        .andExpect(status().is4xxClientError());
   }
 
   /**
@@ -175,6 +188,10 @@ public class RegisterControllerTest {
     return RegisterRequest.builder().address(createAddress()).designation("Developer").dob(LocalDate.of(1999, 5, 14))
         .emailId("test@mail.com").firstName("gagandeep").lastName("Singh").phoneNo("9988776655").username("gaganqweerr")
         .password("123456").gender("Male").build();
+  }
+
+  public String fetchToken() {
+    return jwtProvider.generateTokenWithUsername("gagan");
   }
 
 }
