@@ -43,9 +43,8 @@ public class CustomExceptionHandler {
                 .build());
     }
 
-    @ExceptionHandler(InvalidCredentialException.class)
-    public ResponseEntity<ErrorResponse> handleInvalidCredential(InvalidCredentialException ex) {
-
+    @ExceptionHandler(RawMaterialNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidCredential(RawMaterialNotFoundException ex) {
         return ResponseEntity
             .status(HttpStatus.BAD_REQUEST)
             .body(ErrorResponse.builder()
