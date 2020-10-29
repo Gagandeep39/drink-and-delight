@@ -1,0 +1,16 @@
+################## Auth Service Endpoints ##################
+
+### Login Valid
+POST http://localhost:9000/inventory-auth-service/auth/login
+Content-Type: application/json
+
+{
+  "username": "gagan",
+  "password": "123456"
+}
+
+
+### Fetch All users
+GET http://localhost:9000/inventory-auth-service/register
+Authorization: Bearer [Fetch by performing login]
+
