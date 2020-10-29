@@ -8,6 +8,9 @@
 package com.cg.inventoryauthservice.security;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.FilterChain;
 import javax.servlet.GenericFilter;
@@ -16,7 +19,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -44,15 +50,26 @@ public class JwtAuthenticationFilter extends GenericFilter {
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {
-    String jwt = getJwtFromRequest((HttpServletRequest) request);
-    if (StringUtils.hasText(jwt) && jwtProvider.validateToken(jwt)) {
-      String username = jwtProvider.getUsernameFromJwt(jwt);
+    try {
+      String jwt = getJwtFromRequest((HttpServletRequest) request);
+      if (StringUtils.hasText(jwt) && jwtProvider.validateToken(jwt)) {
+        String username = jwtProvider.getUsernameFromJwt(jwt);
 
-      UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-      UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
-          userDetails.getAuthorities());
-      authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails((HttpServletRequest) request));
-      SecurityContextHolder.getContext().setAuthentication(authentication);
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
+            userDetails.getAuthorities());
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails((HttpServletRequest) request));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+      }
+    } catch (Exception e) {
+      response.setContentType("application/json;charset=UTF-8");
+      Map<String, Object> data = new HashMap<>();
+      data.put("timestamp", System.currentTimeMillis());
+      data.put("status", HttpStatus.FORBIDDEN.value());
+      data.put("message", "Invalid Token");
+      OutputStream out = response.getOutputStream();
+      ObjectMapper mapper = new ObjectMapper();
+      mapper.writeValue(out, data);
     }
     chain.doFilter(request, response);
 
