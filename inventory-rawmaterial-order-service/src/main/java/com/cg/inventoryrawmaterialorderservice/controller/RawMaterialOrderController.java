@@ -1,6 +1,7 @@
 package com.cg.inventoryrawmaterialorderservice.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.inventoryrawmaterialorderservice.entity.RawMaterial;
 import com.cg.inventoryrawmaterialorderservice.entity.RawMaterialOrder;
 import com.cg.inventoryrawmaterialorderservice.service.RawMaterialOrderService;
 
@@ -26,16 +26,16 @@ public class RawMaterialOrderController {
 		return this.service.createRawMaterialOrder(rawMaterialOrder);
 	}
 	
-	//Update Delivery Status                                                 //Incomplete
+	//Update Delivery Status                                                 
 	@PutMapping(value = "/rawMaterial")
 	public RawMaterialOrder UpdateDeliveryStatus(@RequestBody RawMaterialOrder order) {
-		return this.service.updateRawMaterialOrderDeliveryStatus();
+		return this.service.updateRawMaterialOrderDeliveryStatus(order);
 	}
 	
 	//Find a particular order by its ID
 	@GetMapping(value = "/rawMaterial/{id}")
-	public RawMaterial findRawMaterialById(@PathVariable Integer id){
-		return this.service.fetchRawMaterialById(id);
+	public Optional<RawMaterialOrder> findRawMaterialOrderById(@PathVariable Long id){
+		return this.service.fetchRawMaterialOrderById(id);
 	}
 	
 	//Fetch all the Orders

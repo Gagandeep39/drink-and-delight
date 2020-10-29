@@ -5,6 +5,8 @@
  * @modify date 2020-09-20 01:36:37
  * @desc Defines all exception handler
  */
+
+/*
 package com.cg.inventoryrawmaterialorderservice.exception;
 
 import java.util.ArrayList;
@@ -68,3 +70,5 @@ public class CustomExceptionHandler {
     }
 
 }
+
+*/
