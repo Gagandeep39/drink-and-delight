@@ -53,14 +53,14 @@ public class StockController {
 		return stockManagementService.saveRawMaterial(rawMaterial);
 	}
 
-	@PutMapping("/stock/rawMaterial/(id}")
+	@PutMapping("/stock/rawMaterial/{id}")
 	public RawMaterial updateRawMaterialStock(@PathVariable Long id, @RequestBody RawMaterial rawMaterial) {
 		RawMaterial rawMaterialExisting = stockManagementService.getRawMaterialById(id.intValue());
 		rawMaterialExisting.setQuantityAvailable(rawMaterial.getQuantityAvailable());
 		return stockManagementService.saveRawMaterial(rawMaterialExisting);
 	}
 
-	@PutMapping("/stock/product/(id}")
+	@PutMapping("/stock/product/{id}")
 	public Product updateProductStock(@PathVariable Long id, @RequestBody Product product) {
 		Product productExisting = stockManagementService.getProductById(id.intValue());
 		productExisting.setQuantityAvailable(product.getQuantityAvailable());
