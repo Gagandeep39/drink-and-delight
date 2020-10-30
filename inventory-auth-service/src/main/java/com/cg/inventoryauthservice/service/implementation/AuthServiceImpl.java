@@ -53,12 +53,12 @@ public class AuthServiceImpl implements AuthService {
   }
 
   @Override
-  public Map<String, String> register(RegisterRequest registerRequest) {
+  public UserDetailsDto register(RegisterRequest registerRequest) {
     checkIfUsernameExists(registerRequest.getUsername());
     registerRequest.setPassword(encodePassword(registerRequest.getPassword()));
     registerRequest.setAddress(addressRepository.save(registerRequest.getAddress()));
     UserDetails userDetails = userDetailsRepository.save(UserDetailsMapper.registerToUserDetails(registerRequest));
-    return Collections.singletonMap("success", "User created with ID: " + userDetails.getUserDetailsId());
+    return UserDetailsMapper.userDetailsToDto(userDetails);
   }
 
   @Override
