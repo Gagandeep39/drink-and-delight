@@ -1,0 +1,17 @@
+### POST 
+PUT http://localhost:9400/productStock
+Content-Type: application/json
+
+{
+  "productId": "100001",
+  "quantity": "12"
+}
+
+### POST 
+PUT http://localhost:9400/rawMaterialStock
+Content-Type: application/json
+
+{
+  "rawMaterialId": "1000000",
+  "quantity": "12"
+}
