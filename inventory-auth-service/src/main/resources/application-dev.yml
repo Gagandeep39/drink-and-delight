@@ -22,6 +22,6 @@ logging:
     com.cg: info
 
 # Enables discovery CLient eatures
-# eureka:
-#   client:
-#     enabled: true
+eureka:
+  client:
+    enabled: true
