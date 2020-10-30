@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+//import com.cg.inventoryauthservice.exception.ErrorResponse;
 import com.cg.inventorystockmanagementservice.entity.Product;
 import com.cg.inventorystockmanagementservice.entity.RawMaterial;
-import com.cg.inventorystockmanagementservice.entity.Warehouse;
 import com.cg.inventorystockmanagementservice.service.StockManagementService;
 
 @RestController
@@ -27,14 +27,17 @@ public class StockController {
 
 	@GetMapping("/stock/product")
 	public ResponseEntity<List<Product>> findAllProducts() {
-		return ResponseEntity.status(HttpStatus.OK).body(stockManagementService.getAllProducts());
+		List<Product> productList = stockManagementService.getAllProducts();
+		if(productList.isEmpty())
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(productList);
+		else
+			return ResponseEntity.status(HttpStatus.OK).body(productList);
 	}
 
 	@GetMapping("/stock/product/{id}")
-	public ResponseEntity<Product> findProductById(@PathVariable Long id) {
+	public ResponseEntity<Product> findProductById(@PathVariable(name="id") Long id) {
 		Optional<Product> fetchedProduct = stockManagementService.getProductById(id);
-		return ResponseEntity.status(HttpStatus.OK).body(fetchedProduct.get());
-		
+		return ResponseEntity.status(HttpStatus.OK).body(fetchedProduct.get());	
 	}
 
 	@GetMapping("/stock/rawMaterial")
@@ -43,7 +46,7 @@ public class StockController {
 	}
 
 	@GetMapping("/stock/rawMaterial/{id}")
-	public Optional<RawMaterial> findRawMaterialById(@PathVariable Long id) {
+	public Optional<RawMaterial> findRawMaterialById(@PathVariable(name="id") Long id) {
 		return stockManagementService.getRawMaterialById(id);
 	}
 
@@ -58,7 +61,7 @@ public class StockController {
 	}
 
 	@PutMapping("/stock/rawMaterial")
-	public RawMaterial updateRawMaterialStock(@PathVariable Long id, @RequestBody RawMaterial rawMaterial) {
+	public RawMaterial updateRawMaterialStock(@PathVariable(name="id") Long id, @RequestBody RawMaterial rawMaterial) {
 		Optional<RawMaterial> rawMaterialExisting = stockManagementService.getRawMaterialById(id);
 		RawMaterial rawMaterialUpdate = rawMaterialExisting.get();
 		rawMaterialUpdate.setQuantityAvailable(rawMaterial.getQuantityAvailable());
@@ -66,7 +69,7 @@ public class StockController {
 	}
 
 	@PutMapping("/stock/Product")
-	public Product updateProductStock(@PathVariable Long id, @RequestBody Product product) {
+	public Product updateProductStock(@PathVariable(name="id") Long id, @RequestBody Product product) {
 		Optional<Product> productExisting = stockManagementService.getProductById(id);
 		Product productUpdate = productExisting.get();
 		productUpdate.setQuantityAvailable(product.getQuantityAvailable());
@@ -74,28 +77,13 @@ public class StockController {
 	}
 
 	@DeleteMapping("/stock/product/{id}")
-	public String deleteProduct(@PathVariable Long id) {
+	public String deleteProduct(@PathVariable(name="id") Long id) {
 		return stockManagementService.removeProduct(id);
 	}
 
 	@DeleteMapping("/stock/rawMaterial/{id}")
-	public String deleteRawMaterial(@PathVariable Long id) {
+	public String deleteRawMaterial(@PathVariable(name="id") Long id) {
 		return stockManagementService.removeRawMaterial(id);
-	}
-
-	@PostMapping("/stock/warehouse")
-	public Warehouse addWarehouse(@RequestBody Warehouse warehouse) {
-		return stockManagementService.saveWarehouse(warehouse);
-	}
-
-	@GetMapping("/stock/warehouse")
-	public List<Warehouse> findAllWarehouses() {
-		return stockManagementService.getAllWarehouses();
-	}
-
-	@GetMapping("/stock/warehouse/{id}")
-	public Optional<Warehouse> findWarehouseById(@PathVariable Long id) {
-		return stockManagementService.getWarehouseById(id);
 	}
 
 }
