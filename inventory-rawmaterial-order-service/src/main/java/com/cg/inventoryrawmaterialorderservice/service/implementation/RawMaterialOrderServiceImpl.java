@@ -7,7 +7,9 @@
  */
 package com.cg.inventoryrawmaterialorderservice.service.implementation;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,15 +33,15 @@ public class RawMaterialOrderServiceImpl implements RawMaterialOrderService {
 	private RawMaterialOrderRepository repository;
 
 	// Create an RawMaterialOrder type of order to save in database
-	public RawMaterialOrderResponse createRawMaterialOrder(RawMaterialOrderRequest order) {
-		return fetchRawMaterialOrderById(this.repository.save(RawMaterialMapper.DtoToEntity(order)).getRawMaterialOrderId());
+	public Map<String, String> createRawMaterialOrder(RawMaterialOrderRequest order) {
+		return Collections.singletonMap("rawMaterialOrderId", repository.save(RawMaterialMapper.DtoToEntity(order)).getRawMaterialOrderId().toString());
 	}
 
 	// Update the Delivery status of the raw material ordered
 	public RawMaterialOrderResponse updateRawMaterialOrderDeliveryStatus(UpdateStatusDto updateStatusDto) {
 		RawMaterialOrder order = repository.findById(updateStatusDto.getOrderId()).orElseThrow(() -> new RawMaterialNotFoundException("rawMaterial", "Not found"));
 		if(order.getOrderStatus().equals(OrderStatus.Delivered)) throw new InvalidOrderUpdateStatusException("status", "Product already delivered");
-		if (order.getOrderStatus().equals(OrderStatus.Cancelled)) throw new InvalidOrderUpdateStatusException("status", "Product delivery was already cancelled");
+		if (order.getOrderStatus().equals(OrderStatus.Cancelled)) throw new InvalidOrderUpdateStatusException("status", "Product delivery was cancelled before");
 		order.setOrderStatus(OrderStatus.valueOf(updateStatusDto.getStatus()));
 		return RawMaterialMapper.entityToDto(this.repository.save(order));
 	}
