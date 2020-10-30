@@ -14,4 +14,4 @@ eureka:
 # JTW Config
 jwt:
   key: ${jwt_key:thisisathirtycharacterlongstring}
-  expiration: 36000
+  expiration: 3600000
