@@ -59,3 +59,8 @@ INSERT INTO raw_material_order (raw_material_order_id, quantity, price_per_unit,
 INSERT INTO raw_material_order (raw_material_order_id, quantity, price_per_unit, quality_check, order_status, delivery_date, expiry_date, ordered_on, supplier_id, raw_material_id) VALUES (1000010, 55, 200, 'Passed', 'Delivered', '2019-05-15', '2025-02-12', '2019-05-11', 1000004, 1000002);
 INSERT INTO raw_material_order (raw_material_order_id, quantity, price_per_unit, quality_check, order_status, delivery_date, expiry_date, ordered_on, supplier_id, raw_material_id) VALUES (1000011, 55, 200, 'Passed', 'Delivered', '2019-05-15', '2025-12-12', '2019-05-11', 1000005, 1000003);
 INSERT INTO raw_material_order (raw_material_order_id, quantity, price_per_unit, quality_check, order_status, delivery_date, expiry_date, ordered_on, supplier_id, raw_material_id) VALUES (1000012, 55, 200, 'Passed', 'Cancelled', '2019-05-15', '2025-02-12', '2019-05-11', 1000005, 1000004);
+
+-- SQL
+-- UPDATE raw_material_order_id_sequence SET next_val = 1000013;
+-- H2
+ALTER sequence raw_material_order_id_sequence restart with 1000013;
