@@ -9,6 +9,8 @@ package com.cg.inventoryrawmaterialorderservice.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +22,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.inventoryrawmaterialorderservice.dto.RawMaterialOrderRequest;
 import com.cg.inventoryrawmaterialorderservice.dto.RawMaterialOrderResponse;
 import com.cg.inventoryrawmaterialorderservice.dto.UpdateStatusDto;
-import com.cg.inventoryrawmaterialorderservice.entity.RawMaterialOrder;
 import com.cg.inventoryrawmaterialorderservice.service.RawMaterialOrderService;
 
 @RestController
@@ -34,13 +36,14 @@ public class RawMaterialOrderController {
 
 	// Create Order
 	@PostMapping
-	public ResponseEntity<RawMaterialOrder> createOrder(@RequestBody RawMaterialOrder rawMaterialOrder) {
-		return ResponseEntity.status(HttpStatus.OK).body(this.service.createRawMaterialOrder(rawMaterialOrder));
+	public ResponseEntity<RawMaterialOrderResponse> createOrder(
+			@Valid @RequestBody RawMaterialOrderRequest rawMaterialOrderRequest) {
+		return ResponseEntity.status(HttpStatus.OK).body(this.service.createRawMaterialOrder(rawMaterialOrderRequest));
 	}
 
 	// Update Delivery Status
 	@PutMapping
-	public ResponseEntity<RawMaterialOrderResponse> UpdateDeliveryStatus(@RequestBody UpdateStatusDto updateStatusDto) {
+	public ResponseEntity<RawMaterialOrderResponse> UpdateDeliveryStatus(@Valid @RequestBody UpdateStatusDto updateStatusDto) {
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(this.service.updateRawMaterialOrderDeliveryStatus(updateStatusDto));
 	}

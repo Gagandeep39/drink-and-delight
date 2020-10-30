@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.inventoryrawmaterialorderservice.dto.RawMaterialOrderRequest;
 import com.cg.inventoryrawmaterialorderservice.dto.RawMaterialOrderResponse;
 import com.cg.inventoryrawmaterialorderservice.dto.UpdateStatusDto;
 import com.cg.inventoryrawmaterialorderservice.entity.RawMaterialOrder;
@@ -30,8 +31,8 @@ public class RawMaterialOrderServiceImpl implements RawMaterialOrderService {
 	private RawMaterialOrderRepository repository;
 
 	// Create an RawMaterialOrder type of order to save in database
-	public RawMaterialOrder createRawMaterialOrder(RawMaterialOrder order) {
-		return this.repository.save(order);
+	public RawMaterialOrderResponse createRawMaterialOrder(RawMaterialOrderRequest order) {
+		return fetchRawMaterialOrderById(this.repository.save(RawMaterialMapper.DtoToEntity(order)).getRawMaterialOrderId());
 	}
 
 	// Update the Delivery status of the raw material ordered
