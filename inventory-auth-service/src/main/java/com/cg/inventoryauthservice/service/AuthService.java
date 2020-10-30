@@ -20,7 +20,7 @@ import com.cg.inventoryauthservice.dto.UserDetailsDto;
 public interface AuthService {
   LoginResponse login(LoginRequest loginRequest);
 
-  Map<String, String> register(RegisterRequest registerRequest);
+  UserDetailsDto register(RegisterRequest registerRequest);
 
   Map<String, String> updateUser(UpdateRequest updateRequest);
 

@@ -10,7 +10,6 @@ package com.cg.inventoryauthservice.helper;
 import com.cg.inventoryauthservice.dto.RegisterRequest;
 import com.cg.inventoryauthservice.dto.UpdateRequest;
 import com.cg.inventoryauthservice.dto.UserDetailsDto;
-import com.cg.inventoryauthservice.entity.Address;
 import com.cg.inventoryauthservice.entity.User;
 import com.cg.inventoryauthservice.entity.UserDetails;
 import com.cg.inventoryauthservice.enums.Gender;
@@ -55,10 +54,10 @@ public class UserDetailsMapper {
   }
 
   public static UserDetails updateRequestToUserDetails(UpdateRequest updateRequest) {
-    Address address = updateRequest.getAddress();
-    address.setAddressId(updateRequest.getUserId());
     return UserDetails.builder()
-      .address(address)
+      .firstName(updateRequest.getFirstName())
+      .lastName(updateRequest.getLastName())
+      .address(updateRequest.getAddress())
       .userDetailsId(updateRequest.getUserId())
       .phoneNo(updateRequest.getPhoneNo())
       .gender(Gender.valueOf(updateRequest.getGender()))

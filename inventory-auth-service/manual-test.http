@@ -116,7 +116,7 @@ Content-Type: application/json
 Authorization: Bearer [Fetch by performing login]
 
 {
-  "username": "gagana",
+  "username": "gaganaa",
   "address": {
   "state": "Maharashta",
   "city": "Mumbai",
@@ -132,6 +132,33 @@ Authorization: Bearer [Fetch by performing login]
   "phoneNo": "8419969059",
   "password": "12345678"
 }
+
+### Register Valid Data
+PUT http://localhost:9100/register 
+Content-Type: application/json
+Authorization: Bearer [Fetch by performing login]
+
+{
+  "userId": "100001",
+  "username": "gagana",
+  "address": {
+  "state": "Maharashta",
+  "city": "Mumbai",
+  "area": "Chandivali",
+  "pincode": "400072"
+  },
+  "firstName": "Gagandeep",
+  "lastName": "Singh",
+  "designation": "Developer",
+  "gender": "Male",
+  "dob": "1999-05-14",
+  "emailId": "test@mail.com",
+  "phoneNo": "8419969059",
+  "password": "12345678",
+  "securityQuestion": "What is your name",
+  "securityAnswer": "123456"
+}
+
 
 ################## Extras ##################
 

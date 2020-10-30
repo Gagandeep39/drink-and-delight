@@ -22,6 +22,7 @@ import com.cg.inventoryauthservice.dto.UserDetailsDto;
 import com.cg.inventoryauthservice.entity.User;
 import com.cg.inventoryauthservice.entity.UserDetails;
 import com.cg.inventoryauthservice.exception.InvalidCredentialException;
+import com.cg.inventoryauthservice.exception.UserNotFoundException;
 import com.cg.inventoryauthservice.helper.UserDetailsMapper;
 import com.cg.inventoryauthservice.repository.AddressRepository;
 import com.cg.inventoryauthservice.repository.UserDetailsRepository;
@@ -53,18 +54,21 @@ public class AuthServiceImpl implements AuthService {
   }
 
   @Override
-  public Map<String, String> register(RegisterRequest registerRequest) {
+  public UserDetailsDto register(RegisterRequest registerRequest) {
     checkIfUsernameExists(registerRequest.getUsername());
     registerRequest.setPassword(encodePassword(registerRequest.getPassword()));
     registerRequest.setAddress(addressRepository.save(registerRequest.getAddress()));
     UserDetails userDetails = userDetailsRepository.save(UserDetailsMapper.registerToUserDetails(registerRequest));
-    return Collections.singletonMap("success", "User created with ID: " + userDetails.getUserDetailsId());
+    return UserDetailsMapper.userDetailsToDto(userDetails);
   }
 
   @Override
   public Map<String, String> updateUser(UpdateRequest updateRequest) {
+    UserDetails details = userDetailsRepository.findById(updateRequest.getUserId()).orElseThrow(() -> new UserNotFoundException());
+    updateRequest.getAddress().setAddressId(details.getAddress().getAddressId());
+    addressRepository.save(updateRequest.getAddress());
     userDetailsRepository.save(UserDetailsMapper.updateRequestToUserDetails(updateRequest));
-    return Collections.singletonMap("success", "Successfully Updated user with ID: " + updateRequest.getUserId());
+    return Collections.singletonMap("userId", updateRequest.getUserId().toString());
   }
 
   @Override
@@ -123,7 +127,7 @@ public class AuthServiceImpl implements AuthService {
     User user = userDetails.getUser();
     user.setPassword(encodePassword(forgotPasswordRequest.getNewPassword()));
     userRepository.save(user);
-    return Collections.singletonMap("success", "Successfully Updated Password");
+    return Collections.singletonMap("userId", userDetails.getUserDetailsId().toString());
   }
 
   private String encodePassword(String password) {

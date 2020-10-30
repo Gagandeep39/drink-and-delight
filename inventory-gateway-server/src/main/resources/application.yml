@@ -16,7 +16,7 @@ eureka:
 # JTW Config
 jwt:
   key: ${jwt_key:thisisathirtycharacterlongstring}
-  expiration: 36000
+  expiration: 3600000
 
 # Fix CORS error in docker container after adding zuul gatemway
 # also add a CORS bean in main class
