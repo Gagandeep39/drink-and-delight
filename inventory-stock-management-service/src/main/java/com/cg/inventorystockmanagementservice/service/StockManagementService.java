@@ -1,68 +1,34 @@
+/**
+ * @author Gagandeep Singh
+ * @email singh.gagandeep3911@gmail.com
+ * @create date 2020-10-31 01:16:53
+ * @modify date 2020-10-31 01:16:53
+ * @desc Stock management Service
+ */
 package com.cg.inventorystockmanagementservice.service;
 
 import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cg.inventorystockmanagementservice.entity.Product;
+import com.cg.inventorystockmanagementservice.entity.ProductStockRequest;
 import com.cg.inventorystockmanagementservice.entity.RawMaterial;
-import com.cg.inventorystockmanagementservice.entity.Warehouse;
-import com.cg.inventorystockmanagementservice.repository.ProductRepository;
-import com.cg.inventorystockmanagementservice.repository.RawMaterialRepository;
-import com.cg.inventorystockmanagementservice.repository.WarehouseRepository;
+import com.cg.inventorystockmanagementservice.entity.RawMaterialStockRequest;
 
-public class StockManagementService {
+public interface StockManagementService {
 
-	@Autowired
-	private ProductRepository productRepository;
-	private RawMaterialRepository rawMaterialRepository;
-	private WarehouseRepository warehouseRepository;
+  List<Product> getAllProducts() ;
 
-	public List<Product> getAllProducts() {
-		return productRepository.findAll();
-	}
+	Product getProductById(Long id) ;
 
-	public Optional<Product> getProductById(Long id) {
-		return productRepository.findById(id.intValue());
-	}
+	List<RawMaterial> getAllRawMaterials() ;
 
-	public List<RawMaterial> getAllRawMaterials() {
-		return rawMaterialRepository.findAll();
-	}
+	RawMaterial getRawMaterialById(Long id) ;
 
-	public RawMaterial getRawMaterialById(Long id) {
-		return null;
-	}
+	Product saveProduct(Product product) ;
 
-	public Product saveProduct(Product product) {
-		return productRepository.save(product);
-	}
+  RawMaterial saveRawMaterial(RawMaterial rawMaterial);
+  
+  Product updateProductStock(ProductStockRequest stockRequest);
 
-	public RawMaterial saveRawMaterial(RawMaterial rawMaterial) {
-		return rawMaterialRepository.save(rawMaterial);
-	}
-
-	public String removeProduct(Long id) {
-		productRepository.deleteById(id.intValue());
-		return "Deleted Successfully";
-	}
-
-	public String removeRawMaterial(Long id) {
-		rawMaterialRepository.deleteById(id.intValue());
-		return "Deleted Successfully";
-	}
-
-	public Warehouse saveWarehouse(Warehouse warehouse) {
-		return warehouseRepository.save(warehouse);
-	}
-
-	public List<Warehouse> getAllWarehouses() {
-		return warehouseRepository.findAll();
-	}
-
-	public Optional<Warehouse> getWarehouseById(Long id) {
-		return warehouseRepository.findById(id.intValue());
-	}
-
+  RawMaterial updateRawMaterialStock(RawMaterialStockRequest stockRequest);
 }
