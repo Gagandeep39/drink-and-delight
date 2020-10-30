@@ -20,10 +20,10 @@ INSERT INTO address (address_id, area, city, pincode, state) VALUES (100006,'Wes
 -- Dummy data for User detail
 INSERT INTO user_details (user_details_id, first_name, last_name, designation, dob, email_id, gender, phone_no, security_question, security_answer, address_id) VALUES (100001, 'Gagandeep', 'Singh', 'Administrator', '1999-05-14', 'singh.gagandeep3911@gmail.com', 'Male', '8419969059', 'Default Question', 'answer', 100001);
 INSERT INTO user_details (user_details_id, first_name, last_name, designation, dob, email_id, gender, phone_no, security_question, security_answer, address_id) VALUES (100002, 'Stefani', 'Germanotta', 'Sales Manager', '1997-12-12', 'palak@mail.com', 'Female', '9876543210', 'Default Question', 'answer', 100002);
-INSERT INTO user_details (user_details_id, first_name, last_name, designation, dob, email_id, gender, phone_no, security_question, security_answer, address_id) VALUES (100003, 'Rhoda', 'Report', 'Marketing Lead', '1998-04-04', 'pragya@mail.com', 'Female', '8877669059', 'Default Question', 'answer', 100003);
-INSERT INTO user_details (user_details_id, first_name, last_name, designation, dob, email_id, gender, phone_no, security_question, security_answer, address_id) VALUES (100004, 'Olive', 'Yew', 'Sales Team', '1995-05-11', 'rushikesh@mail.com', 'Male', '3443312345', 'Default Question', 'answer', 100004);
-INSERT INTO user_details (user_details_id, first_name, last_name, designation, dob, email_id, gender, phone_no, security_question, security_answer, address_id) VALUES (100005, 'Aida', 'Bugg', 'Sales Team', '1999-01-19', 'sulekha@mail.com', 'Female', '7576788679', 'Default Question', 'answer', 100005);
-INSERT INTO user_details (user_details_id, first_name, last_name, designation, dob, email_id, gender, phone_no, security_question, security_answer, address_id) VALUES (100006, 'John', 'Doe', 'Sales Team', '1990-03-12', 'raghav@mail.com', 'Male', '9966553322', 'Default Question', 'answer', 100006);
+INSERT INTO user_details (user_details_id, first_name, last_name, designation, dob, email_id, gender, phone_no, security_question, security_answer, address_id) VALUES (100003, 'Rhoda', 'Report', 'Marketing Lead', '1998-04-04', 'mama@mail.com', 'Female', '8877669059', 'Default Question', 'answer', 100003);
+INSERT INTO user_details (user_details_id, first_name, last_name, designation, dob, email_id, gender, phone_no, security_question, security_answer, address_id) VALUES (100004, 'Olive', 'Yew', 'Sales Team', '1995-05-11', 'john@mail.com', 'Male', '3443312345', 'Default Question', 'answer', 100004);
+INSERT INTO user_details (user_details_id, first_name, last_name, designation, dob, email_id, gender, phone_no, security_question, security_answer, address_id) VALUES (100005, 'Aida', 'Bugg', 'Sales Team', '1999-01-19', 'milo@mail.com', 'Female', '7576788679', 'Default Question', 'answer', 100005);
+INSERT INTO user_details (user_details_id, first_name, last_name, designation, dob, email_id, gender, phone_no, security_question, security_answer, address_id) VALUES (100006, 'John', 'Doe', 'Sales Team', '1990-03-12', 'jenny@mail.com', 'Male', '9966553322', 'Default Question', 'answer', 100006);
 
 -- MYSQL sequence
 -- UPDATE user_id_sequence SET next_val = 100021;
@@ -65,7 +65,13 @@ INSERT INTO raw_material (raw_material_id, material_name, description, quantity_
 
 
 
-INSERT INTO supplier (supplier_id, name, location, phone_no) VALUES (1000000, 'john Doe', 'Germany', '4455336677');
+INSERT INTO supplier (supplier_id, name, location, phone_no) VALUES (1000000, 'John Doe', 'Mumbai', '4455336677');
+INSERT INTO supplier (supplier_id, name, location, phone_no) VALUES (1000001, 'Rajesh', 'Pune', '4455336677');
+INSERT INTO supplier (supplier_id, name, location, phone_no) VALUES (1000002, 'Andy Hugh', 'Goa', '4455336677');
+INSERT INTO supplier (supplier_id, name, location, phone_no) VALUES (1000003, 'Debby Aims', 'West Coast', '4455336677');
+INSERT INTO supplier (supplier_id, name, location, phone_no) VALUES (1000004, 'Zara', 'U.S', '4455336677');
+INSERT INTO supplier (supplier_id, name, location, phone_no) VALUES (1000005, 'Zedd', 'Mexico', '4455336677');
+
 
 -- SQL
 -- UPDATE supplier_id_sequence SET next_val = 100005;
@@ -73,5 +79,20 @@ INSERT INTO supplier (supplier_id, name, location, phone_no) VALUES (1000000, 'j
 -- ALTER sequence supplier_id_sequence restart with 100005;
 
 
-INSERT INTO raw_material_order (raw_material_order_id, quantity, price_per_unit, measurement_unit, quality_check, order_status, delivery_date, expiry_date, ordered_on, supplier_id, raw_material_id) VALUES (1000000, 55, 200, 'Kilogram', 'Passed', 'Delivered', '2019-05-15', '2025-12-12', '2019-05-11', 1000000, 1000000);
+INSERT INTO raw_material_order (raw_material_order_id, quantity, price_per_unit, quality_check, order_status, delivery_date, expiry_date, ordered_on, supplier_id, raw_material_id) VALUES (1000000, 55, 200, 'Passed', 'Delivered', '2019-05-15', '2025-12-12', '2019-05-11', 1000000, 1000000);
+INSERT INTO raw_material_order (raw_material_order_id, quantity, price_per_unit, quality_check, order_status, delivery_date, expiry_date, ordered_on, supplier_id, raw_material_id) VALUES (1000002, 55, 200, 'Passed', 'Cancelled', '2019-05-15', '2024-11-12', '2019-05-11', 1000000, 1000000);
+INSERT INTO raw_material_order (raw_material_order_id, quantity, price_per_unit, quality_check, order_status, delivery_date, expiry_date, ordered_on, supplier_id, raw_material_id) VALUES (1000003, 55, 200, 'Passed', 'Processing', '2019-05-15', '2025-06-12', '2019-05-11', 1000001, 1000001);
+INSERT INTO raw_material_order (raw_material_order_id, quantity, price_per_unit, quality_check, order_status, delivery_date, expiry_date, ordered_on, supplier_id, raw_material_id) VALUES (1000004, 55, 200, 'Passed', 'Cancelled', '2019-05-15', '2025-03-12', '2019-05-11', 1000001, 1000001);
+INSERT INTO raw_material_order (raw_material_order_id, quantity, price_per_unit, quality_check, order_status, delivery_date, expiry_date, ordered_on, supplier_id, raw_material_id) VALUES (1000005, 55, 200, 'Failed', 'Delivered', '2019-05-15', '2025-07-12', '2019-05-11', 1000002, 1000003);
+INSERT INTO raw_material_order (raw_material_order_id, quantity, price_per_unit, quality_check, order_status, delivery_date, expiry_date, ordered_on, supplier_id, raw_material_id) VALUES (1000006, 55, 200, 'Failed', 'Delivered', '2019-05-15', '2025-02-12', '2019-05-11', 1000002, 1000002);
+INSERT INTO raw_material_order (raw_material_order_id, quantity, price_per_unit, quality_check, order_status, delivery_date, expiry_date, ordered_on, supplier_id, raw_material_id) VALUES (1000007, 55, 200, 'Passed', 'Processing', '2019-05-15', '2025-12-12', '2019-05-11', 1000003, 1000004);
+INSERT INTO raw_material_order (raw_material_order_id, quantity, price_per_unit, quality_check, order_status, delivery_date, expiry_date, ordered_on, supplier_id, raw_material_id) VALUES (1000008, 55, 200, 'Passed', 'Cancelled', '2019-05-15', '2025-12-12', '2019-05-11', 1000003, 1000001);
+INSERT INTO raw_material_order (raw_material_order_id, quantity, price_per_unit, quality_check, order_status, delivery_date, expiry_date, ordered_on, supplier_id, raw_material_id) VALUES (1000009, 55, 200, 'Passed', 'Processing', '2019-05-15', '2025-11-12', '2019-05-11', 1000004, 1000005);
+INSERT INTO raw_material_order (raw_material_order_id, quantity, price_per_unit, quality_check, order_status, delivery_date, expiry_date, ordered_on, supplier_id, raw_material_id) VALUES (1000010, 55, 200, 'Passed', 'Delivered', '2019-05-15', '2025-02-12', '2019-05-11', 1000004, 1000002);
+INSERT INTO raw_material_order (raw_material_order_id, quantity, price_per_unit, quality_check, order_status, delivery_date, expiry_date, ordered_on, supplier_id, raw_material_id) VALUES (1000011, 55, 200, 'Passed', 'Delivered', '2019-05-15', '2025-12-12', '2019-05-11', 1000005, 1000003);
+INSERT INTO raw_material_order (raw_material_order_id, quantity, price_per_unit, quality_check, order_status, delivery_date, expiry_date, ordered_on, supplier_id, raw_material_id) VALUES (1000012, 55, 200, 'Passed', 'Cancelled', '2019-05-15', '2025-02-12', '2019-05-11', 1000005, 1000004);
 
+-- SQL
+-- UPDATE raw_material_order_id_sequence SET next_val = 1000013;
+-- H2
+ALTER sequence raw_material_order_id_sequence restart with 1000013;
