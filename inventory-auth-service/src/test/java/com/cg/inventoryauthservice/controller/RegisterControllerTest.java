@@ -100,7 +100,7 @@ public class RegisterControllerTest {
         .perform(MockMvcRequestBuilders.post("/register").header("Authorization", "Bearer " + fetchToken())
             .contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(createRegisterRequest())))
         .andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.success").exists());
+        .andExpect(jsonPath("$.userId").exists());
   }
 
   /**
@@ -144,7 +144,7 @@ public class RegisterControllerTest {
         .perform(MockMvcRequestBuilders.put("/register").header("Authorization", "Bearer " + fetchToken())
             .contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(updateRequest)))
         .andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.success").exists());
+        .andExpect(jsonPath("$.userId").exists());
   }
 
   /**
