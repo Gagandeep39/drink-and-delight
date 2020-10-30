@@ -24,7 +24,7 @@ public class UpdateStatusDto {
   private Long orderId;
 
   @NotBlank
-  @Pattern(regexp = "^(Processing|Delivered|Cancelled)$", message = "Gender must be Male or Female")
+  @Pattern(regexp = "^(Delivered|Cancelled)$", message = "Delivery staus must be 'Delivered' or 'Cancelled'")
   private String status;
 
 }
