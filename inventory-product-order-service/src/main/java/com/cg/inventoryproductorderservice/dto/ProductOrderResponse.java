@@ -40,4 +40,5 @@ public class ProductOrderResponse {
 	private String description;
 	private MeasurementUnit measurementUnit;
 	private Warehouse warehouse;
+	private Long productId;
 }

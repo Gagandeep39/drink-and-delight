@@ -4,8 +4,10 @@ import java.time.LocalDate;
 
 import com.cg.inventoryproductorderservice.dto.ProductOrderRequest;
 import com.cg.inventoryproductorderservice.dto.ProductOrderResponse;
+import com.cg.inventoryproductorderservice.entity.Distributor;
 import com.cg.inventoryproductorderservice.entity.Product;
 import com.cg.inventoryproductorderservice.entity.ProductOrder;
+import com.cg.inventoryproductorderservice.enums.OrderStatus;
 import com.cg.inventoryproductorderservice.enums.QualityCheck;
 
 public class ProductOrderMapper {
@@ -14,6 +16,7 @@ public class ProductOrderMapper {
 	public static ProductOrderResponse entityToDto(ProductOrder productOrder) {
 		return ProductOrderResponse.builder()
 			.productOrderId(productOrder.getProductOrderId())
+			.productId(productOrder.getProduct().getProductId())
 			.quantity(productOrder.getQuantity())
 			.pricePerUnit(productOrder.getPricePerUnit())
 			.qualityCheck(productOrder.getQualityCheck())
@@ -34,19 +37,20 @@ public class ProductOrderMapper {
 	
 	public static ProductOrder DtoToEntity(ProductOrderRequest request) {
 		ProductOrder order = new ProductOrder();
-		// Supplier supplier = new Supplier();
-		// supplier.setSupplierId(request.getSupplierId());
+		Distributor distributor = new Distributor();
+		distributor.setDistributorId(request.getDistributorId());
 		Product product = new Product();
 		product.setProductId(request.getProductId());
-		// order.setDilveryDate(request.getDeliveryDate());
-		// order.setExpiryDate(request.getExpiryDate());
-		// order.setOrderStatus(OrderStatus.Processing);
-		// order.setSupplier(supplier);
-		order.setPricePerUnit(request.getPricePerUnit());
-		order.setQuantity(request.getQuantity());
-		order.setOrderedOn(LocalDate.now());
-		order.setQualityCheck(QualityCheck.valueOf(request.getQualityCheck()));
 		order.setProduct(product);
+		order.setQuantity(request.getQuantity());
+		order.setPricePerUnit(request.getPricePerUnit());
+		order.setQualityCheck(QualityCheck.valueOf(request.getQualityCheck()));
+		order.setDeliveryDate(request.getDeliveryDate());
+		order.setExpiryDate(request.getExpiryDate());
+		order.setManufactureDate(request.getManufactureDate());
+		order.setOrderStatus(OrderStatus.Processing);
+		order.setDistributor(distributor);
+		order.setOrderedOn(LocalDate.now());
 		return order;
 	}
 }
