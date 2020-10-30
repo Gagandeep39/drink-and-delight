@@ -20,7 +20,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
-import com.cg.inventoryrawmaterialorderservice.enums.MeasurementUnit;
 import com.cg.inventoryrawmaterialorderservice.enums.OrderStatus;
 import com.cg.inventoryrawmaterialorderservice.enums.QualityCheck;
 
