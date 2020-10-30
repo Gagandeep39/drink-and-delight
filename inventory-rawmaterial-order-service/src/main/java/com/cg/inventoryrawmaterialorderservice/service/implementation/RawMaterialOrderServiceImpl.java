@@ -17,6 +17,7 @@ import com.cg.inventoryrawmaterialorderservice.dto.RawMaterialOrderResponse;
 import com.cg.inventoryrawmaterialorderservice.dto.UpdateStatusDto;
 import com.cg.inventoryrawmaterialorderservice.entity.RawMaterialOrder;
 import com.cg.inventoryrawmaterialorderservice.enums.OrderStatus;
+import com.cg.inventoryrawmaterialorderservice.exception.InvalidOrderUpdateStatusException;
 import com.cg.inventoryrawmaterialorderservice.exception.RawMaterialNotFoundException;
 import com.cg.inventoryrawmaterialorderservice.helper.RawMaterialMapper;
 import com.cg.inventoryrawmaterialorderservice.repository.RawMaterialOrderRepository;
@@ -34,10 +35,12 @@ public class RawMaterialOrderServiceImpl implements RawMaterialOrderService {
 	}
 
 	// Update the Delivery status of the raw material ordered
-	public RawMaterialOrder updateRawMaterialOrderDeliveryStatus(UpdateStatusDto updateStatusDto) {
+	public RawMaterialOrderResponse updateRawMaterialOrderDeliveryStatus(UpdateStatusDto updateStatusDto) {
 		RawMaterialOrder order = repository.findById(updateStatusDto.getOrderId()).orElseThrow(() -> new RawMaterialNotFoundException("rawMaterial", "Not found"));
+		if(order.getOrderStatus().equals(OrderStatus.Delivered)) throw new InvalidOrderUpdateStatusException("status", "Product already delivered");
+		if (order.getOrderStatus().equals(OrderStatus.Cancelled)) throw new InvalidOrderUpdateStatusException("status", "Product delivery was already cancelled");
 		order.setOrderStatus(OrderStatus.valueOf(updateStatusDto.getStatus()));
-		return this.repository.save(order);
+		return RawMaterialMapper.entityToDto(this.repository.save(order));
 	}
 
 	// Find a particular Raw material order by its Id

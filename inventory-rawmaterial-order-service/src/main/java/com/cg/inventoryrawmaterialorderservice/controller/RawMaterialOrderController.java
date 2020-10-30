@@ -40,7 +40,7 @@ public class RawMaterialOrderController {
 
 	// Update Delivery Status
 	@PutMapping
-	public ResponseEntity<RawMaterialOrder> UpdateDeliveryStatus(@RequestBody UpdateStatusDto updateStatusDto) {
+	public ResponseEntity<RawMaterialOrderResponse> UpdateDeliveryStatus(@RequestBody UpdateStatusDto updateStatusDto) {
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(this.service.updateRawMaterialOrderDeliveryStatus(updateStatusDto));
 	}

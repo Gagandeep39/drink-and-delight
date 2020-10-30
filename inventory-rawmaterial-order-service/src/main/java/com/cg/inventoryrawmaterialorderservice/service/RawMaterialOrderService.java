@@ -12,7 +12,7 @@ public interface RawMaterialOrderService {
 	RawMaterialOrder createRawMaterialOrder(RawMaterialOrder order);
 	
 	//Update the Delivery status of the raw material ordered                       
-	RawMaterialOrder updateRawMaterialOrderDeliveryStatus(UpdateStatusDto updateStatusDto);
+	RawMaterialOrderResponse updateRawMaterialOrderDeliveryStatus(UpdateStatusDto updateStatusDto);
 	
 	//Find a particular Raw material order by its Id                                  
 	RawMaterialOrderResponse fetchRawMaterialOrderById(Long id) ;
