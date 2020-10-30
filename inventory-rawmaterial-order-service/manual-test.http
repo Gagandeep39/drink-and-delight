@@ -1,0 +1,5 @@
+### Fetch All raw materials
+GET http://localhost:9300/rawMaterial
+
+### POST 
+POST http://localhost:9300/rawMaterial
