@@ -29,7 +29,10 @@ public class Distributor {
   @GeneratedValue(generator = "distributor_id_sequence", strategy = GenerationType.SEQUENCE)
   private Long distributorId;
   @Column(length = 20)
-  private String materialName;
-  @Column(length = 100)
-  private String description;
+  private String name;
+  @Column(length = 30)
+  private String location;
+  @Column(length = 10)
+  private String phoneNo;
+
 }
