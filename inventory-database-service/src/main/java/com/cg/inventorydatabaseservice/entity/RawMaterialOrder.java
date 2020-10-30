@@ -47,7 +47,7 @@ public class RawMaterialOrder {
   @Enumerated(EnumType.STRING)
   private OrderStatus orderStatus;
 
-  private LocalDate dilveryDate;
+  private LocalDate deliveryDate;
   private LocalDate expiryDate;
   private LocalDate orderedOn;
 
