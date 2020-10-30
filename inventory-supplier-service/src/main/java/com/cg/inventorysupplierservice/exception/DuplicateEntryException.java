@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EntityNotFoundException extends RuntimeException {
+public class DuplicateEntryException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 	private String errorName;

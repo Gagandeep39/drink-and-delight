@@ -1,6 +1,5 @@
 package com.cg.inventorysupplierservice;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 import java.util.stream.Collectors;
@@ -17,8 +16,10 @@ import com.cg.inventorysupplierservice.dao.WarehouseDao;
 import com.cg.inventorysupplierservice.entity.Distributor;
 import com.cg.inventorysupplierservice.entity.Supplier;
 import com.cg.inventorysupplierservice.entity.Warehouse;
-import com.cg.inventorysupplierservice.service.HelperService;
-
+import com.cg.inventorysupplierservice.service.DistributorService;
+//import com.cg.inventorysupplierservice.service.HelperService;
+import com.cg.inventorysupplierservice.service.SupplierService;
+import com.cg.inventorysupplierservice.service.WarehouseService;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -26,7 +27,13 @@ import com.cg.inventorysupplierservice.service.HelperService;
 public class InventorySupplierServiceApplicationTests {
 
 	@Autowired
-	private HelperService helperService;
+	private SupplierService supplierService;
+
+	@Autowired
+	private DistributorService distributorService;
+
+	@Autowired
+	private WarehouseService warehouseService;
 
 	@MockBean
 	private WarehouseDao wDao;
@@ -41,7 +48,7 @@ public class InventorySupplierServiceApplicationTests {
 				.of(new Warehouse((long) 100000, "Milk Product warehouse", "All milk products"),
 						new Warehouse((long) 100001, "COLD DRINKS warehouse", "All COLD Drinks"))
 				.collect(Collectors.toList()));
-		assertEquals(2, helperService.getWarehouses().size());
+		assertEquals(2, warehouseService.getWarehouses().size());
 	}
 
 	@Test
@@ -49,7 +56,7 @@ public class InventorySupplierServiceApplicationTests {
 
 		Warehouse warehouse = new Warehouse((long) 100000, "Milk Product warehouse", "All milk products");
 		when(wDao.save(warehouse)).thenReturn(warehouse);
-		assertEquals(warehouse, helperService.addWarehouse(warehouse));
+		assertEquals(warehouse, warehouseService.addWarehouse(warehouse));
 	}
 
 	@Test
@@ -58,7 +65,7 @@ public class InventorySupplierServiceApplicationTests {
 				.of(new Distributor((long) 100000, "Lassi", "Milk Product"),
 						new Distributor((long) 100001, "Mango Milkshake", "Milk Product"))
 				.collect(Collectors.toList()));
-		assertEquals(2, helperService.getDistributors().size());
+		assertEquals(2, distributorService.getDistributors().size());
 	}
 
 	@Test
@@ -66,7 +73,7 @@ public class InventorySupplierServiceApplicationTests {
 
 		Distributor distributor = new Distributor((long) 100000, "Lassi", "Milk Product");
 		when(dDao.save(distributor)).thenReturn(distributor);
-		assertEquals(distributor, helperService.addDistributor(distributor));
+		assertEquals(distributor, distributorService.addDistributor(distributor));
 	}
 
 	@Test
@@ -75,7 +82,7 @@ public class InventorySupplierServiceApplicationTests {
 				.of(new Supplier((long) 100000, "AK Supplier", "Pune", "9988776767"),
 						new Supplier((long) 100001, "RJ Supplier", "Mumbai", "8788887878"))
 				.collect(Collectors.toList()));
-		assertEquals(2, helperService.getSuppliers().size());
+		assertEquals(2, supplierService.getSuppliers().size());
 	}
 
 	@Test
@@ -83,31 +90,8 @@ public class InventorySupplierServiceApplicationTests {
 
 		Supplier supplier = new Supplier((long) 100000, "AK Supplier", "Pune", "9988776767");
 		when(sDao.save(supplier)).thenReturn(supplier);
-		assertEquals(supplier, helperService.addSupplier(supplier));
+		assertEquals(supplier, supplierService.addSupplier(supplier));
 	}
 
-	@Test
-	public void addSupplierWithIncorrectFieldsTest() {
-
-		Supplier supplier = new Supplier((long) 100000, "", null, "9988776767675");
-		when(sDao.save(supplier)).thenReturn(supplier);
-		assertEquals(false, helperService.validateSupplier(supplier) && helperService.validateMobileNo(supplier));
-	}
-
-	@Test
-	public void addDistributorWithIncorrectFieldsTest() {
-
-		Distributor distributor = new Distributor((long) 100000, null, "");
-		when(dDao.save(distributor)).thenReturn(distributor);
-		assertEquals(false, helperService.validateDistributor(distributor));
-	}
-
-	@Test
-	public void addWarehouseWithIncorrectFieldsTest() {
-
-		Warehouse warehouse = new Warehouse((long) 100000, "", null);
-		when(wDao.save(warehouse)).thenReturn(warehouse);
-		assertEquals(false, helperService.validateWarehouse(warehouse));
-	}
 
 }

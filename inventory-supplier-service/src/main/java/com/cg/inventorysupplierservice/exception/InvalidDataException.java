@@ -1,17 +1,16 @@
 package com.cg.inventorysupplierservice.exception;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class InvalidDataException extends RuntimeException {
 
-	public InvalidDataException() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	private static final long serialVersionUID = 1L;
+	private String errorName;
+	private String errorDescription;
 
-	public InvalidDataException(String message) {
-		super(message);
-		// TODO Auto-generated constructor stub
-	}
-
-	
-	
 }

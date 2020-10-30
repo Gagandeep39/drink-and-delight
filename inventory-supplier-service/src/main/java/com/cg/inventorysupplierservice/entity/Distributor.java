@@ -18,6 +18,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.cg.inventorysupplierservice.enums.MeasurementUnit;
 
@@ -31,13 +34,23 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Distributor {
 
-  @Id
-  @SequenceGenerator(name = "distributor_id_sequence", initialValue = 100000, allocationSize = 1)
-  @GeneratedValue(generator = "distributor_id_sequence", strategy = GenerationType.SEQUENCE)
-  private Long distributorId;
-  @Column(length = 20)
-  private String materialName;
-  @Column(length = 100)
-  private String description;
+	@Id
+	// @NotNull(message = "Id cannot be null value")
+	// @NotBlank(message = "Id cannot be blank value")
+	@SequenceGenerator(name = "distributor_id_sequence", initialValue = 100000, allocationSize = 1)
+	@GeneratedValue(generator = "distributor_id_sequence", strategy = GenerationType.SEQUENCE)
+	private Long distributorId;
+
+	// @Size(min=5,max=40,message="Length should be between 5 to 40 characters")
+	// @NotNull(message="Material name should not be null")
+	// @NotBlank(message="Material name should not be blank")
+	@Column(length = 20)
+	private String materialName;
+
+	// @Size(min=5,max=100,message="Length should be between 5 to 100 characters")
+	// @NotNull
+	// @NotBlank
+	@Column(length = 100)
+	private String description;
 
 }
