@@ -8,6 +8,7 @@
 package com.cg.inventoryrawmaterialorderservice.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -36,7 +37,7 @@ public class RawMaterialOrderController {
 
 	// Create Order
 	@PostMapping
-	public ResponseEntity<RawMaterialOrderResponse> createOrder(
+	public ResponseEntity<Map<String, String>> createOrder(
 			@Valid @RequestBody RawMaterialOrderRequest rawMaterialOrderRequest) {
 		return ResponseEntity.status(HttpStatus.OK).body(this.service.createRawMaterialOrder(rawMaterialOrderRequest));
 	}
