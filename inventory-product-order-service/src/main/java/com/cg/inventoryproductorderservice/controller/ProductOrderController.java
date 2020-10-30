@@ -1,6 +1,7 @@
 package com.cg.inventoryproductorderservice.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -28,7 +29,7 @@ public class ProductOrderController {
 	ProductOrderService productOrderService;
 
 	@PostMapping
-	public ResponseEntity<ProductOrderResponse> createProductOrderRequest(
+	public ResponseEntity<Map<String, String>> createProductOrderRequest(
 			@Valid @RequestBody ProductOrderRequest productOrderRequest) {
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(this.productOrderService.createProductOrder(productOrderRequest));
