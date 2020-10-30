@@ -28,7 +28,7 @@ import com.cg.inventoryrawmaterialorderservice.dto.UpdateStatusDto;
 import com.cg.inventoryrawmaterialorderservice.service.RawMaterialOrderService;
 
 @RestController
-@RequestMapping("/rawMaterial")
+@RequestMapping("/rawMaterialOrder")
 public class RawMaterialOrderController {
 
 	@Autowired
