@@ -43,6 +43,10 @@ public class RawMaterialOrderServiceImpl implements RawMaterialOrderService {
 		if(order.getOrderStatus().equals(OrderStatus.Delivered)) throw new InvalidOrderUpdateStatusException("status", "Product already delivered");
 		if (order.getOrderStatus().equals(OrderStatus.Cancelled)) throw new InvalidOrderUpdateStatusException("status", "Product delivery was cancelled before");
 		order.setOrderStatus(OrderStatus.valueOf(updateStatusDto.getStatus()));
+
+		if (updateStatusDto.getStatus().equals(OrderStatus.Delivered.toString()))
+			order.setOrderStatus(OrderStatus.valueOf(updateStatusDto.getStatus()));
+
 		return RawMaterialMapper.entityToDto(this.repository.save(order));
 	}
 
