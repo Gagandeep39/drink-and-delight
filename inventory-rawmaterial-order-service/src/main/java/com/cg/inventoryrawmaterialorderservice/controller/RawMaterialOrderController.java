@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.inventoryrawmaterialorderservice.dto.RawMaterialOrderResponse;
 import com.cg.inventoryrawmaterialorderservice.dto.UpdateStatusDto;
 import com.cg.inventoryrawmaterialorderservice.entity.RawMaterialOrder;
 import com.cg.inventoryrawmaterialorderservice.service.RawMaterialOrderService;
@@ -40,7 +41,8 @@ public class RawMaterialOrderController {
 	// Update Delivery Status
 	@PutMapping
 	public ResponseEntity<RawMaterialOrder> UpdateDeliveryStatus(@RequestBody UpdateStatusDto updateStatusDto) {
-		return ResponseEntity.status(HttpStatus.OK).body(this.service.updateRawMaterialOrderDeliveryStatus(updateStatusDto));
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(this.service.updateRawMaterialOrderDeliveryStatus(updateStatusDto));
 	}
 
 	// Find a particular order by its ID
@@ -51,7 +53,7 @@ public class RawMaterialOrderController {
 
 	// Fetch all the Orders
 	@GetMapping
-	public ResponseEntity<List<RawMaterialOrder>> FetchAllOrders() {
+	public ResponseEntity<List<RawMaterialOrderResponse>> FetchAllOrders() {
 		return ResponseEntity.status(HttpStatus.OK).body(this.service.fetchAllOrders());
 	}
 

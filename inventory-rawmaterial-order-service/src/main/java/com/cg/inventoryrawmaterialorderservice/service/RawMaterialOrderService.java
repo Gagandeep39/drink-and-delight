@@ -2,6 +2,7 @@ package com.cg.inventoryrawmaterialorderservice.service;
 
 import java.util.List;
 
+import com.cg.inventoryrawmaterialorderservice.dto.RawMaterialOrderResponse;
 import com.cg.inventoryrawmaterialorderservice.dto.UpdateStatusDto;
 import com.cg.inventoryrawmaterialorderservice.entity.RawMaterialOrder;
 
@@ -17,5 +18,5 @@ public interface RawMaterialOrderService {
 	RawMaterialOrder fetchRawMaterialOrderById(Long id) ;
 	
 	//Fetch all Raw material orders
-	List<RawMaterialOrder> fetchAllOrders();
+	List<RawMaterialOrderResponse> fetchAllOrders();
 }
