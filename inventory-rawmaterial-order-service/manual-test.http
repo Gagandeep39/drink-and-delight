@@ -36,3 +36,58 @@ Content-Type: application/json
   "orderId": "1000003",
   "status": "Delivered"
 }
+
+### Insert RawMaterial Order - Missing data
+POST  http://localhost:9300/rawMaterial
+Content-Type: application/json
+
+{
+  "rawMaterialId": "10000000",
+  "pricePerUnit": 56,
+  "qualityCheck": "Passe",
+  "deliveryDate": "2020-11-03",
+  "expiryDate": "2022-11-03",
+  "supplierId": "1000000"
+}
+
+### Insert RawMaterial Order  - Invalid Data
+POST  http://localhost:9300/rawMaterial
+Content-Type: application/json
+
+{
+  "rawMaterialId": "10000000",
+  "quantity": "44",
+  "pricePerUnit": 56,
+  "qualityCheck": "Passe",
+  "deliveryDate": "2020-11-03",
+  "expiryDate": "2022-11-03",
+  "supplierId": "1000000"
+}
+
+### Insert RawMaterial Order  - Past date
+POST  http://localhost:9300/rawMaterial
+Content-Type: application/json
+
+{
+  "rawMaterialId": "10000000",
+  "quantity": "44",
+  "pricePerUnit": 56,
+  "qualityCheck": "Passe",
+  "deliveryDate": "2020-11-03",
+  "expiryDate": "2019-11-03",
+  "supplierId": "1000000"
+}
+
+### Insert RawMaterial Order  - Valid Data
+POST  http://localhost:9300/rawMaterial
+Content-Type: application/json
+
+{
+  "rawMaterialId": "1000000",
+  "quantity": "44",
+  "pricePerUnit": 56,
+  "qualityCheck": "Passed",
+  "deliveryDate": "2020-11-03",
+  "expiryDate": "2022-11-03",
+  "supplierId": "1000000"
+}
