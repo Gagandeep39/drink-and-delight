@@ -19,6 +19,7 @@ import com.cg.inventoryproductorderservice.exception.ProductOrderIdNotFoundExcep
 import com.cg.inventoryproductorderservice.helper.ProductOrderMapper;
 import com.cg.inventoryproductorderservice.repository.ProductOrderRepository;
 import com.cg.inventoryproductorderservice.service.ProductOrderService;
+import com.cg.inventoryproductorderservice.service.UpdateStockService;
 
 @Service
 @Slf4j
@@ -26,6 +27,9 @@ public class ProductOrderServiceImpl implements ProductOrderService {
 
 	@Autowired
 	private ProductOrderRepository orderRepository;
+
+	@Autowired
+	private UpdateStockService updateStockService;
 
 	@Override
 	public ProductOrderResponse fetchProductOrderById(long productOrderId) {
@@ -51,7 +55,9 @@ public class ProductOrderServiceImpl implements ProductOrderService {
 		if (order.getOrderStatus().equals(OrderStatus.Cancelled))
 			throw new InvalidOrderUpdateStatusException("status", "Product delivery was already cancelled");
 
-		order.setOrderStatus(OrderStatus.valueOf(updateStatusDto.getStatus()));
+		if (updateStatusDto.getStatus().equals(OrderStatus.Delivered.toString()))
+			order.setOrderStatus(OrderStatus.valueOf(updateStatusDto.getStatus()));
+		updateStockService.updateProductStock(order.getProduct().getProductId(), order.getQuantity());
 		return ProductOrderMapper.entityToDto(this.orderRepository.save(order));
 
 	}
