@@ -1,6 +1,7 @@
 package com.cg.inventoryproductorderservice.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.cg.inventoryproductorderservice.dto.ProductOrderRequest;
 import com.cg.inventoryproductorderservice.dto.ProductOrderResponse;
@@ -14,6 +15,6 @@ public interface ProductOrderService {
 	
 	ProductOrderResponse updateProductOrderDeliveryStatus(UpdateStatusDto updateStatusDto);
 	
-	ProductOrderResponse createProductOrder(ProductOrderRequest productOrder);
+	Map<String, String> createProductOrder(ProductOrderRequest productOrder);
 	
 }

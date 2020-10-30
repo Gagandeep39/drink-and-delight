@@ -1,12 +1,14 @@
 package com.cg.inventoryproductorderservice.service.implementation;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
- 
+
 import com.cg.inventoryproductorderservice.dto.ProductOrderRequest;
 import com.cg.inventoryproductorderservice.dto.ProductOrderResponse;
 import com.cg.inventoryproductorderservice.dto.UpdateStatusDto;
@@ -55,9 +57,8 @@ public class ProductOrderServiceImpl implements ProductOrderService {
 	}
 
 	@Override
-	public ProductOrderResponse createProductOrder(ProductOrderRequest productOrder) {
-		return fetchProductOrderById(
-				this.orderRepository.save(ProductOrderMapper.DtoToEntity(productOrder)).getProductOrderId());
+	public Map<String, String> createProductOrder(ProductOrderRequest productOrder) {
+		return Collections.singletonMap("productOrderId", this.orderRepository.save(ProductOrderMapper.DtoToEntity(productOrder)).getProductOrderId().toString());
 	}
 
 }
