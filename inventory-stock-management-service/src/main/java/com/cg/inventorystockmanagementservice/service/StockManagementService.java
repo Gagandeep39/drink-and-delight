@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cg.inventorystockmanagementservice.entity.Product;
 import com.cg.inventorystockmanagementservice.entity.RawMaterial;
@@ -12,11 +13,14 @@ import com.cg.inventorystockmanagementservice.repository.ProductRepository;
 import com.cg.inventorystockmanagementservice.repository.RawMaterialRepository;
 import com.cg.inventorystockmanagementservice.repository.WarehouseRepository;
 
+@Service
 public class StockManagementService {
 
 	@Autowired
 	private ProductRepository productRepository;
+	@Autowired
 	private RawMaterialRepository rawMaterialRepository;
+	@Autowired
 	private WarehouseRepository warehouseRepository;
 
 	public List<Product> getAllProducts() {
@@ -31,7 +35,11 @@ public class StockManagementService {
 		return rawMaterialRepository.findAll();
 	}
 
+<<<<<<< Updated upstream
 	public RawMaterial getRawMaterialById(Long id) {
+=======
+	public Optional<RawMaterial> getRawMaterialById(Long id) {
+>>>>>>> Stashed changes
 		return rawMaterialRepository.findById(id.intValue());
 	}
 
