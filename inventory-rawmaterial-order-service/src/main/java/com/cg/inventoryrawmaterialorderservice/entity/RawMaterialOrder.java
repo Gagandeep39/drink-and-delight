@@ -40,14 +40,14 @@ public class RawMaterialOrder {
 
   private Double quantity;
   private Double pricePerUnit;
-  @Enumerated(EnumType.STRING)
-  private MeasurementUnit measurementUnit;
+  // @Enumerated(EnumType.STRING)
+  // private MeasurementUnit measurementUnit;
   @Enumerated(EnumType.STRING)
   private QualityCheck qualityCheck;
   @Enumerated(EnumType.STRING)
   private OrderStatus orderStatus;
 
-  private LocalDate dilveryDate;
+  private LocalDate deliveryDate;
   private LocalDate expiryDate;
   private LocalDate orderedOn;
 

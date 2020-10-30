@@ -43,9 +43,21 @@ public class CustomExceptionHandler {
                 .build());
     }
 
-    @ExceptionHandler(InvalidCredentialException.class)
-    public ResponseEntity<ErrorResponse> handleInvalidCredential(InvalidCredentialException ex) {
+    @ExceptionHandler(RawMaterialNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidCredential(RawMaterialNotFoundException ex) {
+        return ResponseEntity
+            .status(HttpStatus.BAD_REQUEST)
+            .body(ErrorResponse.builder()
+                .timeStamp(System.currentTimeMillis())
+                .status(HttpStatus.BAD_REQUEST.value()).message("FieldException")
+                .errors(Collections.singletonList(FieldErrorResponse.builder()
+                    .field(ex.getErrorName())
+                    .message(ex.getErrorDescription())
+                    .build())).build());
+    }
 
+    @ExceptionHandler(InvalidOrderUpdateStatusException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidStatus(InvalidOrderUpdateStatusException ex) {
         return ResponseEntity
             .status(HttpStatus.BAD_REQUEST)
             .body(ErrorResponse.builder()
