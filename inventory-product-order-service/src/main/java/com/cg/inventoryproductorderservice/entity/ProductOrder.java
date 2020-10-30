@@ -20,7 +20,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
-import com.cg.inventoryproductorderservice.enums.MeasurementUnit;
 import com.cg.inventoryproductorderservice.enums.OrderStatus;
 import com.cg.inventoryproductorderservice.enums.QualityCheck;
 
@@ -40,21 +39,21 @@ public class ProductOrder {
 
   private Double quantity;
   private Double pricePerUnit;
-  @Enumerated(EnumType.STRING)
-  private MeasurementUnit measurementUnit;
+  // @Enumerated(EnumType.STRING)
+  // private MeasurementUnit measurementUnit;
   @Enumerated(EnumType.STRING)
   private QualityCheck qualityCheck;
   @Enumerated(EnumType.STRING)
   private OrderStatus orderStatus;
 
-  private LocalDate dilveryDate;
+  private LocalDate deliveryDate;
   private LocalDate manufactureDate;
   private LocalDate expiryDate;
   private LocalDate orderedOn;
 
   @ManyToOne
-  @JoinColumn(name = "supplierId", referencedColumnName = "supplierId", foreignKey = @ForeignKey(name = "FK_product_supplier_ID"))
-  private Supplier supplier;
+  @JoinColumn(name = "distributorId", referencedColumnName = "distributorId", foreignKey = @ForeignKey(name = "FK_product_distributor_ID"))
+  private Distributor distributorId;
   @ManyToOne
   @JoinColumn(name = "productId", referencedColumnName = "productId", foreignKey = @ForeignKey(name = "FK_product_order_ID"))
   private Product product;
