@@ -34,12 +34,7 @@ public class StockManagementService {
 	public List<RawMaterial> getAllRawMaterials() {
 		return rawMaterialRepository.findAll();
 	}
-
-<<<<<<< Updated upstream
-	public RawMaterial getRawMaterialById(Long id) {
-=======
 	public Optional<RawMaterial> getRawMaterialById(Long id) {
->>>>>>> Stashed changes
 		return rawMaterialRepository.findById(id.intValue());
 	}
 
