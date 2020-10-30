@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.inventoryproductorderservice.dto.ProductOrderRequest;
 import com.cg.inventoryproductorderservice.dto.ProductOrderResponse;
 import com.cg.inventoryproductorderservice.dto.UpdateStatusDto;
-import com.cg.inventoryproductorderservice.service.ProductOrderServiceImpl;
+import com.cg.inventoryproductorderservice.service.ProductOrderService;
 
 @RestController
 @RequestMapping("/productOrder")
 public class ProductOrderController {
 
 	@Autowired
-	ProductOrderServiceImpl productOrderService;
+	ProductOrderService productOrderService;
 
 	@PostMapping
 	public ResponseEntity<ProductOrderResponse> createProductOrderRequest(
@@ -36,7 +36,6 @@ public class ProductOrderController {
 
 	@GetMapping
 	public ResponseEntity<List<ProductOrderResponse>> fetchAllProductOrders() {
-		System.out.println("In Controller ServiceFetchall");
 		return ResponseEntity.status(HttpStatus.OK).body(this.productOrderService.fetchAllProductOrders());
 	}
 
