@@ -53,7 +53,7 @@ public class ProductOrder {
 
   @ManyToOne
   @JoinColumn(name = "distributorId", referencedColumnName = "distributorId", foreignKey = @ForeignKey(name = "FK_product_distributor_ID"))
-  private Distributor distributorId;
+  private Distributor distributor;
   @ManyToOne
   @JoinColumn(name = "productId", referencedColumnName = "productId", foreignKey = @ForeignKey(name = "FK_product_order_ID"))
   private Product product;
