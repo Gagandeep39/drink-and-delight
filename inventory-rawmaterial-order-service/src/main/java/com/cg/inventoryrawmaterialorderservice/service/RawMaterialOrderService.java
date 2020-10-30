@@ -15,7 +15,7 @@ public interface RawMaterialOrderService {
 	RawMaterialOrder updateRawMaterialOrderDeliveryStatus(UpdateStatusDto updateStatusDto);
 	
 	//Find a particular Raw material order by its Id                                  
-	RawMaterialOrder fetchRawMaterialOrderById(Long id) ;
+	RawMaterialOrderResponse fetchRawMaterialOrderById(Long id) ;
 	
 	//Fetch all Raw material orders
 	List<RawMaterialOrderResponse> fetchAllOrders();

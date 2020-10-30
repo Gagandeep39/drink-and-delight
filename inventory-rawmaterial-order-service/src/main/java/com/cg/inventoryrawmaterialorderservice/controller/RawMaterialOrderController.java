@@ -47,7 +47,7 @@ public class RawMaterialOrderController {
 
 	// Find a particular order by its ID
 	@GetMapping("/{id}")
-	public ResponseEntity<RawMaterialOrder> findRawMaterialOrderById(@PathVariable Long id) {
+	public ResponseEntity<RawMaterialOrderResponse> findRawMaterialOrderById(@PathVariable Long id) {
 		return ResponseEntity.status(HttpStatus.OK).body(this.service.fetchRawMaterialOrderById(id));
 	}
 

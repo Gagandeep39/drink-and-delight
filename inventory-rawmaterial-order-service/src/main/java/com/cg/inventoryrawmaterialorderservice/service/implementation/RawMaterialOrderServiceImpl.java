@@ -35,14 +35,14 @@ public class RawMaterialOrderServiceImpl implements RawMaterialOrderService {
 
 	// Update the Delivery status of the raw material ordered
 	public RawMaterialOrder updateRawMaterialOrderDeliveryStatus(UpdateStatusDto updateStatusDto) {
-		RawMaterialOrder order = fetchRawMaterialOrderById(updateStatusDto.getOrderId());
+		RawMaterialOrder order = repository.findById(updateStatusDto.getOrderId()).orElseThrow(() -> new RawMaterialNotFoundException("rawMaterial", "Not found"));
 		order.setOrderStatus(OrderStatus.valueOf(updateStatusDto.getStatus()));
 		return this.repository.save(order);
 	}
 
 	// Find a particular Raw material order by its Id
-	public RawMaterialOrder fetchRawMaterialOrderById(Long id) {
-		return this.repository.findById(id).orElseThrow(() -> new RawMaterialNotFoundException("rawMaterial", "Not found"));
+	public RawMaterialOrderResponse fetchRawMaterialOrderById(Long id) {
+		return RawMaterialMapper.entityToDto(this.repository.findById(id).orElseThrow(() -> new RawMaterialNotFoundException("rawMaterial", "Not found")));
 	}
 
 	// Fetch all Raw material orders
