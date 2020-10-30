@@ -35,11 +35,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().disable()
-      .authorizeRequests().antMatchers("/inventory-auth-service/**", "/actuator/**", "/**/h2", "/**/swagger*/**", "/**/v2/api-docs").permitAll().antMatchers("/h2").permitAll()
+      .authorizeRequests().antMatchers("/inventory-auth-service/**", "/actuator/**", "/**/h2/**", "/**/swagger*/**", "/**/v2/api-docs").permitAll().antMatchers("/h2").permitAll()
       .anyRequest().authenticated()
       .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
       .and().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint());
     http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+    http.headers().frameOptions().disable();
   }
 
   /**
