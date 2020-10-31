@@ -27,7 +27,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -54,25 +53,26 @@ public class JwtAuthenticationFilter extends GenericFilter {
       String jwt = getJwtFromRequest((HttpServletRequest) request);
       if (StringUtils.hasText(jwt) && jwtProvider.validateToken(jwt)) {
         String username = jwtProvider.getUsernameFromJwt(jwt);
-
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
-            userDetails.getAuthorities());
-        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails((HttpServletRequest) request));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        SecurityContextHolder.getContext()
+          .setAuthentication(new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities()));
       }
     } catch (Exception e) {
-      response.setContentType("application/json;charset=UTF-8");
-      Map<String, Object> data = new HashMap<>();
-      data.put("timestamp", System.currentTimeMillis());
-      data.put("status", HttpStatus.FORBIDDEN.value());
-      data.put("message", "Invalid Token");
-      OutputStream out = response.getOutputStream();
-      ObjectMapper mapper = new ObjectMapper();
-      mapper.writeValue(out, data);
+      sendResponseError(response);
     }
     chain.doFilter(request, response);
 
+  }
+
+  private void sendResponseError(ServletResponse response) throws IOException {
+    response.setContentType("application/json;charset=UTF-8");
+    Map<String, Object> data = new HashMap<>();
+    data.put("timestamp", System.currentTimeMillis());
+    data.put("status", HttpStatus.FORBIDDEN.value());
+    data.put("message", "Invalid Token");
+    OutputStream out = response.getOutputStream();
+    ObjectMapper mapper = new ObjectMapper();
+    mapper.writeValue(out, data);
   }
 
   private String getJwtFromRequest(HttpServletRequest request) {
