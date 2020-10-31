@@ -28,7 +28,7 @@ Content-Type: application/json
   "status": "Delivered"
 }
 
-### Update Order Status - Already cancelled
+### Update Order Status - Makes order quantity of 1000001 as 70 to 125
 PUT http://localhost:9300/rawMaterialOrder
 Content-Type: application/json
 

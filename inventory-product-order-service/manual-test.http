@@ -27,13 +27,13 @@ Content-Type: application/json
   "status": "Deliv"
 }
 
-### Update Status - Invalid
+### Update Status - Valid - Makes Quantity from 80 to 180 in DB
 PUT http://localhost:9200/productOrder
 Content-Type: application/json
 
 {
   "orderId": "100001",
-  "status": "Processing"
+  "status": "Delivered"
 }
 
 ### Update Status - Error
