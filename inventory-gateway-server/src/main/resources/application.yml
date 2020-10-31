@@ -23,6 +23,9 @@ jwt:
 zuul:
   sensitiveHeaders:
   ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin  
+  ribbon:
+    eager-load:
+      enabled: true
 
 management:
   endpoints:
