@@ -25,12 +25,16 @@ import com.cg.inventoryrawmaterialorderservice.exception.RawMaterialNotFoundExce
 import com.cg.inventoryrawmaterialorderservice.helper.RawMaterialMapper;
 import com.cg.inventoryrawmaterialorderservice.repository.RawMaterialOrderRepository;
 import com.cg.inventoryrawmaterialorderservice.service.RawMaterialOrderService;
+import com.cg.inventoryrawmaterialorderservice.service.UpdateStockService;
 
 @Service
 public class RawMaterialOrderServiceImpl implements RawMaterialOrderService {
 
 	@Autowired
 	private RawMaterialOrderRepository repository;
+
+	@Autowired
+	private UpdateStockService updateStockService;
 
 	// Create an RawMaterialOrder type of order to save in database
 	public Map<String, String> createRawMaterialOrder(RawMaterialOrderRequest order) {
@@ -47,6 +51,7 @@ public class RawMaterialOrderServiceImpl implements RawMaterialOrderService {
 		if (updateStatusDto.getStatus().equals(OrderStatus.Delivered.toString()))
 			order.setOrderStatus(OrderStatus.valueOf(updateStatusDto.getStatus()));
 
+		updateStockService.updateProductStock(order.getRawMaterial().getRawMaterialId(), order.getQuantity());
 		return RawMaterialMapper.entityToDto(this.repository.save(order));
 	}
 
