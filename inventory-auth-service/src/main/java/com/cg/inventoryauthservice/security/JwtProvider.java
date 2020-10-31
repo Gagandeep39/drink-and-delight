@@ -15,8 +15,6 @@ import javax.crypto.SecretKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -37,18 +35,6 @@ public class JwtProvider {
   private SecretKey secretKey;
 
   SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-
-  /**
-   * Generate a token for signed in user
-   */
-  public String generateToken(Authentication authentication) {
-    UserDetails principal =  (UserDetails) authentication.getPrincipal();
-    return Jwts.builder()
-      .setSubject(principal.getUsername())
-      .signWith(secretKey, signatureAlgorithm)
-      .setExpiration(Date.from(Instant.now().plusMillis(jwtExpirationInMillis)))
-      .compact();
-  }
 
   /**
    * Check token validity
