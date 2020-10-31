@@ -11,8 +11,6 @@ import com.cg.inventoryproductorderservice.dto.UpdateStockRequest;
 import com.cg.inventoryproductorderservice.entity.Product;
 import com.cg.inventoryproductorderservice.service.UpdateStockService;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -22,10 +20,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UpdateStockServiceImpl implements UpdateStockService {
 
-  @Qualifier("loadbalanced")
   private final RestTemplate restTemplate;
-
-  @Async
+  
   @Override
   public Product updateProductStock(Long productId, Double quantity) {
     restTemplate.put("http://inventory-stock-management-service/productStock", new UpdateStockRequest(productId, quantity));
