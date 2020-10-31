@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 @Repository
-public interface DistributorDao extends JpaRepository <Distributor, Integer>{
+public interface DistributorDao extends JpaRepository <Distributor, Long>{
 
 }

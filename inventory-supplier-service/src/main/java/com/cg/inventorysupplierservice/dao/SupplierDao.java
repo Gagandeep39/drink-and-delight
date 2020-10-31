@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.cg.inventorysupplierservice.entity.Supplier;
 
 @Repository
-public interface SupplierDao extends JpaRepository<Supplier, Integer>{
+public interface SupplierDao extends JpaRepository<Supplier, Long>{
 
 }
