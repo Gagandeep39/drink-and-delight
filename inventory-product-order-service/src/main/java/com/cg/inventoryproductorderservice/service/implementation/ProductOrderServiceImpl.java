@@ -7,8 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lombok.extern.slf4j.Slf4j;
-
 import com.cg.inventoryproductorderservice.dto.ProductOrderRequest;
 import com.cg.inventoryproductorderservice.dto.ProductOrderResponse;
 import com.cg.inventoryproductorderservice.dto.UpdateStatusDto;
@@ -22,7 +20,6 @@ import com.cg.inventoryproductorderservice.service.ProductOrderService;
 import com.cg.inventoryproductorderservice.service.UpdateStockService;
 
 @Service
-@Slf4j
 public class ProductOrderServiceImpl implements ProductOrderService {
 
 	@Autowired
@@ -39,7 +36,6 @@ public class ProductOrderServiceImpl implements ProductOrderService {
 
 	@Override
 	public List<ProductOrderResponse> fetchAllProductOrders() {
-		log.info(orderRepository.findAll().toString());
 		return orderRepository.findAll().stream().map(ProductOrderMapper::entityToDto).collect(Collectors.toList());
 		// return null;
 	}
