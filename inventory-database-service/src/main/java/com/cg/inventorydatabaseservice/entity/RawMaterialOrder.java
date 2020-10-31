@@ -20,7 +20,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
-import com.cg.inventorydatabaseservice.enums.MeasurementUnit;
 import com.cg.inventorydatabaseservice.enums.OrderStatus;
 import com.cg.inventorydatabaseservice.enums.QualityCheck;
 
@@ -40,14 +39,14 @@ public class RawMaterialOrder {
 
   private Double quantity;
   private Double pricePerUnit;
-  @Enumerated(EnumType.STRING)
-  private MeasurementUnit measurementUnit;
+  // @Enumerated(EnumType.STRING)
+  // private MeasurementUnit measurementUnit;
   @Enumerated(EnumType.STRING)
   private QualityCheck qualityCheck;
   @Enumerated(EnumType.STRING)
   private OrderStatus orderStatus;
 
-  private LocalDate dilveryDate;
+  private LocalDate deliveryDate;
   private LocalDate expiryDate;
   private LocalDate orderedOn;
 

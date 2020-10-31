@@ -1,0 +1,171 @@
+################## Login Endpoint Tests ##################
+
+### Login Valid
+POST http://localhost:9100/auth/login
+Content-Type: application/json
+
+{
+  "username": "gagan",
+  "password": "123456"
+}
+
+### Login Invalid Field
+POST http://localhost:9100/auth/login
+Content-Type: application/json
+
+{
+  "username": "gagan"
+}
+
+### Login InValid Cfredential
+POST http://localhost:9100/auth/login
+Content-Type: application/json
+
+{
+  "username": "gagan",
+  "password": "1234567777"
+}
+
+################## Change Password Endpoint Endpoint Tests ##################
+
+### Fetch Question Valid Username
+GET http://localhost:9100/auth/forgotpassword/gagan
+
+### Fetch Question Invalid Username
+GET http://localhost:9100/auth/forgotpassword/gagandeeeee
+
+
+### Chage Password Request - Invalid Username
+PUT http://localhost:9100/auth/forgotpassword
+Content-Type: application/json
+
+{
+  "username": "gaganzz",
+  "securityAnswer": "default",
+  "newPassword": "123456"
+}
+
+### Chage Password Request - Invalid Answer
+PUT http://localhost:9100/auth/forgotpassword
+Content-Type: application/json
+
+{
+  "username": "gagan",
+  "securityAnswer": "weeeeeeeeeee",
+  "newPassword": "123456"
+}
+
+### Chage Password Request - Success
+PUT http://localhost:9100/auth/forgotpassword
+Content-Type: application/json
+
+{
+  "username": "gagan",
+  "securityAnswer": "answer",
+  "newPassword": "123456"
+}
+
+
+################## PROTECTED Routes ##################
+################## Register Endpoint Tests ##################
+
+### Register Invalid Fields
+
+POST http://localhost:9100/register 
+Content-Type: application/json
+Authorization: Bearer [Fetch by performing login]
+
+{
+  "username": "gaganddd",
+  "address": {
+  "state": "Maharashta",
+  "city": "Mumbai",
+  "area": "Chandivali"
+  },
+  "firstName": "Gagandeep",
+  "lastName": "Singh",
+  "designation": "Developer",
+  "gender": "Male",
+  "dob": "1999-05-14",
+  "emailId": "test@mail.com"
+}
+
+### Register Invalid Data
+POST http://localhost:9100/register 
+Content-Type: application/json
+Authorization: Bearer [Fetch by performing login]
+
+{
+  "username": "gagandddeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "address": {
+  "state": "Maharashta",
+  "city": "Mumbai",
+  "area": "Chandivali"
+  },
+  "firstName": "Gagandeep",
+  "lastName": "Singh",
+  "designation": "Developer",
+  "gender": "Male",
+  "dob": "1999-05-14",
+  "emailId": "test@mail.com"
+}
+
+### Register Valid Data
+POST http://localhost:9100/register 
+Content-Type: application/json
+Authorization: Bearer [Fetch by performing login]
+
+{
+  "username": "gaganaa",
+  "address": {
+  "state": "Maharashta",
+  "city": "Mumbai",
+  "area": "Chandivali",
+  "pincode": "400072"
+  },
+  "firstName": "Gagandeep",
+  "lastName": "Singh",
+  "designation": "Developer",
+  "gender": "Male",
+  "dob": "1999-05-14",
+  "emailId": "test@mail.com",
+  "phoneNo": "8419969059",
+  "password": "12345678"
+}
+
+### Register Valid Data
+PUT http://localhost:9100/register 
+Content-Type: application/json
+Authorization: Bearer [Fetch by performing login]
+
+{
+  "userId": "100001",
+  "username": "gagana",
+  "address": {
+  "state": "Maharashta",
+  "city": "Mumbai",
+  "area": "Chandivali",
+  "pincode": "400072"
+  },
+  "firstName": "Gagandeep",
+  "lastName": "Singh",
+  "designation": "Developer",
+  "gender": "Male",
+  "dob": "1999-05-14",
+  "emailId": "test@mail.com",
+  "phoneNo": "8419969059",
+  "password": "12345678",
+  "securityQuestion": "What is your name",
+  "securityAnswer": "123456"
+}
+
+
+################## Extras ##################
+
+### Fetch All users
+GET http://localhost:9100/register
+Authorization: Bearer [Fetch by performing login]
+
+### Fetch Users By ID
+GET http://localhost:9100/register/100001
+Authorization: Bearer [Fetch by performing login]

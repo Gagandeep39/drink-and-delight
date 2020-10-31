@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class BeanConfiguration {
+public class H2DatabaseConfiguration {
 
   @Bean(initMethod = "start", destroyMethod = "stop")
   public Server inMemoryH2DatabaseaServer() throws SQLException {

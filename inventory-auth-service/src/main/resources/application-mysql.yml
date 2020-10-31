@@ -18,3 +18,7 @@ logging:
     ROOT: info
     # debug level for all use defined code logs
     com.cg: info
+# Enables discovery CLient eatures
+eureka:
+  client:
+    enabled: true

@@ -20,3 +20,8 @@ logging:
     ROOT: info
     # debug leavel for all user defined classes log
     com.cg: info
+
+# Enables discovery CLient eatures
+eureka:
+  client:
+    enabled: true

@@ -9,20 +9,13 @@ package com.cg.inventorysupplierservice.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import com.cg.inventorysupplierservice.enums.MeasurementUnit;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,15 +27,13 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Distributor {
 
-	@Id
-	@SequenceGenerator(name = "distributor_id_sequence", initialValue = 100000, allocationSize = 1)
-	@GeneratedValue(generator = "distributor_id_sequence", strategy = GenerationType.SEQUENCE)
-	private Long distributorId;
-
-	@Column(length = 20)
-	private String materialName;
-
-	@Column(length = 100)
-	private String description;
-
+  @Id
+  @SequenceGenerator(name = "distributor_id_sequence", initialValue = 100000, allocationSize = 1)
+  @GeneratedValue(generator = "distributor_id_sequence", strategy = GenerationType.SEQUENCE)
+  private Long distributorId;
+  @Column(length = 20)
+  private String materialName;
+  @Column(length = 100)
+  private String description;
+  
 }

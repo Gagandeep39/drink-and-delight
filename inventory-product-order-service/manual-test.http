@@ -1,0 +1,104 @@
+### Fetch All product orders
+GET http://localhost:9200/productOrder
+
+### Fetch Product by Invalid ID
+GET http://localhost:9200/productOrder/100000000
+
+### Fetch Product by Invalid ID
+GET http://localhost:9200/productOrder/10sssdsd
+
+### Fetch Product by valid ID
+GET http://localhost:9200/productOrder/100001
+
+### Update Status - Invalid
+PUT http://localhost:9200/productOrder
+Content-Type: application/json
+
+{
+  "orderId": "1212122",
+  "status": "Deliv"
+}
+
+### Update Status - Invalid
+PUT http://localhost:9200/productOrder
+Content-Type: application/json
+
+{
+  "status": "Deliv"
+}
+
+### Update Status - Valid - Makes Quantity from 80 to 180 in DB
+PUT http://localhost:9200/productOrder
+Content-Type: application/json
+
+{
+  "orderId": "100001",
+  "status": "Delivered"
+}
+
+### Update Status - Error
+PUT http://localhost:9200/productOrder
+Content-Type: application/json
+
+{
+  "orderId": "100003",
+  "status": "Cancelled"
+}
+
+### Update Status - Valid
+PUT http://localhost:9200/productOrder
+Content-Type: application/json
+
+{
+  "orderId": "100001",
+  "status": "Cancelled"
+}
+
+### Invalid Product
+POST http://localhost:9200/productOrder
+Content-Type: application/json
+
+{
+  "productOrderId": 100001,
+  "quantity": 80.0,
+  "pricePerUnit": 100.0,
+  "qualityCheck": "Passed",
+  "orderStatus": "Delivered",
+  "deliveryDate": "2020-12-12",
+}
+
+### Invalid Product Future
+POST http://localhost:9200/productOrder
+Content-Type: application/json
+
+{
+  "productOrderId": 100001,
+  "quantity": 80.0,
+  "pricePerUnit": 100.0,
+  "qualityCheck": "Passed",
+  "orderStatus": "Delivered",
+  "deliveryDate": "2020-12-12",
+  "manufactureDate": "2019-05-13",
+  "expiryDate": "2019-09-09",
+  "orderedOn": "2020-09-09",
+  "distributorName": "Rajesh",
+  "distributorId": 100001,
+  "supplierId": "1000001"
+}
+
+### Create Product
+POST http://localhost:9200/productOrder
+Content-Type: application/json
+
+{
+  "productId": 100001,
+  "quantity": 80.0,
+  "pricePerUnit": 100.0,
+  "qualityCheck": "Passed",
+  "orderStatus": "Delivered",
+  "deliveryDate": "2020-12-12",
+  "manufactureDate": "2019-05-13",
+  "expiryDate": "2025-09-09",
+  "distributorId": 100001,
+  "supplierId": "1000001"
+}

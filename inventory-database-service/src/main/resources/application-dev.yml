@@ -19,3 +19,7 @@ logging:
   level:
     ROOT: info
     com.cg: info
+# Disables discovery CLient eatures - Use this or Confi file
+eureka:
+  client:
+    enabled: true
