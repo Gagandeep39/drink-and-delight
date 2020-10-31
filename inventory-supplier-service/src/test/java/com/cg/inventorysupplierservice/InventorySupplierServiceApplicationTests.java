@@ -2,6 +2,8 @@ package com.cg.inventorysupplierservice;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
+
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.Test;
@@ -13,6 +15,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import com.cg.inventorysupplierservice.dao.DistributorDao;
 import com.cg.inventorysupplierservice.dao.SupplierDao;
 import com.cg.inventorysupplierservice.dao.WarehouseDao;
+import com.cg.inventorysupplierservice.dto.DistributorDto;
+import com.cg.inventorysupplierservice.dto.SupplierDto;
+import com.cg.inventorysupplierservice.dto.WarehouseDto;
 import com.cg.inventorysupplierservice.entity.Distributor;
 import com.cg.inventorysupplierservice.entity.Supplier;
 import com.cg.inventorysupplierservice.entity.Warehouse;
@@ -20,6 +25,7 @@ import com.cg.inventorysupplierservice.service.DistributorService;
 //import com.cg.inventorysupplierservice.service.HelperService;
 import com.cg.inventorysupplierservice.service.SupplierService;
 import com.cg.inventorysupplierservice.service.WarehouseService;
+import com.thoughtworks.xstream.mapper.Mapper;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -54,10 +60,14 @@ public class InventorySupplierServiceApplicationTests {
 	@Test
 	public void addWarehouseWithCorrectFieldsTest() {
 
-		Warehouse warehouse = new Warehouse((long) 100000, "Milk Product warehouse", "All milk products");
-		when(wDao.save(warehouse)).thenReturn(warehouse);
-		assertEquals(warehouse, warehouseService.addWarehouse(warehouse));
+		WarehouseDto warehouse = new WarehouseDto((long) 100000, "Milk Product warehouse", "All milk products");
+		Warehouse wh=null;
+		wh=warehouseService.mapper(warehouse);
+		when(wDao.save(wh)).thenReturn(wh);
+		assertEquals(wh, warehouseService.addWarehouse(warehouse));
 	}
+
+	
 
 	@Test
 	public void getDistributorsTest() {
@@ -71,9 +81,11 @@ public class InventorySupplierServiceApplicationTests {
 	@Test
 	public void addDistributorWithCorrectFieldsTest() {
 
-		Distributor distributor = new Distributor((long) 100000, "Lassi", "Milk Product");
-		when(dDao.save(distributor)).thenReturn(distributor);
-		assertEquals(distributor, distributorService.addDistributor(distributor));
+		DistributorDto distributor = new DistributorDto((long) 100000, "Lassi", "Milk Product");
+		Distributor dt=new Distributor();
+		dt=distributorService.mapper(distributor);
+		when(dDao.save(dt)).thenReturn(dt);
+		assertEquals(dt, distributorService.addDistributor(distributor));
 	}
 
 	@Test
@@ -88,10 +100,17 @@ public class InventorySupplierServiceApplicationTests {
 	@Test
 	public void addSupplierWithCorrectFieldsTest() {
 
-		Supplier supplier = new Supplier((long) 100000, "AK Supplier", "Pune", "9988776767");
-		when(sDao.save(supplier)).thenReturn(supplier);
-		assertEquals(supplier, supplierService.addSupplier(supplier));
+		SupplierDto supplier = new SupplierDto((long) 100000, "AK Supplier", "Pune", "9988776767");
+		Supplier sp = new Supplier((long) 100000, "AK Supplier", "Pune", "9988776767");
+		
+		//Supplier sp=null;
+		//sp=supplierService.mapper(supplier);
+		when(sDao.save(sp)).thenReturn(sp);
+		assertEquals(sp, supplierService.addSupplier(supplier));
 	}
-
+	
+	
+	
+	
 
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.inventorysupplierservice.dao.WarehouseDao;
+import com.cg.inventorysupplierservice.dto.WarehouseDto;
 import com.cg.inventorysupplierservice.entity.Warehouse;
 import com.cg.inventorysupplierservice.exception.DuplicateEntryException;
 import com.cg.inventorysupplierservice.exception.EntityNotFoundException;
@@ -21,16 +22,16 @@ public class WarehouseServiceImpl implements WarehouseService {
 	boolean result;
 	@Autowired
 	private WarehouseDao wDao;
-
-	@Override
-	public Warehouse addWarehouse(Warehouse wh) {
-		// TODO Auto-generated method stub
-		if(validateWarehouse(wh))
-		return wDao.save(wh);
-		else
-			throw new InvalidDataException("Parameter Value ", "Cannot be null!");
-	}
 	
+	@Override
+	public Warehouse addWarehouse(WarehouseDto wh) {
+		// TODO Auto-generated method stub
+		
+		Warehouse warehouse=mapper(wh);
+		return wDao.save(warehouse);
+	}
+
+
 	@Override
 	public List<Warehouse> getWarehouses() {
 		// TODO Auto-generated method stub
@@ -63,30 +64,29 @@ public class WarehouseServiceImpl implements WarehouseService {
 			wDao.deleteById(id);
 		return wDao.findAll();
 	}
+	
 	@Override
-	public Warehouse updateWarehouse( Long id, Warehouse warehouse) throws Exception {
+	public Warehouse updateWarehouse( Long id, WarehouseDto warehouse) throws Exception {
 		// TODO Auto-generated method stub
 		Warehouse existingWarehouse = wDao.findById(id).orElseThrow(()-> new EntityNotFoundException("Warehouse with Id " + id , "Not Found!"));
-//			result = validateWarehouse(warehouse);
-//			if (result == true) {
-		if(validateWarehouse(warehouse)) {
-				existingWarehouse.setName(warehouse.getName());
-				existingWarehouse.setDescription(warehouse.getDescription());
-				return wDao.save(existingWarehouse);
-		}
-		else 
-			throw new InvalidDataException("Parameter Value ", "Cannot be null!");
-//			} 
-			
+		
+		existingWarehouse.setName(warehouse.getName());
+		existingWarehouse.setDescription(warehouse.getDescription());
+		return wDao.save(existingWarehouse);
+
+		
 	}
 
-	public boolean validateWarehouse(Warehouse wh) {
+
+	@Override
+	public Warehouse mapper(WarehouseDto wh) {
 		
-		String tempName=wh.getName();
-		String tempDescription=wh.getDescription();
-		if(tempName!=""&&tempDescription!=""&&tempName!=null&&tempDescription!=null)
-		return true;
-		else return false;
+		Warehouse warehouse=new Warehouse();
+		warehouse.setWarehouseId(wh.getWarehousId());
+		warehouse.setName(wh.getName());
+		warehouse.setDescription(wh.getDescription());
+		
+		return warehouse;
 		
 	}
 

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.inventorysupplierservice.dto.SupplierDto;
 import com.cg.inventorysupplierservice.entity.Distributor;
 import com.cg.inventorysupplierservice.entity.Supplier;
 import com.cg.inventorysupplierservice.entity.Warehouse;
@@ -36,7 +37,7 @@ public class SupplierController {
 	private SupplierService service;
 
 	@PostMapping
-	public Supplier addSupplier(@RequestBody Supplier supplier) throws Exception {
+	public Supplier addSupplier(@Valid @RequestBody SupplierDto supplier) throws Exception {
 
 		return service.addSupplier(supplier);
 
@@ -61,7 +62,7 @@ public class SupplierController {
 	}
 
 	@PutMapping(value = "/{id}")
-	public Supplier updateSupplier(@PathVariable Long id, @RequestBody Supplier supplier) {
+	public Supplier updateSupplier(@PathVariable Long id,@Valid  @RequestBody SupplierDto supplier) {
 
 		return service.updateSupplier(id, supplier);
 	}

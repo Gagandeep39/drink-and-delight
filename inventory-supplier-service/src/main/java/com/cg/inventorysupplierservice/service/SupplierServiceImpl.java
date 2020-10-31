@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.inventorysupplierservice.dao.SupplierDao;
+import com.cg.inventorysupplierservice.dto.SupplierDto;
 import com.cg.inventorysupplierservice.entity.Distributor;
 import com.cg.inventorysupplierservice.entity.Supplier;
 import com.cg.inventorysupplierservice.exception.EntityNotFoundException;
@@ -19,16 +20,17 @@ public class SupplierServiceImpl implements SupplierService {
 	private SupplierDao sDao;
 
 	@Override
-	public Supplier addSupplier(Supplier supplier) {
+	public Supplier addSupplier(SupplierDto supplier) {
 		// TODO Auto-generated method stub
-		if (validateSupplier(supplier)) {
-			if (validatePhoneNo(supplier))
-				return sDao.save(supplier);
-			else
-				throw new InvalidDataException("Mobile No", "Invalid format");
-		} else
-			throw new InvalidDataException("Parameter Value ", "Cannot be null!");
-	}
+		Supplier sp=new Supplier();
+		sp.setSupplierId(supplier.getSupplierId());
+		sp.setName(supplier.getName());
+		sp.setLocation(supplier.getLocation());
+		sp.setPhoneNo(supplier.getPhoneNo());
+		
+		return sDao.save(sp);
+		}
+
 
 	@Override
 	public List<Supplier> getSuppliers() {
@@ -63,36 +65,29 @@ public class SupplierServiceImpl implements SupplierService {
 	}
 
 	@Override
-	public Supplier updateSupplier(Long id, Supplier supplier) {
+	public Supplier updateSupplier(Long id, SupplierDto supplier) {
 		// TODO Auto-generated method stub
 		Supplier existingSupplier = sDao.findById(id)
 				.orElseThrow(() -> new EntityNotFoundException("Supplier with Id " + id, "Not Found"));
-		if (validateSupplier(supplier) && validatePhoneNo(supplier)) {
 			existingSupplier.setName(supplier.getName());
 			existingSupplier.setLocation(supplier.getLocation());
 			existingSupplier.setPhoneNo(supplier.getPhoneNo());
 
 			return sDao.save(existingSupplier);
-		} else
-			throw new InvalidDataException("Parameter value", "Invalid Data Exception");
-
+	
 	}
 
-	public boolean validateSupplier(Supplier supplier) {
 
-		String tempName = supplier.getName();
-		String tempLocation = supplier.getLocation();
-		if (tempName != "" && tempLocation != "" && tempName != null && tempLocation != null)
-			return true;
-		else
-			return false;
-	}
-
-	public boolean validatePhoneNo(Supplier supplier) {
-		String tempNo = supplier.getPhoneNo();
-		String regex = "(0/91)?[7-9][0-9]{9}";
-
-		return tempNo.matches(regex);
+	@Override
+	public Supplier mapper(SupplierDto supplier) {
+		// TODO Auto-generated method stub
+		Supplier sp=new Supplier();
+		sp.setSupplierId(supplier.getSupplierId());
+		sp.setName(supplier.getName());
+		sp.setLocation(supplier.getLocation());
+		sp.setPhoneNo(supplier.getPhoneNo());
+		
+		return sp;
 	}
 
 }

@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.inventorysupplierservice.dao.DistributorDao;
+import com.cg.inventorysupplierservice.dto.DistributorDto;
+import com.cg.inventorysupplierservice.dto.WarehouseDto;
 import com.cg.inventorysupplierservice.entity.Distributor;
+import com.cg.inventorysupplierservice.entity.Warehouse;
 import com.cg.inventorysupplierservice.exception.EntityNotFoundException;
 import com.cg.inventorysupplierservice.exception.InvalidDataException;
 
@@ -16,14 +19,16 @@ public class DistributorServiceImpl implements DistributorService {
 
 	@Autowired
 	private DistributorDao dDao;
-	
+
 	@Override
-	public Distributor addDistributor(Distributor distributor) {
+	public Distributor addDistributor(DistributorDto distributor) {
 		// TODO Auto-generated method stub
-		if(validateDistributor(distributor))
-			return dDao.save(distributor);
-	else
-			throw new InvalidDataException("Parameter Value ", "Cannot be null!");
+		Distributor dt = new Distributor();
+		dt.setDistributorId(distributor.getDistributorId());
+		dt.setMaterialName(distributor.getMaterialName());
+		dt.setDescription(distributor.getDescription());
+
+		return dDao.save(dt);
 	}
 
 	@Override
@@ -31,7 +36,7 @@ public class DistributorServiceImpl implements DistributorService {
 		// TODO Auto-generated method stub
 		List<Distributor> distributors = dDao.findAll();
 		if (distributors == null)
-			throw new EntityNotFoundException("List of distributors","Not Found!");
+			throw new EntityNotFoundException("List of distributors", "Not Found!");
 		return distributors;
 	}
 
@@ -41,7 +46,7 @@ public class DistributorServiceImpl implements DistributorService {
 		Optional<Distributor> distributor = null;
 		distributor = dDao.findById(id);
 		if (!distributor.isPresent())
-			throw new EntityNotFoundException("Distributor with Id  " + id ,"Not Found!");
+			throw new EntityNotFoundException("Distributor with Id  " + id, "Not Found!");
 		else
 			return distributor;
 	}
@@ -59,29 +64,29 @@ public class DistributorServiceImpl implements DistributorService {
 	}
 
 	@Override
-	public Distributor updateDistributor(Long id, Distributor distributor) {
+	public Distributor updateDistributor(Long id, DistributorDto distributor) {
 		// TODO Auto-generated method stub
-		Distributor existingDistributor = dDao.findById(id).orElseThrow(()->new EntityNotFoundException("Distributor with Id " + id ,"Not Found!"));
-		if(validateDistributor(distributor)) {
+		Distributor existingDistributor = dDao.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("Distributor with Id " + id, "Not Found!"));
+
 		existingDistributor.setMaterialName(distributor.getMaterialName());
-			existingDistributor.setDescription(distributor.getDescription());
-		
-		return dDao.save(existingDistributor);}
-		else
-		throw new InvalidDataException("Parameter Value ", "Cannot be null!");
+		existingDistributor.setDescription(distributor.getDescription());
+
+		return dDao.save(existingDistributor);
 
 	}
-	
-	public boolean validateDistributor(Distributor distributor) {
-		
-		String tempName=distributor.getMaterialName();
-		String tempDescription=distributor.getDescription();
-		if(tempName!=""&&tempDescription!=""&&tempName!=null&&tempDescription!=null)
-			return true;
-			else return false;
-			
-		
-		
+
+
+	@Override
+	public Distributor mapper(DistributorDto distributor) {
+
+		Distributor dt = new Distributor();
+		dt.setDistributorId(distributor.getDistributorId());
+		dt.setMaterialName(distributor.getMaterialName());
+		dt.setDescription(distributor.getDescription());
+
+		return dt;
+
 	}
 
 }

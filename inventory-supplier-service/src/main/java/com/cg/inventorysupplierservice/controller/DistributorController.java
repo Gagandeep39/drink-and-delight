@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.inventorysupplierservice.dto.DistributorDto;
 import com.cg.inventorysupplierservice.entity.Distributor;
 import com.cg.inventorysupplierservice.exception.InvalidDataException;
 import com.cg.inventorysupplierservice.service.DistributorService;
@@ -29,7 +30,7 @@ public class DistributorController {
 	private DistributorService service;
 
 	@PostMapping
-	public Distributor addDistributor(@RequestBody Distributor distributor) throws Exception {
+	public Distributor addDistributor(@Valid @RequestBody DistributorDto distributor) throws Exception {
 
 		Distributor distributorObj = service.addDistributor(distributor);
 		return distributorObj;
@@ -54,7 +55,7 @@ public class DistributorController {
 	}
 
 	@PutMapping(value = "/{id}")
-	public Distributor updateDistributor(@PathVariable Long id, @RequestBody Distributor distributor) {
+	public Distributor updateDistributor(@PathVariable Long id,@Valid @RequestBody DistributorDto distributor) {
 
 		return service.updateDistributor(id, distributor);
 	}
