@@ -18,8 +18,6 @@ public interface DistributorService {
 
 	List<Distributor> getDistributors();
 
-	Distributor updateDistributor(DistributorDto distributor);
-
 	Distributor getDistributorById(Long id);
 
 }

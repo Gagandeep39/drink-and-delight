@@ -50,7 +50,7 @@ public class DistributorController {
 
 	@PutMapping
 	public ResponseEntity<Distributor> updateDistributor(@Valid @RequestBody DistributorDto distributor) {
-		return ResponseEntity.status(HttpStatus.OK).body(service.updateDistributor(distributor));
+		return ResponseEntity.status(HttpStatus.OK).body(service.addDistributor(distributor));
 	}
 
 }

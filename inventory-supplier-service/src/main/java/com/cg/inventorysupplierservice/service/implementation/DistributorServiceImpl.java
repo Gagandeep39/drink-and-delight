@@ -36,11 +36,6 @@ public class DistributorServiceImpl implements DistributorService {
   }
 
   @Override
-  public Distributor updateDistributor(DistributorDto distributor) {
-    return repository.save(GenericMapper.distributorDtoToEntity(distributor));
-  }
-
-  @Override
   public Distributor getDistributorById(Long id) {
     return repository.findById(id).orElseThrow(() -> new NotFoundException("distributorId", "Distributor Not found"));
   }
