@@ -1,26 +1,23 @@
+/**
+ * @author Gagandeep Singh
+ * @email singh.gagandeep3911@gmail.com
+ * @create date 2020-11-02 02:06:30
+ * @modify date 2020-11-02 02:06:30
+ * @desc Warehouse Crud operations
+ */
 package com.cg.inventorysupplierservice.service;
 
 import java.util.List;
-import java.util.Optional;
-
-import javax.validation.Valid;
 
 import com.cg.inventorysupplierservice.dto.WarehouseDto;
 import com.cg.inventorysupplierservice.entity.Warehouse;
 
 public interface WarehouseService {
 
-	
-	List<Warehouse> getWarehouses();
+  Warehouse createWarehouse(WarehouseDto warehouse);
 
-	Optional<Warehouse> getWarehouseById(Long id);
+  List<Warehouse> getWarehouses();
 
-	Warehouse updateWarehouse(Long id, WarehouseDto warehouse) throws Exception;
-
-	List<Warehouse> deleteWarehouseById(Long id);
-
-	Warehouse addWarehouse(WarehouseDto wh);
-
-	Warehouse mapper(WarehouseDto wh);
+  Warehouse fetchWarehouseById(Long id);
 
 }

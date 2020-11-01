@@ -1,11 +1,16 @@
+/**
+ * @author Gagandeep Singh
+ * @email singh.gagandeep3911@gmail.com
+ * @create date 2020-11-02 01:28:37
+ * @modify date 2020-11-02 01:28:37
+ * @desc Application STarting Point
+ */
 package com.cg.inventorysupplierservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
-@EnableEurekaClient
 public class InventorySupplierServiceApplication {
 
 	public static void main(String[] args) {
