@@ -1,0 +1,176 @@
+################ Distributor Tests ################ 
+
+### Fetch All Distributor
+GET http://localhost:9600/distributor
+
+### Fetch Distributor by Invalid ID
+GET http://localhost:9600/distributor/sdsdsds
+
+### Fetch Distributor by valid ID
+GET http://localhost:9600/distributor/1000001
+
+### Insert a Distributor - Invalid
+POST http://localhost:9600/distributor
+Content-Type: application/json
+
+{
+  "name": "Dummy Distributor",
+  "phoneNo": "9988776655"
+}
+
+### Insert a Distributor - Invalid
+POST http://localhost:9600/distributor
+Content-Type: application/json
+
+{
+  "name": "Dummy Distributor",
+  "location": "Mumbai",
+  "phoneNo": "998877665"
+}
+
+### Insert a Distributor - valid
+POST http://localhost:9600/distributor
+Content-Type: application/json
+
+{
+  "name": "Dummy Distributor",
+  "location": "Mumbai",
+  "phoneNo": "9988776655"
+}
+
+### Update a Distributor - Invalid
+PUT http://localhost:9600/distributor
+Content-Type: application/json
+
+{
+
+  "distributorId": "100001",
+  "location": "Mumbai",
+  "phoneNo": "9988776655"
+}
+
+### Update a Distributor - valid
+PUT http://localhost:9600/distributor
+Content-Type: application/json
+
+{
+
+  "distributorId": 1000000,
+  "name": "Danial",
+  "location": "Mumbai",
+  "phoneNo": "9988776655"
+}
+
+################ Supplier Tests ################ 
+
+### Fetch All Supplier
+GET http://localhost:9600/supplier
+
+### Fetch Supplier by Invalid ID
+GET http://localhost:9600/supplier/121s
+
+### Fetch Supplier by valid ID
+GET http://localhost:9600/supplier/121
+
+### Insert a Supplier - Invalid
+POST http://localhost:9600/supplier
+Content-Type: application/json
+
+{
+  "name": "Dummy Supplier",
+  "phoneNo": "9988776655"
+}
+
+### Insert a Supplier - Invalid
+POST http://localhost:9600/supplier
+Content-Type: application/json
+
+{
+  "name": "Dummy Supplier",
+  "location": "Mumbai",
+  "phoneNo": "998877665"
+}
+
+### Insert a Supplier - valid
+POST http://localhost:9600/supplier
+Content-Type: application/json
+
+{
+  "name": "Dummy Supplier",
+  "location": "Mumbai",
+  "phoneNo": "9988776655"
+}
+
+### Update a Supplier - Invalid
+PUT http://localhost:9600/supplier
+Content-Type: application/json
+
+{
+
+  "supplierId": "100001",
+  "location": "Mumbai",
+  "phoneNo": "9988776655"
+}
+
+### Update a Supplier - valid
+PUT http://localhost:9600/supplier
+Content-Type: application/json
+
+{
+
+  "supplierId": 1000000,
+  "name": "Danial",
+  "location": "Mumbai",
+  "phoneNo": "9988776655"
+}
+
+################ Warehouse Tests ################ 
+
+### Fetch All Warehouse
+GET http://localhost:9600/warehouse
+
+### Fetch Warehouse by Invalid ID
+GET http://localhost:9600/warehouse/121s
+
+### Fetch Warehouse by valid ID
+GET http://localhost:9600/warehouse/121
+
+### Insert a Warehouse - Invalid
+POST http://localhost:9600/warehouse
+Content-Type: application/json
+
+{
+  "name": "Dummy Warehouse",
+  "phoneNo": "9988776655"
+}
+
+### Insert a Warehouse - valid
+POST http://localhost:9600/warehouse
+Content-Type: application/json
+
+{
+  "name": "Dummy Warehouse",
+  "location": "Mumbai"
+}
+
+### Update a Warehouse - Invalid
+PUT http://localhost:9600/warehouse
+Content-Type: application/json
+
+{
+
+  "warehouseId": "100001",
+  "location": "Mumbai",
+  "phoneNo": "9988776655"
+}
+
+### Update a Warehouse - valid
+PUT http://localhost:9600/warehouse
+Content-Type: application/json
+
+{
+
+  "warehouseId": 1000000,
+  "name": "Danial",
+  "description": "Nearby Somewhere"
+}
