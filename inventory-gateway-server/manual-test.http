@@ -9,33 +9,191 @@ Content-Type: application/json
   "password": "123456"
 }
 
+### Login Invalid Field
+POST http://localhost:9000/inventory-auth-service/auth/login
+Content-Type: application/json
+
+{
+  "username": "gagan"
+}
+
+### Login InValid Cfredential
+POST http://localhost:9000/inventory-auth-service/auth/login
+Content-Type: application/json
+
+{
+  "username": "gagan",
+  "password": "1234567777"
+}
+
+################## Change Password Endpoint Endpoint Tests ##################
+
+### Fetch Question Valid Username
+GET http://localhost:9000/inventory-auth-service/auth/forgotpassword/gagan
+
+### Fetch Question Invalid Username
+GET http://localhost:9000/inventory-auth-service/auth/forgotpassword/gagandeeeee
+
+
+### Chage Password Request - Invalid Username1
+PUT http://localhost:9000/inventory-auth-service/auth/forgotpassword
+Content-Type: application/json
+
+{
+  "username": "gaganzz",
+  "securityAnswer": "default",
+  "newPassword": "123456"
+}
+
+### Chage Password Request - Invalid Answer
+PUT http://localhost:9000/inventory-auth-service/auth/forgotpassword
+Content-Type: application/json
+
+{
+  "username": "gagan",
+  "securityAnswer": "answer",
+  "newPassword": "123456"
+}
+
+### Chage Password Request - Success
+PUT http://localhost:9000/inventory-auth-service/auth/forgotpassword
+Content-Type: application/json
+Authorization: Bearer [Fetch by performing login]
+
+{
+  "username": "gagan",
+  "securityAnswer": "answer",
+  "newPassword": "123456"
+}
+
+
+################## PROTECTED Routes ##################
+################## Register Endpoint Tests ##################
+
+### Register Invalid Fields
+
+POST http://localhost:9000/inventory-auth-service/register 
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
+
+{
+  "username": "gaganddd",
+  "address": {
+  "state": "Maharashta",
+  "city": "Mumbai",
+  "area": "Chandivali"
+  },
+  "firstName": "Gagandeep",
+  "lastName": "Singh",
+  "designation": "Developer",
+  "gender": "Male",
+  "dob": "1999-05-14",
+  "emailId": "test@mail.com"
+}
+
+### Register Invalid Data
+POST http://localhost:9000/inventory-auth-service/register 
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
+
+{
+  "username": "gagandddeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "address": {
+  "state": "Maharashta",
+  "city": "Mumbai",
+  "area": "Chandivali"
+  },
+  "firstName": "Gagandeep",
+  "lastName": "Singh",
+  "designation": "Developer",
+  "gender": "Male",
+  "dob": "1999-05-14",
+  "emailId": "test@mail.com"
+}
+
+### Register Valid Data
+POST http://localhost:9000/inventory-auth-service/register 
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
+
+{
+  "username": "gaganaasasasa",
+  "address": {
+  "state": "Maharashta",
+  "city": "Mumbai",
+  "area": "Chandivali",
+  "pincode": "400072"
+  },
+  "firstName": "Gagandeep",
+  "lastName": "Singh",
+  "designation": "Developer",
+  "gender": "Male",
+  "dob": "1999-05-14",
+  "emailId": "test@mail.com",
+  "phoneNo": "8419969059",
+  "password": "12345678"
+}
+
+### Register Valid Data
+PUT http://localhost:9000/inventory-auth-service/register 
+Content-Type: application/json
+Authorization: Bearer [Fetch by performing login]
+
+{
+  "userId": "100001",
+  "username": "gagana",
+  "address": {
+  "state": "Maharashta",
+  "city": "Mumbai",
+  "area": "Chandivali",
+  "pincode": "400072"
+  },
+  "firstName": "Gagandeep",
+  "lastName": "Singh",
+  "designation": "Developer",
+  "gender": "Male",
+  "dob": "1999-05-14",
+  "emailId": "test@mail.com",
+  "phoneNo": "8419969059",
+  "password": "12345678",
+  "securityQuestion": "What is your name",
+  "securityAnswer": "123456"
+}
+
+
+################## Extras ##################
+
+### Fetch All users
+GET http://localhost:9100/inventory-auth-service/register
+Authorization: Bearer [Fetch by performing login]
+
 
 ### Fetch All users
 GET http://localhost:9000/inventory-auth-service/register
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5MjY5OCwiZXhwIjoxNjA0Mjk2Mjk4fQ.pg3Q4GumlxwWuWh-N4urwUX81jHBmFlW9FJDcVOAcP8
 
 ###################### Product Order
 
 ### Fetch All product orders
 GET http://localhost:9000/inventory-product-order-service/productOrder
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5Mjk4OCwiZXhwIjoxNjA0Mjk2NTg4fQ.sgdYEzR4TnruHcLLNk4WSWEbgiKcZaK5JTzM_R2Hr-k
 
 ### Fetch Product by Invalid ID
 GET http://localhost:9000/inventory-product-order-service/productOrder/100000000
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 
 ### Fetch Product by Invalid ID
 GET http://localhost:9000/inventory-product-order-service/productOrder/10sssdsd
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5Mjk4OCwiZXhwIjoxNjA0Mjk2NTg4fQ.sgdYEzR4TnruHcLLNk4WSWEbgiKcZaK5JTzM_R2Hr-k
 
 ### Fetch Product by valid ID
 GET http://localhost:9000/inventory-product-order-service/productOrder/100001
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 
 ### Update Status - Invalid
 PUT http://localhost:9000/inventory-product-order-service/productOrder
 Content-Type: application/json
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 
 {
   "orderId": "1212122",
@@ -54,7 +212,7 @@ Authorization: Bearer [Fetch by performing login]
 ### Update Status - Valid - Makes quantity 80 to 180
 PUT http://localhost:9000/inventory-product-order-service/productOrder
 Content-Type: application/json
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 
 {
   "orderId": "100001",
@@ -64,7 +222,7 @@ Authorization: Bearer [Fetch by performing login]
 ### Update Status - Error
 PUT http://localhost:9000/inventory-product-order-service/productOrder
 Content-Type: application/json
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 
 {
   "orderId": "100003",
@@ -84,7 +242,7 @@ Content-Type: application/json
 ### Invalid Product
 POST http://localhost:9000/inventory-product-order-service/productOrder
 Content-Type: application/json
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 
 {
   "productOrderId": "100001",
@@ -98,7 +256,7 @@ Authorization: Bearer [Fetch by performing login]
 ### Invalid Product Future
 POST http://localhost:9000/inventory-product-order-service/productOrder
 Content-Type: application/json
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 
 {
   "productOrderId": 100001,
@@ -118,7 +276,7 @@ Authorization: Bearer [Fetch by performing login]
 ### Create Product
 POST http://localhost:9000/inventory-product-order-service/productOrder
 Content-Type: application/json
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 
 {
   "productId": 100001,
@@ -137,20 +295,20 @@ Authorization: Bearer [Fetch by performing login]
 
 ### Fetch All raw materials
 GET http://localhost:9000/inventory-rawmaterial-order-service/rawMaterialOrder
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 
 ### Fetch Valid RawMaterial Order
 GET http://localhost:9000/inventory-rawmaterial-order-service/rawMaterialOrder/1000004
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 
 ### Fetch In Valid RawMaterial Order
 GET http://localhost:9000/inventory-rawmaterial-order-service/rawMaterialOrder/1000999
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 
 ### Update Order Status - Already delivered
 PUT http://localhost:9000/inventory-rawmaterial-order-service/rawMaterialOrder
 Content-Type: application/json
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 
 {
   "orderId": "1000000",
@@ -160,7 +318,7 @@ Authorization: Bearer [Fetch by performing login]
 ### Update Order Status - Makes order quantity of 1000001 as 70 to 125
 PUT http://localhost:9000/inventory-rawmaterial-order-service/rawMaterialOrder
 Content-Type: application/json
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 
 {
   "orderId": "1000003",
@@ -180,7 +338,7 @@ Authorization: Bearer [Fetch by performing login]
 ### Insert RawMaterial Order - Missing data
 POST  http://localhost:9000/inventory-rawmaterial-order-service/rawMaterialOrder
 Content-Type: application/json
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 
 {
   "rawMaterialId": "10000000",
@@ -194,7 +352,7 @@ Authorization: Bearer [Fetch by performing login]
 ### Insert RawMaterial Order  - Invalid Data
 POST  http://localhost:9000/inventory-rawmaterial-order-service/rawMaterialOrder
 Content-Type: application/json
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 
 {
   "rawMaterialId": "10000000",
@@ -209,7 +367,7 @@ Authorization: Bearer [Fetch by performing login]
 ### Insert RawMaterial Order  - Past date
 POST  http://localhost:9000/inventory-rawmaterial-order-service/rawMaterialOrder
 Content-Type: application/json
-Authorization: Bearer [Fetch by performing login]
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 
 {
   "rawMaterialId": "10000000",
@@ -243,15 +401,22 @@ Authorization: Bearer [Fetch by performing login]
 
 ### Fetch All Distributor
 GET http://localhost:9600/distributor
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
+
 
 ### Fetch Distributor by Invalid ID
 GET http://localhost:9600/distributor/sdsdsds
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
+
 
 ### Fetch Distributor by valid ID
 GET http://localhost:9600/distributor/1000001
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
+
 
 ### Insert a Distributor - Invalid
 POST http://localhost:9600/distributor
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 Content-Type: application/json
 
 {
@@ -261,6 +426,7 @@ Content-Type: application/json
 
 ### Insert a Distributor - Invalid
 POST http://localhost:9600/distributor
+Authorization: Bearer [Fetch by performing login]
 Content-Type: application/json
 
 {
@@ -271,6 +437,7 @@ Content-Type: application/json
 
 ### Insert a Distributor - valid
 POST http://localhost:9600/distributor
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWdhbiIsImlhdCI6MTYwNDI5NDEzNiwiZXhwIjoxNjA0Mjk3NzM2fQ.OqTnEugv13hbqOW2xAZCd0lD_wGPdPByyjxU7vo5308
 Content-Type: application/json
 
 {
@@ -281,6 +448,7 @@ Content-Type: application/json
 
 ### Update a Distributor - Invalid
 PUT http://localhost:9600/distributor
+Authorization: Bearer [Fetch by performing login]
 Content-Type: application/json
 
 {
@@ -292,6 +460,7 @@ Content-Type: application/json
 
 ### Update a Distributor - valid
 PUT http://localhost:9600/distributor
+Authorization: Bearer [Fetch by performing login]
 Content-Type: application/json
 
 {
@@ -306,16 +475,20 @@ Content-Type: application/json
 
 ### Fetch All Supplier
 GET http://localhost:9600/supplier
+Authorization: Bearer [Fetch by performing login]
 
 ### Fetch Supplier by Invalid ID
 GET http://localhost:9600/supplier/121s
+Authorization: Bearer [Fetch by performing login]
 
 ### Fetch Supplier by valid ID
 GET http://localhost:9600/supplier/121
+Authorization: Bearer [Fetch by performing login]
 
 ### Insert a Supplier - Invalid
 POST http://localhost:9600/supplier
 Content-Type: application/json
+Authorization: Bearer [Fetch by performing login]
 
 {
   "name": "Dummy Supplier",
@@ -324,6 +497,7 @@ Content-Type: application/json
 
 ### Insert a Supplier - Invalid
 POST http://localhost:9600/supplier
+Authorization: Bearer [Fetch by performing login]
 Content-Type: application/json
 
 {
@@ -334,6 +508,7 @@ Content-Type: application/json
 
 ### Insert a Supplier - valid
 POST http://localhost:9600/supplier
+Authorization: Bearer [Fetch by performing login]
 Content-Type: application/json
 
 {
@@ -344,6 +519,7 @@ Content-Type: application/json
 
 ### Update a Supplier - Invalid
 PUT http://localhost:9600/supplier
+Authorization: Bearer [Fetch by performing login]
 Content-Type: application/json
 
 {
@@ -355,6 +531,7 @@ Content-Type: application/json
 
 ### Update a Supplier - valid
 PUT http://localhost:9600/supplier
+Authorization: Bearer [Fetch by performing login]
 Content-Type: application/json
 
 {
@@ -369,15 +546,19 @@ Content-Type: application/json
 
 ### Fetch All Warehouse
 GET http://localhost:9600/warehouse
+Authorization: Bearer [Fetch by performing login]
 
 ### Fetch Warehouse by Invalid ID
 GET http://localhost:9600/warehouse/121s
+Authorization: Bearer [Fetch by performing login]
 
 ### Fetch Warehouse by valid ID
 GET http://localhost:9600/warehouse/121
+Authorization: Bearer [Fetch by performing login]
 
 ### Insert a Warehouse - Invalid
 POST http://localhost:9600/warehouse
+Authorization: Bearer [Fetch by performing login]
 Content-Type: application/json
 
 {
@@ -387,6 +568,7 @@ Content-Type: application/json
 
 ### Insert a Warehouse - valid
 POST http://localhost:9600/warehouse
+Authorization: Bearer [Fetch by performing login]
 Content-Type: application/json
 
 {
@@ -396,6 +578,7 @@ Content-Type: application/json
 
 ### Update a Warehouse - Invalid
 PUT http://localhost:9600/warehouse
+Authorization: Bearer [Fetch by performing login]
 Content-Type: application/json
 
 {
@@ -407,6 +590,7 @@ Content-Type: application/json
 
 ### Update a Warehouse - valid
 PUT http://localhost:9600/warehouse
+Authorization: Bearer [Fetch by performing login]
 Content-Type: application/json
 
 {
