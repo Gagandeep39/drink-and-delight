@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { NavigationComponent } from './shared/navigation/navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent
+    FooterComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
