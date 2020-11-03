@@ -2,11 +2,17 @@
 @import "assets/css/Navigation-with-Button.css";
 
 #wrapper {
-  width: 250px;
+  width: 20%;
   position: absolute;
   top: 0;
   bottom: 0;
-  background-color: #21a9af;
+  background-color: #184e8e;
+}
+
+#main-outlet {
+  width: 80%;
+  float: right;
+  padding: 12px;
 }
 
 .fas {
@@ -23,3 +29,4 @@
 .nav-item {
   align-items: flex-start;
 }
+
