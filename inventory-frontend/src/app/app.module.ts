@@ -22,6 +22,8 @@ import { AddSupplierComponent } from './supplier/add-supplier/add-supplier.compo
 import { ViewSupplierComponent } from './supplier/view-supplier/view-supplier.component';
 import { ViewDistributorComponent } from './distributor/view-distributor/view-distributor.component';
 import { AddDistributorComponent } from './distributor/add-distributor/add-distributor.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -44,13 +46,16 @@ import { AddDistributorComponent } from './distributor/add-distributor/add-distr
     AddSupplierComponent,
     ViewSupplierComponent,
     ViewDistributorComponent,
-    AddDistributorComponent
+    AddDistributorComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
