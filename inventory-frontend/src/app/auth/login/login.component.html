@@ -65,10 +65,8 @@
                       </div>
                     </div>
                   </div>
-                  <button
-                    class="btn btn-primary btn-block text-white btn-user"
-                    type="submit"
-                  >
+                  <button class="btn btn-primary btn-block text-white btn-user">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm"></span>
                     Login
                   </button>
                   <hr />
