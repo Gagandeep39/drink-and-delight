@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@import "assets/css/Header-Blue.css";
+@import "assets/css/Navigation-with-Button.css";
+
+#wrapper {
+  width: 250px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: #21a9af;
+}
+
+.fas {
+  margin: 8px;
+}
+
+#logo {
+  margin: 10px !important;
+}
+#role {
+  margin: 8px !important;
+}
+
+.nav-item {
+  align-items: flex-start;
+}
