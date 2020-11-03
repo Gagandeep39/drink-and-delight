@@ -27,45 +27,49 @@
       <ul class="nav navbar-nav text-light" id="accordionSidebar">
         <li class="nav-item"></li>
         <li class="nav-item">
-          <a class="nav-link" href="profile_register.html"
-            ><i class="fas fa-user"></i><span>Profile</span></a
-          >
+          <a class="nav-link" [routerLink]="['/viewprofile']">
+            <i class="fas fa-user"></i><span>Profile</span>
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="product_order.html"
-            ><i class="fas fa-truck-moving"></i><span>Products Orders</span></a
-          >
+          <a class="nav-link" [routerLink]="['/productorders']">
+            <i class="fas fa-truck-moving"></i><span>Products Orders</span>
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="login.html"
-            ><i class="fas fa-boxes"></i><span>Products</span></a
-          >
+          <a class="nav-link" [routerLink]="['/products']"
+            ><i class="fas fa-boxes"></i><span>Products</span>
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="login.html"
-            ><i class="fas fa-truck-moving"></i><span>RM Orders</span></a
-          >
+          <a class="nav-link" [routerLink]="['/rawmaterialorders']">
+            <i class="fas fa-truck-moving"></i><span>RM Orders</span>
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="login.html"
-            ><i class="fas fa-boxes"></i><span>Raw Materials</span></a
-          >
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="login.html"
-            ><i class="fas fa-warehouse"></i><span>Warehouse</span></a
-          >
+          <a class="nav-link" [routerLink]="['/rawmaterials']">
+            <i class="fas fa-boxes"> </i><span>Raw Materials</span>
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="register.html"
-            ><i class="fas fa-users"></i><span>Manage Users</span></a
-          >
+          <a class="nav-link" [routerLink]="['/suppliers']">
+            <i class="fas fa-people-carry"></i><span>Suppliers</span>
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="register.html"
-            ><i class="fas fa-sign-out-alt"></i><span>Sign Out</span></a
-          >
+          <a class="nav-link" [routerLink]="['/distributors']">
+            <i class="fas fa-people-carry"></i><span>Distributors</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/users']">
+            <i class="fas fa-users"></i><span>Manage Users</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <i class="fas fa-sign-out-alt"> </i><span>Sign Out</span>
+          </a>
         </li>
       </ul>
       <div class="text-center d-none d-md-inline">
