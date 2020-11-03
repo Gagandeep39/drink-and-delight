@@ -18,6 +18,10 @@ import { ViewUsersComponent } from './users/view-users/view-users.component';
 import { ViewProfileComponent } from './profile/view-profile/view-profile.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
+import { AddSupplierComponent } from './supplier/add-supplier/add-supplier.component';
+import { ViewSupplierComponent } from './supplier/view-supplier/view-supplier.component';
+import { ViewDistributorComponent } from './distributor/view-distributor/view-distributor.component';
+import { AddDistributorComponent } from './distributor/add-distributor/add-distributor.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,11 @@ import { ChangePasswordComponent } from './auth/change-password/change-password.
     ViewUsersComponent,
     ViewProfileComponent,
     LoginComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    AddSupplierComponent,
+    ViewSupplierComponent,
+    ViewDistributorComponent,
+    AddDistributorComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { LoginComponent } from './auth/login/login.component';
+import { AddDistributorComponent } from './distributor/add-distributor/add-distributor.component';
+import { ViewDistributorComponent } from './distributor/view-distributor/view-distributor.component';
 import { AddProductOrderComponent } from './products/add-product-order/add-product-order.component';
 import { AddProductComponent } from './products/add-product/add-product.component';
 import { ViewProductOrdersComponent } from './products/view-product-orders/view-product-orders.component';
@@ -18,6 +20,8 @@ import { AddRawMaterialOrderComponent } from './raw-materials/add-raw-material-o
 import { AddRawMaterialComponent } from './raw-materials/add-raw-material/add-raw-material.component';
 import { ViewRawMaterialOrdersComponent } from './raw-materials/view-raw-material-orders/view-raw-material-orders.component';
 import { ViewRawMaterialComponent } from './raw-materials/view-raw-material/view-raw-material.component';
+import { AddSupplierComponent } from './supplier/add-supplier/add-supplier.component';
+import { ViewSupplierComponent } from './supplier/view-supplier/view-supplier.component';
 import { AddUserComponent } from './users/add-user/add-user.component';
 import { ViewUsersComponent } from './users/view-users/view-users.component';
 
@@ -32,6 +36,10 @@ const routes: Routes = [
   { path: 'addrawmaterial', component: AddRawMaterialComponent },
   { path: 'rawmaterialorders', component: ViewRawMaterialOrdersComponent },
   { path: 'addrawmaterialorder', component: AddRawMaterialOrderComponent },
+  { path: 'suppliers', component: ViewSupplierComponent },
+  { path: 'addsupplier', component: AddSupplierComponent },
+  { path: 'distributors', component: ViewDistributorComponent },
+  { path: 'adddistributors', component: AddDistributorComponent },
   { path: 'users', component: ViewUsersComponent },
   { path: 'adduser', component: AddUserComponent },
   { path: 'viewprofile', component: ViewProfileComponent },
