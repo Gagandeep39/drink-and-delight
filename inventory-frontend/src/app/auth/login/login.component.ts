@@ -25,10 +25,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnDestroy(): void {
-    this.loginSubscription.unsubscribe();
+    if (this.loginSubscription) this.loginSubscription.unsubscribe();
   }
 
   ngOnInit(): void {
+    this.authService.redirectIfLoggedIn();
     this.initForm();
   }
 

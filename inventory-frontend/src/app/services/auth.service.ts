@@ -30,7 +30,7 @@ export class AuthService {
     sessionStorage.setItem('user', JSON.stringify(user));
   }
 
-  fetchFromSessionStorage() {
+  fetchFromSessionStorage(): User {
     return JSON.parse(sessionStorage.getItem('user'));
   }
 
@@ -38,5 +38,10 @@ export class AuthService {
     sessionStorage.clear();
     localStorage.clear();
     this.router.navigate(['/login']);
+  }
+
+  redirectIfLoggedIn() {
+    if (this.fetchFromSessionStorage()?.token)
+      this.router.navigate(['/dashboard']);
   }
 }
