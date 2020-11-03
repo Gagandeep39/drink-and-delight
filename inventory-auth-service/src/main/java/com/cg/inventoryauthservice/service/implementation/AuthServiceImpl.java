@@ -50,7 +50,12 @@ public class AuthServiceImpl implements AuthService {
   @Override
   public LoginResponse login(LoginRequest loginRequest) {
     User user = findUserByCredentials(loginRequest.getUsername(), loginRequest.getPassword());
-    return new LoginResponse(user.getUserId(), jwtProvider.generateTokenWithUsername(user.getUsername()));
+    return LoginResponse.builder()
+      .userId(user.getUserId())
+      .username(user.getUsername())
+      .role(user.getRole())
+      .token(jwtProvider.generateTokenWithUsername(user.getUsername()))
+      .build();
   }
 
   @Override

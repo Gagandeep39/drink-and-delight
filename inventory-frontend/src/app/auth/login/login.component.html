@@ -15,27 +15,42 @@
                 <div class="text-center">
                   <h4 class="text-dark mb-4">Welcome Back!</h4>
                 </div>
-                <form class="user">
+                <form class="user" [formGroup]="loginForm" (ngSubmit)="login()">
                   <div class="form-group">
                     <input
                       class="form-control form-control-user"
-                      type="email"
-                      id="exampleInputEmail"
-                      aria-describedby="emailHelp"
-                      placeholder="Enter Email Address..."
-                      name="email"
+                      type="username"
+                      formControlName="username"
+                      placeholder="Username"
+                      [ngClass]="{'is-invalid': submitted && loginForm.get('username').invalid}"
+                      name="username"
                     />
+                    <div class="invalid-feedback" *ngIf="submitted && loginForm.get('username').invalid">
+                      <div *ngIf="loginForm.get('username').errors['required']">* Required</div>
+                      <div *ngIf="loginForm.get('username').errors['serverValidationError']"> 
+                          {{loginForm.controls['username'].errors.serverValidationError }} 
+                      </div>
+                    </div>
                   </div>
                   <div class="form-group">
                     <input
                       class="form-control form-control-user"
                       type="password"
+                      formControlName="password"
+                      type="password"
                       id="exampleInputPassword"
                       placeholder="Password"
                       name="password"
+                      [ngClass]="{'is-invalid': submitted && loginForm.get('password').invalid}"
                     />
+                    <div class="invalid-feedback" *ngIf="submitted && loginForm.get('password').invalid">
+                      <div *ngIf="loginForm.get('password').errors['required']">* Required</div>
+                      <div *ngIf="loginForm.get('password').errors['serverValidationError']"> 
+                          {{loginForm.controls['password'].errors.serverValidationError }} 
+                      </div>
+                    </div>
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <div class="custom-control custom-checkbox small">
                       <div class="form-check">
                         <input
@@ -49,20 +64,17 @@
                         >
                       </div>
                     </div>
-                  </div>
-                  <button
-                    class="btn btn-primary btn-block text-white btn-user"
-                    type="submit"
-                  >
+                  </div> -->
+                  <button class="btn btn-primary btn-block text-white btn-user">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm"></span>
                     Login
                   </button>
                   <hr />
-                  <hr />
                 </form>
                 <div class="text-center">
-                  <a class="small" href="forgot-password.html"
-                    >Forgot Password?</a
-                  >
+                  <a class="small" [routerLink]="['/login/changepassword']"
+                    >Forgot Password?
+                  </a>
                 </div>
                 <div class="text-center"></div>
               </div>
