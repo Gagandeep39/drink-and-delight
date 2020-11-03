@@ -7,6 +7,7 @@
  */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginSubscription: Subscription;
   loading: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
+
   ngOnDestroy(): void {
     this.loginSubscription.unsubscribe();
   }
@@ -31,8 +33,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login() {
-    console.log(this.loginForm.value);
-
     this.submitted = true;
     if (this.loginForm.valid) this.submitData(this.loginForm.value);
   }
@@ -41,8 +41,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.enableLoading();
     this.loginSubscription = this.authService.login(formData).subscribe(
       (response) => {
-        this.disableLoading();
-        // perform some task
+        this.router.navigate(['/dashboard']);
       },
       (error) => {
         this.disableLoading();
@@ -67,7 +66,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loading = true;
   }
 
-  disableLoading () {
+  disableLoading() {
     this.loading = false;
   }
 }
