@@ -1,62 +1,56 @@
+/**
+ * @author Gagandeep Singh
+ * @email singh.gagandeep3911@gmail.com
+ * @create date 2020-11-02 02:09:40
+ * @modify date 2020-11-02 02:09:40
+ * @desc Warehouse COntroller
+ */
 package com.cg.inventorysupplierservice.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
+import com.cg.inventorysupplierservice.dto.WarehouseDto;
+import com.cg.inventorysupplierservice.entity.Warehouse;
+import com.cg.inventorysupplierservice.service.WarehouseService;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.inventorysupplierservice.dto.WarehouseDto;
-import com.cg.inventorysupplierservice.entity.Warehouse;
-import com.cg.inventorysupplierservice.service.WarehouseService;
-
-@RequestMapping("/warehouse")
 @RestController
+@RequestMapping("/warehouse")
 public class WarehouseController {
 
-	@Autowired
-	private WarehouseService service;
+  @Autowired
+  private WarehouseService service;
 
-	@PostMapping
-	public Warehouse addWarehouse(@Valid @RequestBody WarehouseDto wh) {
-	
-		return service.addWarehouse(wh);
-	}
+  @PostMapping
+  public ResponseEntity<Warehouse> addWarehouse(@Valid @RequestBody WarehouseDto warehouse) {
+    return ResponseEntity.status(HttpStatus.CREATED).body(service.createWarehouse(warehouse));
+  }
 
-	@GetMapping
-	public List<Warehouse> fetchAllWarehouses() {
-	
-		return service.getWarehouses();
-	}
+  @GetMapping
+  public ResponseEntity<List<Warehouse>> fetchAllWarehouses() {
+    return ResponseEntity.status(HttpStatus.OK).body(service.getWarehouses());
+  }
 
-	@GetMapping(value = "/{id}")
-	public Optional<Warehouse> fetchWarehousesById(@Valid @PathVariable Long id) {
-		
-		return service.getWarehouseById(id);
-	}
+  @GetMapping("/{id}")
+  public ResponseEntity<Warehouse> fetchWarehouseById(@PathVariable Long id) {
+    return ResponseEntity.status(HttpStatus.OK).body(service.fetchWarehouseById(id));
+  }
 
-	@DeleteMapping(value = "/{id}")
-	public List<Warehouse> deleteWarehousesById(@Valid @PathVariable Long id) {
-
-		return service.deleteWarehouseById(id);
-	}
-
-	@PutMapping(value = "/{id}")
-	public Warehouse updateWarehouse(@Valid @PathVariable Long id, @Valid @RequestBody WarehouseDto warehouse)
-			throws Exception {
-
-		return service.updateWarehouse(id, warehouse);
-	}
+  @PutMapping
+  public ResponseEntity<Warehouse> updateWarehouse(@Valid @RequestBody WarehouseDto warehouse) {
+    return ResponseEntity.status(HttpStatus.OK).body(service.createWarehouse(warehouse));
+  }
 
 }

@@ -26,6 +26,6 @@ INSERT INTO user_details (user_details_id, first_name, last_name, designation, d
 -- MYSQL sequence
 -- UPDATE user_id_sequence SET next_val = 100007;
 -- UPDATE address_id_sequence SET next_val = 100007;
--- H2 sequence
+-- H2 sequence 
 ALTER sequence user_id_sequence restart with 100007;
 ALTER sequence address_id_sequence restart with 100007;

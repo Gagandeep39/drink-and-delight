@@ -13,17 +13,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 public class Distributor {
 
@@ -32,8 +31,10 @@ public class Distributor {
   @GeneratedValue(generator = "distributor_id_sequence", strategy = GenerationType.SEQUENCE)
   private Long distributorId;
   @Column(length = 20)
-  private String materialName;
-  @Column(length = 100)
-  private String description;
-  
+  private String name;
+  @Column(length = 30)
+  private String location;
+  @Column(length = 10)
+  private String phoneNo;
+
 }
