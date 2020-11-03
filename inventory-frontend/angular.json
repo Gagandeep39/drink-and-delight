@@ -25,12 +25,18 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/css/Header-Blue.css",
+              "src/assets/css/Navigation-with-Button.css",
+              "src/assets/fonts/fontawesome-all.min.css",
+              "src/assets/fonts/font-awesome.min.css",
+              "src/assets/fonts/fontawesome5-overrides.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/js/theme.js"
             ]
           },
           "configurations": {
@@ -94,7 +100,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/css/Header-Blue"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
