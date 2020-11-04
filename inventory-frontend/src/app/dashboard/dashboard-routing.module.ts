@@ -35,8 +35,6 @@ const routes: Routes = [
       {
         path: 'products',
         component: ViewProductsComponent,
-        canActivate: [RoleGuard],
-        data: { role: 'Admin' },
       },
       {
         path: 'addproduct',
@@ -49,8 +47,6 @@ const routes: Routes = [
       {
         path: 'rawmaterials',
         component: ViewRawMaterialComponent,
-        canActivate: [RoleGuard],
-        data: { role: 'Admin' },
       },
       {
         path: 'addrawmaterial',
@@ -63,8 +59,6 @@ const routes: Routes = [
       {
         path: 'suppliers',
         component: ViewSupplierComponent,
-        canActivate: [RoleGuard],
-        data: { role: 'Admin' },
       },
       {
         path: 'addsupplier',
@@ -75,8 +69,6 @@ const routes: Routes = [
       {
         path: 'distributors',
         component: ViewDistributorComponent,
-        canActivate: [RoleGuard],
-        data: { role: 'Admin' },
       },
       {
         path: 'adddistributors',
