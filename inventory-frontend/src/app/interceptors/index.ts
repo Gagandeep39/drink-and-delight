@@ -7,14 +7,15 @@
  */
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandler } from '@angular/core';
-import { JwtInterceptor, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { JWT_OPTIONS } from '@auth0/angular-jwt';
 import { GlobalErrorHandler } from '../providers/global-error-handler';
 import { HttpErrorInterceptor } from './http-error.interceptor';
+import { JwtTokenInterceptor } from './jwt-token.interceptor';
 
 export const httpInterceptors = [
   {
     provide: HTTP_INTERCEPTORS,
-    useClass: JwtInterceptor,
+    useClass: JwtTokenInterceptor,
     multi: true,
   },
   {

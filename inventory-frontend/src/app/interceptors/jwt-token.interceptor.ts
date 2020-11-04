@@ -1,9 +1,9 @@
 /**
  * @author Gagandeep Singh
  * @email singh.gagandeep3911@gmail.com
- * @create date 2020-11-04 01:49:07
- * @modify date 2020-11-04 01:49:07
- * @desc Auth Interceptor
+ * @create date 2020-11-05 01:15:10
+ * @modify date 2020-11-05 01:15:10
+ * @desc JWT interceptor, Appends JWT token
  */
 import {
   HttpEvent,
@@ -16,17 +16,18 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Injectable()
-export class JwtInterceptor implements HttpInterceptor {
+export class JwtTokenInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
+
   intercept(
-    request: HttpRequest<any>,
+    request: HttpRequest<unknown>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<unknown>> {
     let authReq = request;
     const token = this.authService.fetchFromSessionStorage()?.token;
     if (token != null)
       authReq = request.clone({
-        headers: request.headers.set('Authorization', 'Bearer ' + token),
+        headers: request.headers.set('Authorization', `Bearer ${token}`),
       });
     return next.handle(authReq);
   }
