@@ -27,10 +27,11 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        this.errorDialogService.openDialog(
-          error.message ?? JSON.stringify(error),
-          error.status
-        );
+        if (error?.error?.message !== 'FieldException')
+          this.errorDialogService.openDialog(
+            error.message ?? JSON.stringify(error),
+            error.status
+          );
         return throwError(error);
       })
     );
