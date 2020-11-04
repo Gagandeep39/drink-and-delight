@@ -62,4 +62,8 @@ export class AuthService {
   requestPasswordReset (formData) {
     return this.http.put(`${this.authServiceUrl}/auth/forgotpassword`, formData);
   }
+
+  getRole() {
+    return this.fetchFromSessionStorage()?.role;
+  }
 }
