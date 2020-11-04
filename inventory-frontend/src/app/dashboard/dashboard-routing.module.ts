@@ -10,6 +10,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AddDistributorComponent } from '../distributor/add-distributor/add-distributor.component';
 import { ViewDistributorComponent } from '../distributor/view-distributor/view-distributor.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { RoleGuard } from '../guards/role.guard';
 import { AddProductOrderComponent } from '../products/add-product-order/add-product-order.component';
 import { AddProductComponent } from '../products/add-product/add-product.component';
 import { ViewProductOrdersComponent } from '../products/view-product-orders/view-product-orders.component';
@@ -31,20 +32,70 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'products', component: ViewProductsComponent },
-      { path: 'addproduct', component: AddProductComponent },
+      {
+        path: 'products',
+        component: ViewProductsComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'Admin' },
+      },
+      {
+        path: 'addproduct',
+        component: AddProductComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'Admin' },
+      },
       { path: 'productorders', component: ViewProductOrdersComponent },
       { path: 'addproductorder', component: AddProductOrderComponent },
-      { path: 'rawmaterials', component: ViewRawMaterialComponent },
-      { path: 'addrawmaterial', component: AddRawMaterialComponent },
+      {
+        path: 'rawmaterials',
+        component: ViewRawMaterialComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'Admin' },
+      },
+      {
+        path: 'addrawmaterial',
+        component: AddRawMaterialComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'Admin' },
+      },
       { path: 'rawmaterialorders', component: ViewRawMaterialOrdersComponent },
       { path: 'addrawmaterialorder', component: AddRawMaterialOrderComponent },
-      { path: 'suppliers', component: ViewSupplierComponent },
-      { path: 'addsupplier', component: AddSupplierComponent },
-      { path: 'distributors', component: ViewDistributorComponent },
-      { path: 'adddistributors', component: AddDistributorComponent },
-      { path: 'users', component: ViewUsersComponent },
-      { path: 'adduser', component: AddUserComponent },
+      {
+        path: 'suppliers',
+        component: ViewSupplierComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'Admin' },
+      },
+      {
+        path: 'addsupplier',
+        component: AddSupplierComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'Admin' },
+      },
+      {
+        path: 'distributors',
+        component: ViewDistributorComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'Admin' },
+      },
+      {
+        path: 'adddistributors',
+        component: AddDistributorComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'Admin' },
+      },
+      {
+        path: 'users',
+        component: ViewUsersComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'Admin' },
+      },
+      {
+        path: 'adduser',
+        component: AddUserComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'Admin' },
+      },
       { path: 'viewprofile', component: ViewProfileComponent },
       { path: '', component: ViewProfileComponent },
       { path: '**', redirectTo: '/404' },
