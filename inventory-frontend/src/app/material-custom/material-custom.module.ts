@@ -3,12 +3,18 @@
  * @email singh.gagandeep3911@gmail.com
  * @create date 2020-11-04 19:09:49
  * @modify date 2020-11-04 19:09:49
- * @desc Material Modules 
+ * @desc Material Modules
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
@@ -16,10 +22,22 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     MatDialogModule,
     MatButtonModule,
+    MatTableModule,
+    MatSortModule, // Required for Sorting table
+    MatPaginatorModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatDialogModule,
     MatButtonModule,
-  ]
+    MatTableModule,
+    MatSortModule, // Required for Sorting table
+    MatPaginatorModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatProgressSpinnerModule,
+  ],
 })
-export class MaterialCustomModule { }
+export class MaterialCustomModule {}
