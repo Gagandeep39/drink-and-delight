@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit, OnDestroy {
               serverValidationError: element.message,
             })
           );
+        else throw new Error(error);
       }
     );
   }
