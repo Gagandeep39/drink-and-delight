@@ -1,0 +1,20 @@
+<table class="table">
+    <thead class="colour">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Qty</th>
+            <th scope="col">Warehouse Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+            <th scope="row">{{product.productId}}</th>
+            <td>{{product.materialName}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.quantityAvailable}}/{{product.quantityUnit}}</td>
+            <td>{{product.warehouse.name}}</td>
+        </tr>
+    </tbody>
+</table>

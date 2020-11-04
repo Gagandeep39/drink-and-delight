@@ -1,0 +1,20 @@
+<table class="table">
+    <thead class="colour">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Qty</th>
+            <th scope="col">Warehouse Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let rawMaterial of rawMaterials">
+            <th scope="row">{{rawMaterial.rawMaterialId}}</th>
+            <td>{{rawMaterial.materialName}}</td>
+            <td>{{rawMaterial.description}}</td>
+            <td>{{rawMaterial.quantityAvailable}} {{rawMaterial.quantityUnit}}</td>
+            <td>{{rawMaterial.warehouse.name}}</td>
+        </tr>
+    </tbody>
+</table>
