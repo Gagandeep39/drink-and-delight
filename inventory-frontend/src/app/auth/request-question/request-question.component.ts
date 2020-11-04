@@ -10,6 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { EventService } from 'src/app/services/event.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
@@ -25,7 +26,8 @@ export class RequestQuestionComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private router: Router,
-    public loadingService: LoadingService
+    public loadingService: LoadingService,
+    private eventService: EventService
   ) {}
 
   ngOnDestroy(): void {
@@ -49,7 +51,8 @@ export class RequestQuestionComponent implements OnInit, OnDestroy {
       .subscribe(
         (response) => {
           this.loadingService.disableLoading();
-          this.router.navigateByUrl('/login/changepassword', response);
+          this.eventService.resetPasswordData.next(response);
+          this.router.navigateByUrl('/login/changepassword');
         },
         (error) => {
           this.loadingService.disableLoading();
