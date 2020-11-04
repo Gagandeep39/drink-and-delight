@@ -59,5 +59,7 @@ export class AuthService {
     return this.http.get(`${this.authServiceUrl}/auth/forgotpassword/${username}`);
   }
 
-  requestPasswordReset () {}
+  requestPasswordReset (formData) {
+    return this.http.put(`${this.authServiceUrl}/auth/forgotpassword`, formData);
+  }
 }
