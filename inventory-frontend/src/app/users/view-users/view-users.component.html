@@ -9,6 +9,15 @@
         placeholder="Filter"
       />
     </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/dashboard/adduser']"
+      type="button"
+      style="float: right"
+    >
+      + Add User
+    </button>
   </mat-card>
   <table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="userId">
