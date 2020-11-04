@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddDistributorComponent } from '../distributor/add-distributor/add-distributor.component';
 import { ViewDistributorComponent } from '../distributor/view-distributor/view-distributor.component';
+import { AuthGuard } from '../guards/auth.guard';
 import { AddProductOrderComponent } from '../products/add-product-order/add-product-order.component';
 import { AddProductComponent } from '../products/add-product/add-product.component';
 import { ViewProductOrdersComponent } from '../products/view-product-orders/view-product-orders.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'products', component: ViewProductsComponent },
       { path: 'addproduct', component: AddProductComponent },
