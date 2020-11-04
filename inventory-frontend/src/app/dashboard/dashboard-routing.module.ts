@@ -46,7 +46,8 @@ const routes: Routes = [
       { path: 'users', component: ViewUsersComponent },
       { path: 'adduser', component: AddUserComponent },
       { path: 'viewprofile', component: ViewProfileComponent },
-      { path: '', component: ViewProfileComponent }
+      { path: '', component: ViewProfileComponent },
+      { path: '**', redirectTo: '/404' },
     ],
   },
 ];

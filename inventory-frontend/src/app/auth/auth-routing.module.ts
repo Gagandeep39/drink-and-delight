@@ -15,9 +15,11 @@ const routes: Routes = [
   {
     path: 'login',
     component: AuthComponent,
+    pathMatch: 'full',
     children: [
       { path: '', component: LoginComponent },
       { path: 'changepassword', component: ChangePasswordComponent },
+      { path: '**', redirectTo: '/404' },
     ],
   },
 ];
