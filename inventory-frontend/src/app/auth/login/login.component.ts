@@ -10,6 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -20,9 +21,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   submitted = false;
   loginSubscription: Subscription;
-  loading: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    public loadingService: LoadingService
+  ) {}
 
   ngOnDestroy(): void {
     if (this.loginSubscription) this.loginSubscription.unsubscribe();
@@ -39,13 +43,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   submitData(formData: any) {
-    this.enableLoading();
+    this.loadingService.enableLoading();
     this.loginSubscription = this.authService.login(formData).subscribe(
       (response) => {
         this.router.navigate(['/dashboard']);
+        this.loadingService.disableLoading();
       },
       (error) => {
-        this.disableLoading();
+        this.loadingService.disableLoading();
         if (error.error.message === 'FieldException')
           error.error.errors.forEach((element) =>
             this.loginForm.controls[element.field]?.setErrors({
@@ -62,13 +67,5 @@ export class LoginComponent implements OnInit, OnDestroy {
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
     });
-  }
-
-  enableLoading() {
-    this.loading = true;
-  }
-
-  disableLoading() {
-    this.loading = false;
   }
 }
