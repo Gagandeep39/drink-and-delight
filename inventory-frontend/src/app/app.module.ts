@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { httpInterceptors } from './interceptors';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { httpInterceptors } from './interceptors';
     HttpClientModule,
     DashboardModule,
     AuthModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     httpInterceptors,
