@@ -4,7 +4,7 @@
     <b>Status Code: {{ data.status }}</b>
   </p>
   <p>Something went wrong!</p>
-  <p class="error-message">
+  <p *ngIf="data?.message" class="error-message">
     {{ data?.message }}
   </p>
 </div>
