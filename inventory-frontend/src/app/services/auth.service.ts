@@ -11,18 +11,23 @@ import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  authServiceUrl = `http://${environment.applicationUrl}/${environment.authService}/`;
+  authServiceUrl = `http://${environment.applicationUrl}/${environment.authService}`;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private jwtHelper: JwtHelperService
+  ) {}
 
   login(formData) {
     return this.http
-      .post(this.authServiceUrl + 'auth/login', formData)
+      .post(this.authServiceUrl + '/auth/login', formData)
       .pipe(tap((user: User) => this.saveToSessionStorage(user)));
   }
 
@@ -43,5 +48,10 @@ export class AuthService {
   redirectIfLoggedIn() {
     if (this.fetchFromSessionStorage()?.token)
       this.router.navigate(['/dashboard']);
+  }
+
+  isAuthenticated(): boolean {
+    const token = this.fetchFromSessionStorage()?.token;
+    return !this.jwtHelper.isTokenExpired(token);
   }
 }
