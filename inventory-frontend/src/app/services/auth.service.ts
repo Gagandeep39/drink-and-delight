@@ -54,4 +54,10 @@ export class AuthService {
     const token = this.fetchFromSessionStorage()?.token;
     return !this.jwtHelper.isTokenExpired(token);
   }
+
+  requestSecretQuestion (username) {
+    return this.http.get(`${this.authServiceUrl}/auth/forgotpassword/${username}`);
+  }
+
+  requestPasswordReset () {}
 }
