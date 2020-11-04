@@ -12,6 +12,7 @@ import { User } from '../models/user.model';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { EventService } from './event.service';
 
 @Injectable({
   providedIn: 'root',
@@ -22,13 +23,17 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private jwtHelper: JwtHelperService
+    private jwtHelper: JwtHelperService,
+    private eventServie: EventService
   ) {}
 
   login(formData) {
     return this.http
-      .post(this.authServiceUrl + '/auth/login', formData)
-      .pipe(tap((user: User) => this.saveToSessionStorage(user)));
+      .post(`${this.authServiceUrl}/auth/login`, formData)
+      .pipe(tap((user: User) => {
+        this.saveToSessionStorage(user);
+        this.eventServie.loggedInUser.next(user);
+      }));
   }
 
   saveToSessionStorage(user: User) {
