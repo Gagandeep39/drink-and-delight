@@ -5,14 +5,20 @@
  * @modify date 2020-11-03 17:02:08
  * @desc [description]
  */
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DistributorService {
-  applicationUrl = environment.applicationUrl;
+  serviceUrl =
+    'http://' + environment.applicationUrl + '/' + environment.supplierService;
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
+
+  fetchAllDistributors() {
+    return this.http.get(this.serviceUrl + '/distributor');
+  }
 }
