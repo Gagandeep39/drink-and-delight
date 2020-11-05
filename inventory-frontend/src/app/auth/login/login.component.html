@@ -13,7 +13,7 @@
             <div class="col-lg-6">
               <div class="p-5">
                 <div class="text-center">
-                  <h4 class="text-dark mb-4">Welcome Back!</h4>
+                  <h1>Welcome Back!</h1>
                 </div>
                 <form class="user" [formGroup]="loginForm" (ngSubmit)="login()">
                   <div class="form-group">
@@ -65,14 +65,14 @@
                       </div>
                     </div>
                   </div> -->
-                  <button class="btn btn-primary btn-block text-white btn-user">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm"></span>
+                  <button class="btn btn-primary btn-block text-white btn-user" type="submit">
+                    <span *ngIf="loadingService.loading" class="spinner-border spinner-border-sm"></span>
                     Login
                   </button>
                   <hr />
                 </form>
                 <div class="text-center">
-                  <a class="small" [routerLink]="['/login/changepassword']"
+                  <a class="small" [routerLink]="['forgotpassword']"
                     >Forgot Password?
                   </a>
                 </div>

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  applicationUrl: 'localhost',
+  // applicationUrl: 'localhost',
+  applicationUrl: '192.168.0.194:9000',
   authService: 'inventory-auth-service',
   stockManagementService: 'stock-management-service',
   productOrderService: '',

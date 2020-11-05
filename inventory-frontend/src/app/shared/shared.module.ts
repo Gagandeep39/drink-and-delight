@@ -10,21 +10,28 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { RouterModule } from '@angular/router';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { MaterialCustomModule } from '../material-custom/material-custom.module';
+import { ErrorDisplayComponent } from './error-display/error-display.component';
 
 
 
 @NgModule({
   declarations: [
     FooterComponent,
-    NavigationComponent
+    NavigationComponent,
+    NotFoundComponent,
+    ErrorDisplayComponent,
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MaterialCustomModule
   ],
   exports: [
     FooterComponent,
-    NavigationComponent
+    NavigationComponent,
+    MaterialCustomModule
   ]
 })
 export class SharedModule { }

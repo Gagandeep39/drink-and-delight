@@ -10,6 +10,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoginComponent } from './login/login.component';
+import { RequestQuestionComponent } from './request-question/request-question.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,8 @@ const routes: Routes = [
     children: [
       { path: '', component: LoginComponent },
       { path: 'changepassword', component: ChangePasswordComponent },
+      { path: 'forgotpassword', component: RequestQuestionComponent },
+      { path: '**', redirectTo: '/404' },
     ],
   },
 ];

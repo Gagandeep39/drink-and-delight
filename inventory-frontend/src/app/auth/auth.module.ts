@@ -13,6 +13,7 @@ import { AuthComponent } from "./auth.component";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthRoutingModule } from './auth-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { RequestQuestionComponent } from './request-question/request-question.component';
 
 
 
@@ -20,7 +21,8 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     LoginComponent,
     ChangePasswordComponent,
-    AuthComponent
+    AuthComponent,
+    RequestQuestionComponent
   ],
   imports: [
     CommonModule,
