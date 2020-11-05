@@ -50,8 +50,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
     if (this.userForm.valid) this.updateUser(this.userForm.getRawValue());
   }
-  // "userId": "100001",
-  // "username": "gagana",
+
   initForm() {
     console.log();
     this.userForm = new FormGroup({
@@ -98,7 +97,29 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateUser(formData) {}
+  updateUser(formData) {
+    this.userService.updateUser(formData).subscribe(
+      (response) => {
+        this.router.navigate(['/dashboard']);
+        this.loadingService.disableLoading();
+        this.message =
+            'Successfully Created user with ID ' + response['userId'];
+          setTimeout(() => {
+            this.router.navigateByUrl('/dashboard/users');
+          }, 3000);
+      },
+      (error) => {
+        this.loadingService.disableLoading();
+        if (error.error.message === 'FieldException')
+          error.error.errors.forEach((element) =>
+            this.userForm.controls[element.field]?.setErrors({
+              serverValidationError: element.message,
+            })
+          );
+        else throw new Error(error);
+      }
+    );
+  }
 
   ngOnInit(): void {}
 
