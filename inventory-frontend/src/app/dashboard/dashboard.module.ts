@@ -20,6 +20,7 @@ import { AddUserComponent } from '../users/add-user/add-user.component';
 import { ViewUsersComponent } from '../users/view-users/view-users.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
+import { EditProfileComponent } from '../profile/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { DashboardComponent } from './dashboard.component';
     ViewDistributorComponent,
     AddDistributorComponent,
     DashboardComponent,
+    EditProfileComponent
   ],
   imports: [
     CommonModule,
