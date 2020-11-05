@@ -23,5 +23,7 @@ export class ManageUserService {
 
   updateUser() {}
 
-  addUser() {}
+  addUser(formData) {
+    return this.http.post(`${this.authServiceUrl}/register`, formData);
+  }
 }
