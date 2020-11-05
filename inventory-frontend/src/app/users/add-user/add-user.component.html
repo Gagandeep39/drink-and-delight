@@ -180,9 +180,8 @@
                     />
                     <div class="invalid-feedback" *ngIf="submitted && userForm.get('address.city').invalid">
                       <div *ngIf="userForm.get('address.city').errors['required']">* Required</div>
-                      <div *ngIf="userForm.get('address.city').errors['serverValidationError']"> 
-                          {{userForm.controls['address.city'].errors.serverValidationError }} 
-                      </div>
+                      <div *ngIf="userForm.get('address.city').errors['minLength']">Min length ust be 4</div>
+                      <div *ngIf="userForm.get('address.city').errors['maxLength']">Max length must be 30</div>
                     </div>
                   </div>
                 </div>
@@ -199,9 +198,8 @@
                     />
                     <div class="invalid-feedback" *ngIf="submitted && userForm.get('address.state').invalid">
                       <div *ngIf="userForm.get('address.state').errors['required']">* Required</div>
-                      <div *ngIf="userForm.get('address.state').errors['serverValidationError']"> 
-                          {{userForm.controls['address.state'].errors.serverValidationError }} 
-                      </div>
+                      <div *ngIf="userForm.get('address.state').errors['minLength']">Min length ust be 4</div>
+                      <div *ngIf="userForm.get('address.state').errors['maxLength']">Max length must be 30</div>
                     </div>
                   </div>
                 </div>
@@ -220,9 +218,8 @@
                     />
                     <div class="invalid-feedback" *ngIf="submitted && userForm.get('address.area').invalid">
                       <div *ngIf="userForm.get('address.area').errors['required']">* Required</div>
-                      <div *ngIf="userForm.get('address.area').errors['serverValidationError']"> 
-                          {{userForm.controls['address.area'].errors.serverValidationError }} 
-                      </div>
+                      <div *ngIf="userForm.get('address.area').errors['minLength']">Min length ust be 4</div>
+                      <div *ngIf="userForm.get('address.area').errors['maxLength']">Max length must be 30</div>
                     </div>
                   </div>
                 </div>
@@ -239,9 +236,7 @@
                     />
                     <div class="invalid-feedback" *ngIf="submitted && userForm.get('address.pincode').invalid">
                       <div *ngIf="userForm.get('address.pincode').errors['required']">* Required</div>
-                      <div *ngIf="userForm.get('address.pincode').errors['serverValidationError']"> 
-                          {{userForm.controls['address.pincode'].errors.serverValidationError }} 
-                      </div>
+                      <div *ngIf="userForm.get('address.pincode').errors['pattern']">Must be of length 6</div>
                     </div>
                   </div>
                 </div>

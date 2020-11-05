@@ -40,7 +40,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.userService
       .fetchById(this.authService.fetchFromSessionStorage()?.userId)
       .subscribe((res) => {
-        this.populateFormFields(res)
+        this.populateFormFields(res);
       });
   }
 
@@ -65,9 +65,21 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       securityQuestion: new FormControl('', [Validators.required]),
       securityAnswer: new FormControl('', [Validators.required]),
       address: new FormGroup({
-        state: new FormControl('', Validators.required),
-        area: new FormControl('', Validators.required),
-        city: new FormControl('', Validators.required),
+        state: new FormControl('', [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(30),
+        ]),
+        area: new FormControl('', [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(30),
+        ]),
+        city: new FormControl('', [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(30),
+        ]),
         pincode: new FormControl('', [
           Validators.required,
           Validators.pattern('[0-9]{6}'),
@@ -103,10 +115,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         this.router.navigate(['/dashboard']);
         this.loadingService.disableLoading();
         this.message =
-            'Successfully Created user with ID ' + response['userId'];
-          setTimeout(() => {
-            this.router.navigateByUrl('/dashboard/users');
-          }, 3000);
+          'Successfully Created user with ID ' + response['userId'];
+        setTimeout(() => {
+          this.router.navigateByUrl('/dashboard/users');
+        }, 3000);
       },
       (error) => {
         this.loadingService.disableLoading();
