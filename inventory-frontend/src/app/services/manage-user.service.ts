@@ -26,4 +26,8 @@ export class ManageUserService {
   addUser(formData) {
     return this.http.post(`${this.authServiceUrl}/register`, formData);
   }
+
+  fetchById(id) {
+    return this.http.get(`${this.authServiceUrl}/register/${id}`);
+  }
 }
