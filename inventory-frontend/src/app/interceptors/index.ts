@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandler } from '@angular/core';
 import { JWT_OPTIONS } from '@auth0/angular-jwt';
 import { GlobalErrorHandler } from '../providers/global-error-handler';
+import { CorsInterceptor } from './cors.interceptor';
 import { HttpErrorInterceptor } from './http-error.interceptor';
 import { JwtTokenInterceptor } from './jwt-token.interceptor';
 
@@ -29,6 +30,11 @@ export const httpInterceptors = [
   {
     provide: HTTP_INTERCEPTORS,
     useClass: HttpErrorInterceptor,
+    multi: true,
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: CorsInterceptor,
     multi: true,
   },
 ];
