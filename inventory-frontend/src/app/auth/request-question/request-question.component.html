@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-9 col-lg-6 col-xl-6">
+      <div class="card shadow-lg o-hidden border-0 my-5">
+        <div class="card-body p-0">
+          <div class="p-5">
+            <div class="text-center">
+              <h1>Forgot Your Password?</h1>
+              <p class="mb-4">
+                We get it, stuff happens. Just enter your username below and
+                we'll send you our secret question
+              </p>
+            </div>
+            <form class="user"  [formGroup]="requestQuestionForm" (ngSubmit)="requestSecretQuestion()">
+              <div class="form-group">
+                <input
+                  formControlName="username"
+                  class="form-control form-control-user"
+                  type="text"
+                  placeholder="Enter Username"
+                  name="username"
+                  [ngClass]="{'is-invalid': submitted && requestQuestionForm.get('username').invalid}"
+                />
+                <div class="invalid-feedback" *ngIf="submitted && requestQuestionForm.get('username').invalid">
+                  <div *ngIf="requestQuestionForm.get('username').errors['required']">* Required</div>
+                  <div *ngIf="requestQuestionForm.get('username').errors['serverValidationError']"> 
+                      {{requestQuestionForm.controls['username'].errors.serverValidationError }} 
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-block text-white btn-user" type="submit">
+                <span *ngIf="loadingService.loading" class="spinner-border spinner-border-sm"></span>
+                Request Secret Question
+              </button>
+            </form>
+            <hr />
+            <div class="text-center">
+              <a class="small" [routerLink]="['/login']">Back To Login</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

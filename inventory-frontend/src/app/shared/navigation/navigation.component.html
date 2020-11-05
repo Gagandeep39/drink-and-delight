@@ -7,7 +7,7 @@
       <a
         id="logo"
         class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
-        href="#"
+        [routerLink]="['/dashboard']"
       >
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-cocktail"></i>
@@ -18,56 +18,20 @@
       <a
         id="role"
         class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
-        href="#"
+        [routerLink]="['/dashboard']"
       >
         <div class="sidebar-brand-icon rotate-n-15"></div>
-        <div class="sidebar-brand-text mx-3"><span>Admin</span></div>
+        <div class="sidebar-brand-text mx-3">Welcome, {{ user?.username }}</div>
       </a>
       <hr class="nav-hr" />
       <ul class="nav navbar-nav text-light" id="accordionSidebar">
-        <li class="nav-item"></li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/viewprofile']">
-            <i class="fas fa-user"></i><span>Profile</span>
+        <li class="nav-item" *ngFor="let item of paths">
+          <a class="nav-link" [routerLink]="[item.route]">
+            <i [class]="item.class"></i><span> {{ item.label }} </span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/productorders']">
-            <i class="fas fa-truck-moving"></i><span>Products Orders</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/products']"
-            ><i class="fas fa-boxes"></i><span>Products</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/rawmaterialorders']">
-            <i class="fas fa-truck-moving"></i><span>RM Orders</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/rawmaterials']">
-            <i class="fas fa-boxes"> </i><span>Raw Materials</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/suppliers']">
-            <i class="fas fa-people-carry"></i><span>Suppliers</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/distributors']">
-            <i class="fas fa-people-carry"></i><span>Distributors</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/users']">
-            <i class="fas fa-users"></i><span>Manage Users</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">
+          <a class="nav-link" (click)="signOut()" style="cursor: pointer">
             <i class="fas fa-sign-out-alt"> </i><span>Sign Out</span>
           </a>
         </li>
