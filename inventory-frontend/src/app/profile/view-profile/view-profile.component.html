@@ -1,69 +1,63 @@
 <div class="container">
-  <div class="panel panel-info">
+  <div class="spinner-border text-dark" *ngIf="loadingService.loading"></div>
+  <div class="panel panel-info"  *ngIf="!loadingService.loading">
     <div class="panel-heading row">
       <h2 class="panel-title display-4" style="text-align: left">
         <b> {{ user?.firstName }} {{ user?.lastName }} </b>
-        <div
-          class="spinner-border text-dark"
-          *ngIf="loadingService.loading"
-        ></div>
       </h2>
       <hr />
     </div>
     <div class="row panel-body">
-        <table class="table table-user-information table-hover">
-          <tbody>
-            <tr>
-              <td class="title">user ID</td>
-              <td>{{ user?.userId }}</td>
-            </tr>
-            <tr>
-              <td class="title">Username</td>
-              <td>{{ user?.username }}</td>
-            </tr>
-            <tr>
-              <td class="title">Date of birth</td>
-              <td>{{ user?.dob }}</td>
-            </tr>
-            <tr></tr>
-            <tr>
-              <td class="title">Gender</td>
-              <td>{{ user?.gender }}</td>
-            </tr>
-            <tr>
-              <td class="title">Designation</td>
-              <td>{{ user?.designation }}</td>
-            </tr>
-            <tr>
-              <td class="title">Phone Number</td>
-              <td>{{ user?.phoneNo }}</td>
-            </tr>
-            <tr>
-              <td class="title">Area</td>
-              <td>{{ user?.address.area }}</td>
-            </tr>
-            <tr>
-              <td class="title">City</td>
-              <td>{{ user?.address.city }}</td>
-            </tr>
-            <tr>
-              <td class="title">State</td>
-              <td>{{ user?.address.state }}</td>
-            </tr>
-            <tr>
-              <td class="title">Pincode</td>
-              <td>{{ user?.address.pincode }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <button
-          class="btn btn-success"
-          [routerLink]="['/dashboard/editprofile']"
-        >
-          Edit Profile
-        </button>
+      <table class="table table-user-information table-hover">
+        <tbody>
+          <tr>
+            <td class="title">user ID</td>
+            <td>{{ user?.userId }}</td>
+          </tr>
+          <tr>
+            <td class="title">Username</td>
+            <td>{{ user?.username }}</td>
+          </tr>
+          <tr>
+            <td class="title">Date of birth</td>
+            <td>{{ user?.dob }}</td>
+          </tr>
+          <tr></tr>
+          <tr>
+            <td class="title">Gender</td>
+            <td>{{ user?.gender }}</td>
+          </tr>
+          <tr>
+            <td class="title">Designation</td>
+            <td>{{ user?.designation }}</td>
+          </tr>
+          <tr>
+            <td class="title">Phone Number</td>
+            <td>{{ user?.phoneNo }}</td>
+          </tr>
+          <tr>
+            <td class="title">Area</td>
+            <td>{{ user?.address.area }}</td>
+          </tr>
+          <tr>
+            <td class="title">City</td>
+            <td>{{ user?.address.city }}</td>
+          </tr>
+          <tr>
+            <td class="title">State</td>
+            <td>{{ user?.address.state }}</td>
+          </tr>
+          <tr>
+            <td class="title">Pincode</td>
+            <td>{{ user?.address.pincode }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <button class="btn btn-success" [routerLink]="['/dashboard/editprofile']">
+        Edit Profile
+      </button>
     </div>
   </div>
 </div>
