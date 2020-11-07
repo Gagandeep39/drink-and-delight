@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-order-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product-order
+  template:
+    metadata:
+      labels:
+        app: product-order
+    spec:
+      containers:
+        - name: product-order
+          image: gagandeep39/inventory-product-order-service
+          resources:
+            limits:
+              memory: '300Mi'
+              cpu: '250m'
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: dev
+            - name: eureka.client.serviceurl.defaultzone
+              value: http://inventory-discovery-server:8761/eureka
+            - name: spring.datasource.url
+              value: jdbc:h2:tcp://inventory-database-service:9550/~/test
+            - name: eureka.instance.preferIpAddress
+              value: 'true'
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory-product-order-service
+spec:
+  selector:
+    app: product-order
+  ports:
+    - name: product-order-srv-clusterip-port
+      protocol: TCP
+      port: 9200
+      targetPort: 9200

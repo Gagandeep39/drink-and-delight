@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: supplier-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: supplier
+  template:
+    metadata:
+      labels:
+        app: supplier
+    spec:
+      containers:
+        - name: supplier
+          image: gagandeep39/inventory-supplier-service
+          resources:
+            limits:
+              memory: '300Mi'
+              cpu: '250m'
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: dev
+            - name: eureka.client.serviceurl.defaultzone
+              value: http://inventory-discovery-server:8761/eureka
+            - name: spring.datasource.url
+              value: jdbc:h2:tcp://inventory-database-service:9550/~/test
+            - name: eureka.instance.preferIpAddress
+              value: 'true'
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory-supplier-service
+spec:
+  selector:
+    app: supplier
+  ports:
+    - name: supplier-srv-clusterip-port
+      protocol: TCP
+      port: 9600
+      targetPort: 9600
