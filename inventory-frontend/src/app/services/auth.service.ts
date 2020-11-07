@@ -18,7 +18,7 @@ import { EventService } from './event.service';
   providedIn: 'root',
 })
 export class AuthService {
-  authServiceUrl = `http://${environment.applicationUrl}/${environment.authService}`;
+  authServiceUrl = `${environment.protocol}${environment.applicationUrl}/${environment.authService}`;
 
   constructor(
     private http: HttpClient,

@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 })
 export class DistributorService {
   serviceUrl =
-    'http://' + environment.applicationUrl + '/' + environment.supplierService;
+  environment.protocol + environment.applicationUrl + '/' + environment.supplierService;
 
   constructor(private http: HttpClient) {}
 

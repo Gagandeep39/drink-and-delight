@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ManageUserService {
-  authServiceUrl = `http://${environment.applicationUrl}/${environment.authService}`;
+  authServiceUrl = `${environment.protocol}${environment.applicationUrl}/${environment.authService}`;
 
   constructor(private http: HttpClient) {}
 
