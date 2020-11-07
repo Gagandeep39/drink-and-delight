@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rawmaterial-order-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rawmaterial-order
+  template:
+    metadata:
+      labels:
+        app: rawmaterial-order
+    spec:
+      containers:
+        - name: rawmaterial-order
+          image: gagandeep39/inventory-rawmaterial-order-service
+          resources:
+            limits:
+              memory: '300Mi'
+              cpu: '250m'
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: dev
+            - name: eureka.client.serviceurl.defaultzone
+              value: http://inventory-discovery-server:8761/eureka
+            - name: spring.datasource.url
+              value: jdbc:h2:tcp://inventory-database-service:9550/~/test
+            - name: eureka.instance.preferIpAddress
+              value: 'true'
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory-rawmaterial-order-service
+spec:
+  selector:
+    app: rawmaterial-order
+  ports:
+    - name: rawmaterial-order-srv-clusterip-port
+      protocol: TCP
+      port: 9300
+      targetPort: 9300

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+        - name: auth
+          image: gagandeep39/inventory-auth-service
+          resources:
+            limits:
+              memory: '300Mi'
+              cpu: '250m'
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: dev
+            - name: eureka.client.serviceurl.defaultzone
+              value: http://inventory-discovery-server:8761/eureka
+            - name: spring.datasource.url
+              value: jdbc:h2:tcp://inventory-database-service:9550/~/test
+            - name: eureka.instance.preferIpAddress
+              value: 'true'
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory-auth-service
+spec:
+  selector:
+    app: auth
+  ports:
+    - name: auth-srv-clusterip-port
+      protocol: TCP
+      port: 9100
+      targetPort: 9100
