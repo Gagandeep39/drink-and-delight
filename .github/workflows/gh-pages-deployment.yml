@@ -7,6 +7,10 @@ on:
     paths:
       - 'inventory-frontend/**'
 
+defaults:
+  run:
+    working-directory: inventory-frontend
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,11 +27,11 @@ jobs:
         run: |
           npm install -g @angular/cli@latest
           npm install
-          ng build --prod --base-href="/inventory-frontend/"
+          ng build --prod --base-href="/drink-and-delight/"
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v2
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BASE_BRANCH: dev
           BRANCH: gh-pages
-          FOLDER: dist/inventory-frontend
+          FOLDER: inventory-frontend/dist/inventory-frontend
