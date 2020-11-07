@@ -3,9 +3,9 @@ name: Deploy to AWS S3
 on:
   push:
     branches:
-      - dev
-    paths:
-      - 'inventory-frontend/**'
+      - frontend-deployment
+    # paths:
+    #   - 'inventory-frontend/**'
 
 defaults:
   run:
@@ -41,4 +41,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-east-2' # optional: defaults to us-east-1
-          SOURCE_DIR: 'inventory-frontend/dist/inventory-frontend' # optional: defaults to entire repository
+          SOURCE_DIR: 'drink-and-delight/inventory-frontend/dist/inventory-frontend' # optional: defaults to entire repository
