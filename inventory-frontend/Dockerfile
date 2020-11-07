@@ -16,7 +16,6 @@ EXPOSE 80
 # COPY --from=builder /usr/src/app/dist/angular-fitness-tracker /usr/share/nginx/html
 # EXPOSE 80
 
-
 ## Works, But doesnt show 404
 # FROM nginx:alpine
 # RUN rm -rf /usr/share/nginx/html/*
