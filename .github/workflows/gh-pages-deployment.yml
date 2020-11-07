@@ -23,7 +23,7 @@ jobs:
         run: |
           npm install -g @angular/cli@latest
           npm install
-          ng build --prod --base-href="/drink-and-delight/"
+          ng build --prod --base-href="/inventory-frontend/"
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v2
         env:
