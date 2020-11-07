@@ -15,6 +15,7 @@ import { AddProductOrderComponent } from '../products/add-product-order/add-prod
 import { AddProductComponent } from '../products/add-product/add-product.component';
 import { ViewProductOrdersComponent } from '../products/view-product-orders/view-product-orders.component';
 import { ViewProductsComponent } from '../products/view-products/view-products.component';
+import { EditProfileComponent } from '../profile/edit-profile/edit-profile.component';
 import { ViewProfileComponent } from '../profile/view-profile/view-profile.component';
 import { AddRawMaterialOrderComponent } from '../raw-materials/add-raw-material-order/add-raw-material-order.component';
 import { AddRawMaterialComponent } from '../raw-materials/add-raw-material/add-raw-material.component';
@@ -89,6 +90,7 @@ const routes: Routes = [
         data: { role: 'Admin' },
       },
       { path: 'viewprofile', component: ViewProfileComponent },
+      { path: 'editprofile', component: EditProfileComponent },
       { path: '', component: ViewProfileComponent },
       { path: '**', redirectTo: '/404' },
     ],

@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   // applicationUrl: 'localhost',
-  applicationUrl: '192.168.0.194:9000',
+  applicationUrl: 'localhost',
   authService: 'inventory-auth-service',
-  stockManagementService: 'stock-management-service',
-  productOrderService: '',
-  rawMaterialOrderService: '',
-  supplierService: '',
+  stockManagementService: 'inventory-stock-management-service',
+  productOrderService: 'inventory-product-order-service',
+  rawMaterialOrderService: 'inventory-rawmaterial-order-service',
+  supplierService: 'inventory-supplier-service',
 };
 
 /*

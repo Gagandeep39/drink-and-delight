@@ -25,7 +25,8 @@ export class JwtTokenInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     let authReq = request;
     const token = this.authService.fetchFromSessionStorage()?.token;
-    if (token != null)
+    // Null will still add a token 
+    if (token !== undefined)
       authReq = request.clone({
         headers: request.headers.set('Authorization', `Bearer ${token}`),
       });

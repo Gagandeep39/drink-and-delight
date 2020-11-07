@@ -81,9 +81,21 @@ export class AddUserComponent implements OnInit {
         password: new FormControl('', [Validators.required]),
         password2: new FormControl('', [Validators.required]),
         address: new FormGroup({
-          state: new FormControl('', Validators.required),
-          area: new FormControl('', Validators.required),
-          city: new FormControl('', Validators.required),
+          state: new FormControl('', [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(30),
+          ]),
+          area: new FormControl('', [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(30),
+          ]),
+          city: new FormControl('', [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(30),
+          ]),
           pincode: new FormControl('', [
             Validators.required,
             Validators.pattern('[0-9]{6}'),
