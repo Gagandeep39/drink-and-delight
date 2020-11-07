@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ProductOrderService {
-  serviceUrl = `http://${environment.applicationUrl}/${environment.productOrderService}`;
+  serviceUrl = `${environment.protocol}${environment.applicationUrl}/${environment.productOrderService}`;
   constructor(private http: HttpClient) {}
 
   fetchAllProductOrders() {

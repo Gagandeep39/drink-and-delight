@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ProductService {
-  serviceUrl = `http://${environment.applicationUrl}/${environment.stockManagementService}`;
+  serviceUrl = `${environment.protocol}${environment.applicationUrl}/${environment.stockManagementService}`;
 
   constructor(private http: HttpClient) {}
 
