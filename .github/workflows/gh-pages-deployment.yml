@@ -3,9 +3,13 @@ name: Create production build and deploy to gh-pages
 on:
   push:
     branches:
-      - dev
-    paths:
-      - 'inventory-frontend/**'
+      - frontend-deployment
+    # paths:
+    #   - 'inventory-frontend/**'
+
+defaults:
+  run:
+    working-directory: inventory-frontned
 
 jobs:
   build:
@@ -23,7 +27,7 @@ jobs:
         run: |
           npm install -g @angular/cli@latest
           npm install
-          ng build --prod --base-href="/inventory-frontend/"
+          ng build --prod --base-href="/drink-and-delight/"
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v2
         env:
