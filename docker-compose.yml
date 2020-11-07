@@ -1,0 +1,73 @@
+version: '3.8'
+services:
+  inventory-gateway-server:
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+    container_name: inventory-gateway-server
+    image: gagandeep39/inventory-gateway-server
+    ports:
+      - '9000:9000'
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://inventory-discovery-server:8761/eureka
+      - management.endpoints.web.exposure.include=*
+      # - eureka.instance.preferIpAddress=true
+      - SPRING_PROFILES_ACTIVE=dev
+      - spring.datasource.url=jdbc:h2:tcp://inventory-database-service:9550/~/test
+      - ribbon.ReadTimeout=60000
+      - zuul.host.connect-timeout-millis=60000
+      - zuul.host.socket-timeout-millis=60000
+      - zuul.sensitiveHeaders=
+      - zuul.ignored-headers=Access-Control-Allow-Credentials,Access-Control-Allow-Origins
+    depends_on:
+      - inventory-discovery-server
+      - inventory-database-service
+  inventory-discovery-server:
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+    container_name: inventory-discovery-server
+    image: gagandeep39/inventory-discovery-server
+    ports:
+      - '8761:8761'
+    environment:
+      - eureka.instance.lease-renewal-interval-in-seconds=30
+      - eureka.instance.lease-expiration-duration-in-seconds=90
+  inventory-auth-service:
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+    # container_name: inventory-auth-service
+    image: gagandeep39/inventory-auth-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:tcp://inventory-database-service:9550/~/test
+      - SPRING_PROFILES_ACTIVE=dev
+      - eureka.client.serviceurl.defaultzone=http://inventory-discovery-server:8761/eureka
+      # - eureka.instance.preferIpAddress=true
+    restart: always
+    depends_on:
+      - inventory-discovery-server
+      - inventory-database-service
+  inventory-database-service:
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+    container_name: inventory-database-service
+    image: gagandeep39/inventory-database-service
+    restart: always
+    depends_on:
+      - inventory-discovery-server
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:~/test
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://inventory-discovery-server:8761/eureka
+  # watchtower:
+  #   image: containrrr/watchtower
+  #   container_name: Watchtower
+  #   restart: unless-stopped
+  #   network_mode: bridge
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   # Name here must be same as container_name
+  #   command: inventory-gateway-service inventory-discovery-server inventory-h2-service inventory-auth-service --cleanup true --debug
+  #   environment:
+  #     - TZ=Asia/Kolkata
+  #     - WATCHTOWER_POLL_INTERVAL=240
+# Execute using  docker-compose up --remove-orphans -d
+# Dcaling
+# docker-compose -f docker-compose.dev.yml scale inventory-auth-service=3
