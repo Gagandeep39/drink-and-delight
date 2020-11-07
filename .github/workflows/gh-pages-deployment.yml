@@ -9,7 +9,7 @@ on:
 
 defaults:
   run:
-    working-directory: inventory-frontned
+    working-directory: inventory-frontend
 
 jobs:
   build:
