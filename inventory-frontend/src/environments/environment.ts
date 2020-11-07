@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   // applicationUrl: 'localhost',
+  protocol: 'http://',
   applicationUrl: 'localhost',
   authService: 'inventory-auth-service',
   stockManagementService: 'inventory-stock-management-service',
