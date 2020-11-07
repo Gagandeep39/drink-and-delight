@@ -7,6 +7,7 @@
  */
 package com.cg.inventorygatewayserver.config;
 
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -20,22 +21,16 @@ public class ZuulConfig {
    * Fix CORS error in docker Need to add properties along with this bean to
    * completely fix CORS
    */
-  @Bean
-  public CorsFilter corsFilter() {
-    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    final CorsConfiguration config = new CorsConfiguration();
-    config.setAllowCredentials(true);
-    config.addAllowedOrigin("*");
-    config.addAllowedHeader("*");
-    config.addAllowedMethod("OPTIONS");
-    config.addAllowedMethod("HEAD");
-    config.addAllowedMethod("GET");
-    config.addAllowedMethod("PUT");
-    config.addAllowedMethod("POST");
-    config.addAllowedMethod("DELETE");
-    config.addAllowedMethod("PATCH");
-    source.registerCorsConfiguration("/**", config);
-    return new CorsFilter(source);
-  }
+  // @Bean
+  // public CorsFilter corsFilter() {
+  //   final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+  //   final CorsConfiguration config = new CorsConfiguration();
+  //   config.setAllowCredentials(true);
+  //   config.addAllowedOrigin("*");
+  //   config.addAllowedHeader("*");
+  //   config.addAllowedMethod("*");
+  //   source.registerCorsConfiguration("*", config);
+  //   return new CorsFilter(source);
+  // }
 
 }
