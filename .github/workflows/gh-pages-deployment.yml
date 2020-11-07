@@ -1,0 +1,33 @@
+name: Create production build and deploy to gh-pages
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - 'inventory-frontend/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+        with:
+          persist-credentials: false
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Make a production build
+        run: |
+          npm install -g @angular/cli@latest
+          npm install
+          ng build --prod --base-href="/drink-and-delight/"
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v2
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BASE_BRANCH: dev
+          BRANCH: gh-pages
+          FOLDER: dist/inventory-frontend

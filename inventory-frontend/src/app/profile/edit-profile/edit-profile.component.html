@@ -2,12 +2,14 @@
   <div class="d-flex flex-column" id="content-wrapper">
     <div id="content">
       <div class="container-fluid">
-        <h1 >Profile</h1>
+        <h1 >Edit Profile</h1>
         <form (ngSubmit)="submitForm()" [formGroup]="userForm">
           <div class="card shadow mb-5">
             <div class="card-header py-3">
               <p class="text-primary m-0 font-weight-bold">Details</p>
             </div>
+            <!-- Hidden filed -->
+            <input type="number" hidden formControlName="userId" name="userId">
             <div class="card-body">
               <div class="form-row">
                 <div class="col">
@@ -116,6 +118,7 @@
                   <div class="form-group">
                     <label for="gender"><strong>Gender</strong><br /></label
                     ><select
+                      disabled
                       class="form-control"
                       name="gender"
                       id="gender"
@@ -243,86 +246,61 @@
               </div>
             </div>
           </div>
-          <!-- Credentials -->
           <div class="card shadow mb-5">
             <div class="card-header py-3">
-              <p class="text-primary m-0 font-weight-bold">Credentials</p>
+              <p class="text-primary m-0 font-weight-bold">Additional Info</p>
             </div>
             <div class="card-body">
               <div class="row">
                 <div class="col">
                   <div class="form-group">
-                    <label for="password"><strong>Password</strong></label
-                    ><input
-                      type="password"
+                    <label for="securityQuestion"><strong>Security Question</strong></label>
+                    <input
+                      type="securityQuestion"
                       class="form-control"
-                      placeholder="Enter Password"
-                      name="password"
-                      formControlName="password"
-                      [ngClass]="{'is-invalid': submitted && userForm.get('password').invalid}"
+                      placeholder="Enter securityQuestion"
+                      name="securityQuestion"
+                      formControlName="securityQuestion"
+                      [ngClass]="{'is-invalid': submitted && userForm.get('securityQuestion').invalid}"
                     />
-                    <div class="invalid-feedback" *ngIf="submitted && userForm.get('password').invalid">
-                      <div *ngIf="userForm.get('password').errors['required']">* Required</div>
-                      <div *ngIf="userForm.get('password').errors['serverValidationError']"> 
-                          {{userForm.controls['password'].errors.serverValidationError }} 
+                    <div class="invalid-feedback" *ngIf="submitted && userForm.get('securityQuestion').invalid">
+                      <div *ngIf="userForm.get('securityQuestion').errors['required']">* Required</div>
+                      <div *ngIf="userForm.get('securityQuestion').errors['serverValidationError']"> 
+                          {{userForm.controls['securityQuestion'].errors.serverValidationError }} 
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
-                    <label for="password2"
-                      ><strong>Re-enter Password</strong></label
+                    <label for="securityAnswer"
+                      ><strong>Security Answer</strong></label
                     ><input
                       type="password"
                       class="form-control"
-                      placeholder="Re-enter Password"
-                      name="password2"
-                      formControlName="password2"
-                      [ngClass]="{'is-invalid': submitted && userForm.get('password2').invalid}"
+                      placeholder="Security Answer"
+                      name="securityAnswer"
+                      formControlName="securityAnswer"
+                      [ngClass]="{'is-invalid': submitted && userForm.get('securityAnswer').invalid}"
                     />
-                    <div class="invalid-feedback" *ngIf="submitted && userForm.get('password2').invalid">
-                      <div *ngIf="userForm.get('password2').errors['required']">* Required</div><div *ngIf="userForm.get('password2').errors['passwordMatchError']">Password not same</div>
-                      <div *ngIf="userForm.get('password2').errors['serverValidationError']"> 
-                          {{userForm.controls['password2'].errors.serverValidationError }} 
+                    <div class="invalid-feedback" *ngIf="submitted && userForm.get('securityAnswer').invalid">
+                      <div *ngIf="userForm.get('securityAnswer').errors['required']">* Required</div><div *ngIf="userForm.get('securityAnswer').errors['passwordMatchError']">Password not same</div>
+                      <div *ngIf="userForm.get('securityAnswer').errors['serverValidationError']"> 
+                          {{userForm.controls['securityAnswer'].errors.serverValidationError }} 
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col">
-                  <div class="form-group">
-                    <label for="username"><strong>Username</strong></label
-                    ><input
-                      type="text"
-                      class="form-control"
-                      placeholder="Enter Username"
-                      name="username"
-                      formControlName="username"
-                      [ngClass]="{'is-invalid': submitted && userForm.get('username').invalid}"
-                    />
-                    <div class="invalid-feedback" *ngIf="submitted && userForm.get('username').invalid">
-                      <div *ngIf="userForm.get('username').errors['required']">* Required</div>
-                      <div *ngIf="userForm.get('username').errors['serverValidationError']"> 
-                          {{userForm.controls['username'].errors.serverValidationError }} 
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group">
                     <br />
-                    <button class="btn btn-primary btn-block text-white btn-user" type="submit">
+                    <button class="btn btn-primary btn-block text-white btn-user mx-3" type="submit">
                       <span *ngIf="loadingService.loading" class="spinner-border spinner-border-sm"></span>
-                      Add User
+                      Update Data
                     </button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
-
           <div *ngIf="message" class="alert alert-success" role="alert">
             {{message}}
           </div>
