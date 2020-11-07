@@ -3,9 +3,9 @@ name: Deploy to AWS S3
 on:
   push:
     branches:
-      - frontend-deployment
-    # paths:
-    #   - 'inventory-frontend/**'
+      - dev
+    paths:
+      - 'inventory-frontend/**'
 
 defaults:
   run:
