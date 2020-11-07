@@ -34,4 +34,4 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BASE_BRANCH: dev
           BRANCH: gh-pages
-          FOLDER: dist/inventory-frontend
+          FOLDER: inventory-frontend/dist/inventory-frontend
