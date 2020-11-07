@@ -28,12 +28,8 @@ jobs:
           npm install -g @angular/cli@latest
           npm install
           ng build --prod
-
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - uses: jakejarvis/s3-sync-action@master
+      - name: Deploy to S3
+        uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read --follow-symlinks
         env:
