@@ -3,9 +3,9 @@ name: Create production build and deploy to gh-pages
 on:
   push:
     branches:
-      - frontend-deployment
-    # paths:
-    #   - 'inventory-frontend/**'
+      - dev
+    paths:
+      - 'inventory-frontend/**'
 
 defaults:
   run:
