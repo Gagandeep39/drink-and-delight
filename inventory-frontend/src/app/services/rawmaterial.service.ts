@@ -12,10 +12,10 @@ export class RawmaterialService {
   constructor(private httpClient : HttpClient) { }
 
   getAllRawMaterials() {
-    return this.httpClient.get<RawMaterial[]>("");
+    return this.httpClient.get<RawMaterial[]>("http://localhost:9400/stock/rawMaterial");
   }
 
   AddRawMaterial(rawMaterial : RawMaterial) {
-    return this.httpClient.post<RawMaterial>("","");    
+    return this.httpClient.post<RawMaterial>("http://localhost:9400/stock/rawMaterial",rawMaterial);    
   }
 }

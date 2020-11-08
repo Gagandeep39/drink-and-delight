@@ -8,18 +8,18 @@
             <p class="text-primary m-0 font-weight-bold">Details</p>
           </div>
           <div class="card-body">
-            <form>
+            <form (ngSubmit)="saveProduct(); addForm.reset()" #addForm=ngForm class="needs-validation">
               <div class="form-row">
                 <div class="col">
                   <div class="form-group">
                     <label for="product"><strong>Product Name</strong><br /></label>
-                    <input class="form-control" type="text" placeholder="Product Name" name="product">
+                    <input class="form-control" [(ngModel)]="product.materialName" type="text" placeholder="Product Name" name="product" #materialName=ngModel>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <label for="description"><strong>Description</strong><br /></label>
-                    <input class="form-control" type="text" placeholder="Description" name="description">
+                    <input class="form-control" [(ngModel)]="product.description" type="text" placeholder="Description" name="description" #description=ngModel>
                   </div>
                 </div>
               </div>
@@ -27,12 +27,12 @@
                 <div class="col">
                   <div class="form-group">
                     <label for="quantity"><strong>Quantity</strong><br /></label><input class="form-control"
-                      type="number" placeholder="Quantity" name="quantity" />
+                      type="number" [(ngModel)]="product.quantityAvailable" placeholder="Quantity" name="quantity" #quantityAvailable=ngModel>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
-                    <label for="Qty Unit"><strong>Quantity Unit</strong><br /></label><select class="form-control">
+                    <label for="Qty Unit"><strong>Quantity Unit</strong><br /></label><select class="form-control" name="quantityUnit"[(ngModel)]="product.quantityUnit" #quantityUnit=ngModel>
                       <optgroup label="Quantity Parameters">
                         <option value="Litre" selected="">Litre</option>
                         <option value="Kilogram">Kilogram</option>
@@ -45,7 +45,7 @@
                 <div class="col">
                   <div class="form-group">
                     <label for="warehouse"><strong>Warehouse ID</strong><br /></label><input class="form-control"
-                      type="number" name="warehouse" />
+                      type="number" [(ngModel)]="product.warehouse.warehouseId" name="warehouse" #warehouse=ngModel />
                   </div>
                 </div>
                 <div class="col">

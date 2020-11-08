@@ -12,10 +12,10 @@ export class ProductService {
   constructor(private httpClient : HttpClient) { }
 
   getAllProducts() {
-    return this.httpClient.get<Product[]>("");
+    return this.httpClient.get<Product[]>("http://localhost:9400/stock/product");
   }
 
-  AddProduct(product : Product) {
-    return this.httpClient.post<Product>("","");    
+  addProduct(product : Product) {
+    return this.httpClient.post<Product>("http://localhost:9400/stock/product",product);    
   }
 }
