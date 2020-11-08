@@ -44,7 +44,7 @@ insert into product (product_id, material_name, description, quantity_available,
 insert into product (product_id, material_name, description, quantity_available, quantity_unit, warehouse_id) values (100004,'Banana Juice','Parle Agro Banana Juice', 3000,'Litre',1000002);
 insert into product (product_id, material_name, description, quantity_available, quantity_unit, warehouse_id) values (100005,'Papaya Juice','Parle Agro Papaya Juice', 2000,'Litre',1000003);
 insert into product (product_id, material_name, description, quantity_available, quantity_unit, warehouse_id) values (100006,'Chickoo Juice','Parle Agro Chickoo Juice', 1000,'Litre',1000003);
-insert into product (product_id, material_name, description, quantity_available, quantity_unit, warehouse_id) values (100007,'Tomatoes','Farm Fresh Tomatoes', 7000,'Passed',1000004);
+insert into product (product_id, material_name, description, quantity_available, quantity_unit, warehouse_id) values (100007,'Tomatoes','Farm Fresh Tomatoes', 7000,'Litre',1000004);
 insert into product (product_id, material_name, description, quantity_available, quantity_unit, warehouse_id) values (100008,'Cucumber','Farm Fresh Cucumber', 800,'Kilogram',1000004);
 insert into product (product_id, material_name, description, quantity_available, quantity_unit, warehouse_id) values (100009,'Raddish','Farm Fresh Raddish', 90,'Kilogram',1000005);
 insert into product (product_id, material_name, description, quantity_available, quantity_unit, warehouse_id) values (100010,'BeetRoot','Farm Fresh BeetRoots', 900,'Kilogram',1000005);

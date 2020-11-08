@@ -24,6 +24,7 @@ public class RawMaterialMapper {
       .materialName(rawMaterialOrder.getRawMaterial().getMaterialName())
       .rawMaterialOrderId(rawMaterialOrder.getRawMaterialOrderId())
       .quantity(rawMaterialOrder.getQuantity())
+      .pricePerUnit(rawMaterialOrder.getPricePerUnit())
       .qualityCheck(rawMaterialOrder.getQualityCheck())
       .orderStatus(rawMaterialOrder.getOrderStatus())
       .deliveryDate(rawMaterialOrder.getDeliveryDate())

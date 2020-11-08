@@ -26,6 +26,7 @@ import lombok.NoArgsConstructor;
 public class RawMaterialOrderResponse {
 
   private Long rawMaterialOrderId;
+  private Double pricePerUnit;
   private Double quantity;
   private QualityCheck qualityCheck;
   private OrderStatus orderStatus;

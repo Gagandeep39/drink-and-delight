@@ -23,4 +23,4 @@ logging:
 # Disables discovery CLient eatures - Use this or Confi file
 eureka:
   client:
-    enabled: false
+    enabled: true

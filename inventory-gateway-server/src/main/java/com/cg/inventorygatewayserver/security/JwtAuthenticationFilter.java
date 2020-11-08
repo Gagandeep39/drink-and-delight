@@ -60,8 +60,7 @@ public class JwtAuthenticationFilter extends GenericFilter {
 
     // Fixes CORS Issue in Chrome*
     HttpServletResponse modifiedResponse = (HttpServletResponse)response;
-    modifiedResponse.setHeader("Access-Control-Allow-Headers", "Authorization");
-
+    modifiedResponse.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
     chain.doFilter(request, modifiedResponse);
 
   }
