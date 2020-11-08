@@ -103,6 +103,12 @@ const routes: Routes = [
         canActivate: [RoleGuard],
         data: { role: 'Admin' },
       },
+      {
+        path: 'editprofile/:id',
+        component: EditProfileComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'Admin' },
+      },
       { path: 'viewprofile', component: ViewProfileComponent },
       { path: 'editprofile', component: EditProfileComponent },
       { path: '', component: ViewProfileComponent },
