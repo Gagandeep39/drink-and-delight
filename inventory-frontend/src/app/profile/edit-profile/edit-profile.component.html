@@ -2,7 +2,16 @@
   <div class="d-flex flex-column" id="content-wrapper">
     <div id="content">
       <div class="container-fluid">
-        <h1 >Edit Profile</h1>
+      <h1 >
+        <button
+          mat-icon-button
+          color="primary"
+          [routerLink]="['..']"
+        >
+          <mat-icon>home</mat-icon>
+        </button>
+        Edit Profile
+      </h1>
         <form (ngSubmit)="submitForm()" [formGroup]="userForm">
           <div class="card shadow mb-5">
             <div class="card-header py-3">
