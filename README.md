@@ -1,6 +1,7 @@
 # Drinks and Delight
 
 - [Drinks and Delight](#drinks-and-delight)
+  - [Check Deployment](#check-deployment)
   - [`inventory-database-service`](#inventory-database-service)
   - [`inventory-auth-service`](#inventory-auth-service)
   - [`inventory-discovery-server`](#inventory-discovery-server)
@@ -12,6 +13,10 @@
     - [Localhost](#localhost)
   - [Documentations](#documentations)
   - [TODO - CORS Observations (Need Help)](#todo---cors-observations-need-help)
+
+## Check Deployment
+
+- Click on https://gagandeep39.github.io/drink-and-delight
 
 ## `inventory-database-service`
 
