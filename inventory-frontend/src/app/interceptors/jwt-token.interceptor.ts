@@ -28,7 +28,11 @@ export class JwtTokenInterceptor implements HttpInterceptor {
     // Null will still add a token 
     if (token !== undefined)
       authReq = request.clone({
-        headers: request.headers.set('Authorization', `Bearer ${token}`),
+        headers: request.headers.append('Authorization', `Bearer ${token}`)
+        
+      // .append('access-control-allow-origin', '*')
+      // .append('Access-Control-Allow-Headers', 'authorization')
+      // .append('Access-Control-Allow-Methods', "*"),
       });
     return next.handle(authReq);
   }
