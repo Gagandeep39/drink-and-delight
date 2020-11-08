@@ -24,4 +24,16 @@ export class SupplierService {
   fetchAllSuppliers() {
     return this.http.get(this.serviceUrl + '/supplier');
   }
+
+  addSupplier(formData) {
+    return this.http.post(this.serviceUrl + '/supplier', formData);
+  }
+
+  updateSupplier(formData) {
+    return this.http.put(this.serviceUrl + '/supplier', formData);
+  }
+
+  fetchById(id) {
+    return this.http.get(this.serviceUrl + '/supplier/' + id);
+  }
 }

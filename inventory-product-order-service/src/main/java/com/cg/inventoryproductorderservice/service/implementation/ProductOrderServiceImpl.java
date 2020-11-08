@@ -53,9 +53,9 @@ public class ProductOrderServiceImpl implements ProductOrderService {
 
 		if (updateStatusDto.getStatus().equals(OrderStatus.Delivered.toString()))
 			order.setOrderStatus(OrderStatus.valueOf(updateStatusDto.getStatus()));
-		updateStockService.updateProductStock(order.getProduct().getProductId(), order.getQuantity());
-		return ProductOrderMapper.entityToDto(this.orderRepository.save(order));
-
+		if(updateStockService.updateProductStock(order.getProduct().getProductId(), order.getQuantity()))
+			return ProductOrderMapper.entityToDto(this.orderRepository.save(order));
+		else throw new RuntimeException("Error Updating Stock");
 	}
 
 	@Override

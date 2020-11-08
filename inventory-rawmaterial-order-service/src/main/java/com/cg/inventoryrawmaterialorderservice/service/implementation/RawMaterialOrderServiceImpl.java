@@ -51,8 +51,9 @@ public class RawMaterialOrderServiceImpl implements RawMaterialOrderService {
 		if (updateStatusDto.getStatus().equals(OrderStatus.Delivered.toString()))
 			order.setOrderStatus(OrderStatus.valueOf(updateStatusDto.getStatus()));
 
-		updateStockService.updateProductStock(order.getRawMaterial().getRawMaterialId(), order.getQuantity());
+		if (updateStockService.updateProductStock(order.getRawMaterial().getRawMaterialId(), order.getQuantity()))
 		return RawMaterialMapper.entityToDto(this.repository.save(order));
+		else throw new RuntimeException("Error Updating Quantity");
 	}
 
 	// Find a particular Raw material order by its Id

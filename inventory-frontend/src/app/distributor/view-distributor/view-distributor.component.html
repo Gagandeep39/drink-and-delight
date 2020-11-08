@@ -1,1 +1,49 @@
-<p>view-distributor works!</p>
+<!-- <p>view-profile works!</p> -->
+<br />
+<br />
+<div class="container">
+  <label>
+    <h1>Distributors List</h1>
+  </label>
+  <br />
+  <br />
+
+  <div class="container">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Distributor Id</th>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Phone Number</th>
+          <small class="float-right" [routerLink]="['/dashboard/adddistributors']">
+            <h5>
+              <button type="submit" class="btn btn-success">
+                Add New Distributor
+              </button>
+            </h5>
+          </small>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let distributor of distributors">
+          <td>{{ distributor.distributorId }}</td>
+          <td>{{ distributor.name }}</td>
+          <td>{{ distributor.location }}</td>
+          <td>{{ distributor.phoneNo }}</td>
+          <td>
+            <button
+              (click)="updateDistributor(distributor.distributorId)"
+              class="btn btn-primary"
+              style="margin-left: 10px"
+            >
+              Edit
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <br />
+</div>

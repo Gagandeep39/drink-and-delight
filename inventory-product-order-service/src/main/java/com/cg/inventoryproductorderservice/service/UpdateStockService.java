@@ -7,10 +7,8 @@
  */
 package com.cg.inventoryproductorderservice.service;
 
-import com.cg.inventoryproductorderservice.entity.Product;
-
 public interface UpdateStockService {
 
-  Product updateProductStock(Long productId, Double quantity);
+  boolean updateProductStock(Long productId, Double quantity);
 
 }
