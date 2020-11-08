@@ -14,11 +14,26 @@ import { environment } from 'src/environments/environment';
 })
 export class DistributorService {
   serviceUrl =
-  environment.protocol + environment.applicationUrl + '/' + environment.supplierService;
+    environment.protocol +
+    environment.applicationUrl +
+    '/' +
+    environment.supplierService;
 
   constructor(private http: HttpClient) {}
 
   fetchAllDistributors() {
     return this.http.get(this.serviceUrl + '/distributor');
+  }
+
+  addDistributor(formData) {
+    return this.http.post(this.serviceUrl + '/distributor', formData);
+  }
+
+  updateDistributor(formData) {
+    return this.http.put(this.serviceUrl + '/distributor', formData);
+  }
+
+  fetchById(id) {
+    return this.http.get(this.serviceUrl + '/distributor/' + id);
   }
 }
