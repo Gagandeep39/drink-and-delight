@@ -10,8 +10,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProductOrder } from 'src/app/models/product-order.model';
+import { RawMaterialOrder } from 'src/app/models/rawmaterial-order.model';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ProductOrderService } from 'src/app/services/product-order.service';
+import { RawmaterialOrderService } from 'src/app/services/rawmaterial-order.service';
 
 @Component({
   selector: 'app-update-status',
@@ -24,8 +26,9 @@ export class UpdateStatusComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public data: ProductOrder,
+    public data,
     private productOrderService: ProductOrderService,
+    private rawMaterialOrderService: RawmaterialOrderService,
     private dialogRef: MatDialogRef<UpdateStatusComponent>,
     public loadingService: LoadingService
   ) {
@@ -41,10 +44,34 @@ export class UpdateStatusComponent implements OnInit {
   ngOnInit(): void {}
 
   submitForm() {
-    if (this.statusForm.valid) this.updateData();
+    if (this.data['productId']) {
+      this.updateProductData();
+    } else this.updateRawMaterialData();
   }
 
-  updateData() {
+  updateRawMaterialData() {
+    let data = {
+      orderId: this.data.rawMaterialOrderId,
+      status: this.statusForm.value.newStatus,
+    };
+    console.log(data);
+    
+    this.loadingService.enableLoading();
+    this.rawMaterialOrderService.updateStatus(data).subscribe(
+      (res) => {
+        console.log(res);
+
+        this.loadingService.disableLoading();
+        this.dialogRef.close(res);
+      },
+      (error) => {
+        this.loadingService.disableLoading();
+        throw new Error(error);
+      }
+    );
+  }
+
+  updateProductData() {
     let data = {
       orderId: this.data.productOrderId,
       status: this.statusForm.value.newStatus,
