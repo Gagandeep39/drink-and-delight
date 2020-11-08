@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/drinkanddelight
+    url: jdbc:mysql://localhost:3306/Drink_Delight
     username: root
-    password: root
+    password: root1234
     # Enables execution of data-mysql.sql script
     platform: MYSQL
     # Not required as we dont need to initialize dummy data in persistant database

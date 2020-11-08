@@ -37,6 +37,7 @@ public class RawMaterial {
 	@Column(length = 100)
 	private String description;
 	private Double quantityAvailable;
+<<<<<<< Updated upstream
 
 	public RawMaterial(String materialName, String description, Double quantityAvailable, MeasurementUnit quantityUnit,
 			Warehouse warehouse) {
@@ -59,6 +60,8 @@ public class RawMaterial {
 		this.warehouse = warehouse;
 	}
 
+=======
+>>>>>>> Stashed changes
 	@Enumerated(EnumType.STRING)
 	private MeasurementUnit quantityUnit;
 	@ManyToOne
@@ -93,6 +96,7 @@ public class RawMaterial {
 		return quantityAvailable;
 	}
 
+<<<<<<< Updated upstream
 	@Override
 	public String toString() {
 		return "RawMaterial [rawMaterialId=" + rawMaterialId + ", materialName=" + materialName + ", description="
@@ -100,6 +104,8 @@ public class RawMaterial {
 				+ ", warehouse=" + warehouse + "]";
 	}
 
+=======
+>>>>>>> Stashed changes
 	public void setQuantityAvailable(Double quantityAvailable) {
 		this.quantityAvailable = quantityAvailable;
 	}
@@ -108,10 +114,13 @@ public class RawMaterial {
 		return quantityUnit;
 	}
 
+<<<<<<< Updated upstream
 	public RawMaterial() {
 		super();
 	}
 
+=======
+>>>>>>> Stashed changes
 	public void setQuantityUnit(MeasurementUnit quantityUnit) {
 		this.quantityUnit = quantityUnit;
 	}
@@ -123,4 +132,9 @@ public class RawMaterial {
 	public void setWarehouse(Warehouse warehouse) {
 		this.warehouse = warehouse;
 	}
+<<<<<<< Updated upstream
 }
+=======
+
+}
+>>>>>>> Stashed changes
