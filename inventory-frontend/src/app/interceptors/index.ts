@@ -32,9 +32,10 @@ export const httpInterceptors = [
     useClass: HttpErrorInterceptor,
     multi: true,
   },
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: CorsInterceptor,
-    multi: true,
-  },
+  // Breaks Code for now 
+  // {
+  //   provide: HTTP_INTERCEPTORS,
+  //   useClass: CorsInterceptor,
+  //   multi: true,
+  // },
 ];
