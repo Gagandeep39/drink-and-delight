@@ -33,15 +33,15 @@ public class Address {
   @GeneratedValue(generator = "address_id_sequence", strategy = GenerationType.SEQUENCE)
   private Long addressId;
   @Column(length = 25)
-  @Size(min = 6, max = 20)
+  @Size(min = 3, max = 20)
   @NotBlank
   private String city;
   @Column(length = 25)
-  @Size(min = 6, max = 20)
+  @Size(min = 3, max = 20)
   @NotBlank
   private String state;
   @Column(length = 25)
-  @Size(min = 6, max = 20)
+  @Size(min = 3, max = 20)
   @NotBlank
   private String area;
   @Size(min = 6, max = 6, message = "Must be 6 digits only")
