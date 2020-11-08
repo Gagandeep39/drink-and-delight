@@ -88,8 +88,6 @@ services:
       - inventory-discovery-server
       - inventory-database-service
   inventory-database-service:
-    labels:
-      - com.centurylinklabs.watchtower.enable=true
     container_name: inventory-database-service
     image: gagandeep39/inventory-database-service
     restart: always
