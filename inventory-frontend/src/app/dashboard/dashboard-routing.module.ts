@@ -8,6 +8,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddDistributorComponent } from '../distributor/add-distributor/add-distributor.component';
+import { UpdateDistributorComponent } from '../distributor/update-distributor/update-distributor.component';
 import { ViewDistributorComponent } from '../distributor/view-distributor/view-distributor.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { RoleGuard } from '../guards/role.guard';
@@ -74,6 +75,12 @@ const routes: Routes = [
       {
         path: 'adddistributors',
         component: AddDistributorComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'Admin' },
+      },
+      {
+        path: 'updatedistributor/:id',
+        component: UpdateDistributorComponent,
         canActivate: [RoleGuard],
         data: { role: 'Admin' },
       },

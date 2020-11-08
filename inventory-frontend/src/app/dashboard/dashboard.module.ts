@@ -21,6 +21,7 @@ import { ViewUsersComponent } from '../users/view-users/view-users.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { EditProfileComponent } from '../profile/edit-profile/edit-profile.component';
+import { UpdateDistributorComponent } from '../distributor/update-distributor/update-distributor.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { EditProfileComponent } from '../profile/edit-profile/edit-profile.compo
     AddDistributorComponent,
     DashboardComponent,
     EditProfileComponent, 
+    UpdateDistributorComponent
   ],
   imports: [
     CommonModule,
