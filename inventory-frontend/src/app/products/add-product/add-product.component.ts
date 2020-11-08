@@ -32,6 +32,7 @@ export class AddProductComponent implements OnInit {
 
   saveProduct(formData) {
     let warhouse = new Warehouse();
+    this.product.quantityAvailable = 0;
     warhouse.warehouseId = +formData.warehouseId;
     this.product.warehouse = warhouse;
     this.service.addProduct(this.product).subscribe((res) => {
