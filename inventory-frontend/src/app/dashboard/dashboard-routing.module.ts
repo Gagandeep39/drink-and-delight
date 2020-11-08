@@ -8,6 +8,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddDistributorComponent } from '../distributor/add-distributor/add-distributor.component';
+import { UpdateDistributorComponent } from '../distributor/update-distributor/update-distributor.component';
 import { ViewDistributorComponent } from '../distributor/view-distributor/view-distributor.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { RoleGuard } from '../guards/role.guard';
@@ -22,6 +23,7 @@ import { AddRawMaterialComponent } from '../raw-materials/add-raw-material/add-r
 import { ViewRawMaterialOrdersComponent } from '../raw-materials/view-raw-material-orders/view-raw-material-orders.component';
 import { ViewRawMaterialComponent } from '../raw-materials/view-raw-material/view-raw-material.component';
 import { AddSupplierComponent } from '../supplier/add-supplier/add-supplier.component';
+import { UpdateSupplierComponent } from '../supplier/update-supplier/update-supplier.component';
 import { ViewSupplierComponent } from '../supplier/view-supplier/view-supplier.component';
 import { AddUserComponent } from '../users/add-user/add-user.component';
 import { ViewUsersComponent } from '../users/view-users/view-users.component';
@@ -74,6 +76,18 @@ const routes: Routes = [
       {
         path: 'adddistributors',
         component: AddDistributorComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'Admin' },
+      },
+      {
+        path: 'updatesupplier/:id',
+        component: UpdateSupplierComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'Admin' },
+      },
+      {
+        path: 'updatedistributor/:id',
+        component: UpdateDistributorComponent,
         canActivate: [RoleGuard],
         data: { role: 'Admin' },
       },

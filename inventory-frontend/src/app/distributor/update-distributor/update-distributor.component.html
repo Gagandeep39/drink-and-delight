@@ -1,21 +1,18 @@
+<br /><br />
+<h1>Update Distributor</h1>
 <br />
-<br />
-
-<h1>Supplier Details</h1>
-<br />
-
 <div style="width: 900px">
-  <form #supplierdetails="ngForm" (ngSubmit)="addSupplier()">
+  <form #distributordetails="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="name">Name of Supplier : </label>
+      <label for="name">Name of Distributor : </label>
       <input
         class="form-control"
         type="name"
-        [(ngModel)]="supplier.name"
+        [(ngModel)]="distributor.name"
         name="name"
         required
-        placeholder="Enter Supplier's Name"
-        pattern="[A-Z][A-Za-z]{4,}"
+        placeholder="Enter Distributor's Name"
+        pattern="([a-zA-Z',.-]+( [a-zA-Z',.-]+)*){2,30}"
         #name="ngModel"
         [class.is-invalid]="name.invalid && name.touched"
       />
@@ -35,10 +32,10 @@
       <input
         class="form-control"
         type="location"
-        [(ngModel)]="supplier.location"
+        [(ngModel)]="distributor.location"
         name="location"
         required
-        placeholder="Enter Supplier's Location"
+        placeholder="Enter Distributor's Location"
         pattern="[A-Z][A-Za-z]{2,}"
         #location="ngModel"
         [class.is-invalid]="location.invalid && location.touched"
@@ -59,10 +56,10 @@
       <input
         class="form-control"
         type="phoneNo"
-        [(ngModel)]="supplier.phoneNo"
+        [(ngModel)]="distributor.phoneNo"
         name="phoneNo"
         required
-        placeholder="Enter Suppliers's Phone number"
+        placeholder="Enter Distributor's Phone number"
         pattern="[7-9][0-9]{9}"
         #phoneNo="ngModel"
         [class.is-invalid]="phoneNo.invalid && location.touched"
@@ -78,12 +75,13 @@
     </div>
 
     <br />
+
     <button
       type="submit"
-      [disabled]="supplierdetails.invalid"
-      class="btn btn-info"
+      [disabled]="distributordetails.invalid"
+      class="btn btn-primary"
     >
-      Add Supplier
+      Submit
     </button>
   </form>
 </div>
