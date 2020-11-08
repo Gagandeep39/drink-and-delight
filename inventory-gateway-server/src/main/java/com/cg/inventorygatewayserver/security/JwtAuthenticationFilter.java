@@ -8,9 +8,6 @@
 package com.cg.inventorygatewayserver.security;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.FilterChain;
 import javax.servlet.GenericFilter;
@@ -18,11 +15,9 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,9 +26,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
 @AllArgsConstructor
+@Slf4j
 public class JwtAuthenticationFilter extends GenericFilter {
 
   private static final long serialVersionUID = 6184814621681607677L;
@@ -58,21 +55,15 @@ public class JwtAuthenticationFilter extends GenericFilter {
           .setAuthentication(new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities()));
       }
     } catch (Exception e) {
-      sendResponseError(response);
+      log.info(e.getMessage());
     }
-    chain.doFilter(request, response);
 
-  }
+    // Fixes CORS Issue in Chrome*
+    HttpServletResponse modifiedResponse = (HttpServletResponse)response;
+    modifiedResponse.setHeader("Access-Control-Allow-Headers", "Authorization");
 
-  private void sendResponseError(ServletResponse response) throws IOException {
-    response.setContentType("application/json;charset=UTF-8");
-    Map<String, Object> data = new HashMap<>();
-    data.put("timestamp", System.currentTimeMillis());
-    data.put("status", HttpStatus.FORBIDDEN.value());
-    data.put("message", "Invalid Token");
-    OutputStream out = response.getOutputStream();
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.writeValue(out, data);
+    chain.doFilter(request, modifiedResponse);
+
   }
 
   private String getJwtFromRequest(HttpServletRequest request) {
