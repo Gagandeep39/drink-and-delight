@@ -25,8 +25,13 @@
                       type="text"
                       placeholder="Product Name"
                       name="materialName"
+                      required
                       #materialName="ngModel"
+                      [class.is-invalid]="materialName.invalid && materialName.touched"
                     />
+                    <div *ngIf="materialName.errors && materialName.invalid && materialName.touched">
+                      <small class="text-danger" *ngIf="materialName.errors.required">Material Name is required field</small>
+                    </div>
                   </div>
                 </div>
                 <div class="col">
@@ -39,9 +44,15 @@
                       [(ngModel)]="product.description"
                       type="text"
                       placeholder="Description"
+                      required
                       name="description"
                       #description="ngModel"
+                      [class.is-invalid]="description.invalid && description.touched"
                     />
+                    
+                    <div *ngIf="description.errors && description.invalid && description.touched">
+                      <small class="text-danger" *ngIf="description.errors.required">materialName is required field</small>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -53,8 +64,10 @@
                       class="form-control"
                       type="number"
                       [(ngModel)]="product.quantityAvailable"
-                      placeholder="Quantity"
                       name="quantityAvailable"
+                      disabled
+                      value="0"
+                      placeholder="0"
                       #quantityAvailable="ngModel"
                     />
                   </div>
@@ -66,14 +79,20 @@
                     ><select
                       class="form-control"
                       name="quantityUnit"
+                      required
                       [(ngModel)]="product.quantityUnit"
                       #quantityUnit="ngModel"
+                      [class.is-invalid]="quantityUnit.invalid && quantityUnit.touched"
                     >
                       <optgroup label="Quantity Parameters">
                         <option value="Litre" selected="">Litre</option>
                         <option value="Kilogram">Kilogram</option>
                       </optgroup>
                     </select>
+                    
+                    <div *ngIf="quantityUnit.errors && quantityUnit.invalid && quantityUnit.touched">
+                      <small class="text-danger" *ngIf="quantityUnit.errors.required">Quantity Unit is required field</small>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -87,6 +106,8 @@
                       name="warehouseId"
                       [(ngModel)]="warehouseId"
                       #warehouse="ngModel"
+                      required
+                      [class.is-invalid]="warehouse.invalid && warehouse.touched"
                     >
                       <optgroup label="Select Warehouses">
                         <option
@@ -99,6 +120,10 @@
                         </option>
                       </optgroup>
                     </select>
+                    
+                    <div *ngIf="warehouse.errors && warehouse.invalid && warehouse.touched">
+                      <small class="text-danger" *ngIf="warehouse.errors.required">Warehouse ID is required field</small>
+                    </div>
                   </div>
                 </div>
                 <div class="col">
