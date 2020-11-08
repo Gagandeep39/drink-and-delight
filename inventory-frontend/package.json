@@ -2,7 +2,7 @@
   "name": "inventory-frontend",
   "version": "0.0.0",
   "author": "Gagandeep Singh",
-  "homepage": "https://gagandeep39.github.io/angular-fitness-tracker/",
+  "homepage": "https://gagandeep39.github.io/inventory-frontend/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

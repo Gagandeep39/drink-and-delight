@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Update Order Status</h1>
+<mat-spinner *ngIf="loadingService.loading"></mat-spinner>
+<form
+  mat-dialog-conten
+  [formGroup]="statusForm"
+  (ngSubmit)="submitForm()"
+  *ngIf="!loadingService.loading"
+>
+  <p>
+    Current Status:
+    <span style="font-size: larger"> {{ data.orderStatus }}</span>
+  </p>
+  <!-- <p>Update Status</p> -->
+  <mat-select formControlName="newStatus">
+    <mat-option [value]="status" *ngFor="let status of statuses">
+      {{ status }}
+    </mat-option>
+  </mat-select>
+  <mat-error
+    *ngIf="
+      statusForm.get('newStatus').invalid &&
+      statusForm.get('newStatus').errors['required']
+    "
+    >Required *</mat-error
+  >
+  <div mat-dialog-actions>
+    <button mat-raised-button color="success" type="submit">Update</button>
+    <button mat-raised-button mat-dialog-close color="danger">Close</button>
+  </div>
+</form>

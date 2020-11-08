@@ -1,1 +1,265 @@
-<p>add-product-order works!</p>
+<div>
+  <div class="d-flex flex-column" id="content-wrapper">
+    <div id="content">
+      <div class="container-fluid">
+        <h3 class="text-dark mb-4">Create Product Order</h3>
+        <div class="card shadow">
+          <div class="card-header py-3">
+            <p class="text-primary m-0 font-weight-bold">Details</p>
+          </div>
+
+          <div class="card-body">
+            <form (ngSubmit)="placeOrder()" #addForm="ngForm">
+              <div class="form-row">
+                <div class="col">
+                  <label for="distributor"
+                    ><strong>Product</strong><br
+                  /></label>
+                  <select
+                    class="form-control"
+                    ngModel
+                    (change)="selectProduct($event.target.value)"
+                    name="material"
+                    ngModel
+                    required
+                  >
+                    <optgroup label="This is a group">
+                      <option value="" disabled selected>
+                        Select Product
+                      </option>
+                      <option
+                        *ngFor="let d of products"
+                        [value]="d.productId"
+                      >
+                        {{ d.materialName }}
+                      </option>
+                    </optgroup>
+                  </select>
+                </div>
+
+                <div class="col">
+                  <div class="form-group">
+                    <label for="distributor"
+                      ><strong>Distributor</strong><br
+                    /></label>
+                    <select
+                      class="form-control"
+                      ngModel
+                      (change)="getSelectedOptionText($event.target.value)"
+                      name="distributor"
+                      ngModel
+                      required
+                    >
+                      <optgroup label="This is a group">
+                        <option value="" disabled selected>
+                          Select Distributor
+                        </option>
+                        <option
+                          *ngFor="let d of distributor"
+                          [value]="d.distributorId"
+                        >
+                          {{ d.name }}
+                        </option>
+                      </optgroup>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="phoneNo"><strong>Quantity</strong><br /></label>
+                    <input
+                      [(ngModel)]="productOrderRequest.quantity"
+                      name="rate"
+                      type="number"
+                      placeholder="Enter the Quantity"
+                      class="form-control"
+                      #rate="ngModel"
+                      ngModel
+                      required
+                    />
+                    <div
+                      *ngIf="rate.touched && rate.dirty && rate.invalid"
+                      class="alert alert-primary"
+                    >
+                      Plss Enter The Quantity
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="form-group">
+                    <label for="email"
+                      ><strong>Delivery Date</strong><br
+                    /></label>
+                    <input
+                      [(ngModel)]="productOrderRequest.deliveryDate"
+                      name="deliveryDate"
+                      placeholder="Enter the Delivery Date"
+                      class="form-control"
+                      type="date"
+                      #deliveryDate="ngModel"
+                      ngModel
+                      required
+                    />
+                    <div
+                      *ngIf="
+                        deliveryDate.touched &&
+                        deliveryDate.dirty &&
+                        deliveryDate.invalid
+                      "
+                      class="alert alert-primaryr"
+                    >
+                      Plss Enter The Date in this format eg.'yyyy-mm-dd'.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="designation"
+                      ><strong>Manufacturing Date</strong><br
+                    /></label>
+                    <input
+                      [(ngModel)]="productOrderRequest.manufactureDate"
+                      name="manufactureDate"
+                      placeholder="Enter the Delivery Date"
+                      class="form-control"
+                      type="date"
+                      #manufactureDate="ngModel"
+                      ngModel
+                      required
+                    />
+                    <div
+                      *ngIf="
+                        manufactureDate.touched &&
+                        manufactureDate.dirty &&
+                        manufactureDate.invalid
+                      "
+                      class="alert alert-primaryr"
+                    >
+                      Plss Enter The Date in this format eg.'yyyy-mm-dd'.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="form-group">
+                    <label for="email"
+                      ><strong>Expiry Date</strong><br
+                    /></label>
+                    <input
+                      [(ngModel)]="productOrderRequest.expiryDate"
+                      name="expiryDate"
+                      placeholder="Enter the Delivery Date"
+                      class="form-control"
+                      type="date"
+                      #expiryDate="ngModel"
+                      ngModel
+                      required
+                    />
+                    <div
+                      *ngIf="
+                        expiryDate.touched &&
+                        expiryDate.dirty &&
+                        expiryDate.invalid
+                      "
+                      class="alert alert-primary"
+                    >
+                      Plss Enter The Date in this format eg.'yyyy-mm-dd'.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="dob"
+                      ><strong>Quality Check</strong><br
+                    /></label>
+                    <select
+                      ngModel
+                      class="form-control"
+                      name="quality"
+                      ngModel
+                      required
+                    >
+                      <optgroup label="Select Quality">
+                        <option value="" disabled selected>Set Quality</option>
+                        <option value="12" selected="">Passed</option>
+                        <option value="13">Failed</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="form-group">
+                    <label for="dob"><strong>Order Status</strong><br /></label>
+                    <input
+                      name="status"
+                      class="form-control"
+                      readonly
+                      value="Processing"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="dob"
+                      ><strong>Price Per Unit</strong><br
+                    /></label>
+                    <input
+                      [(ngModel)]="productOrderRequest.pricePerUnit"
+                      name="price"
+                      type="number"
+                      placeholder="Enter the PricePerUnit"
+                      class="form-control"
+                      #price="ngModel"
+                      ngModel
+                      required
+                    />
+                    <div
+                      *ngIf="price.touched && price.dirty && price.invalid"
+                      class="alert alert-primary"
+                    >
+                      Plss Enter The Price
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="form-group">
+                    <label for="dob"><strong>Unit</strong><br /></label>
+                    <input
+                      [value]="unit"
+                      name="unit"
+                      class="form-control"
+                      readonly
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <button
+                class="btn btn-primary"
+                type="submit"
+                [disabled]="!addForm.valid"
+              >
+                PLACED ORDER
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

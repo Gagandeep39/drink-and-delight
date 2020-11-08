@@ -1,4 +1,4 @@
-name: Create production build and deploy to gh-pages
+name: Deploy to AWS S3
 
 on:
   push:
@@ -27,11 +27,14 @@ jobs:
         run: |
           npm install -g @angular/cli@latest
           npm install
-          ng build --prod --base-href="/drink-and-delight/"
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v2
+          ng build --prod
+      - name: Deploy to S3
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks
         env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BASE_BRANCH: dev
-          BRANCH: gh-pages
-          FOLDER: inventory-frontend/dist/inventory-frontend
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-east-2' # optional: defaults to us-east-1
+          SOURCE_DIR: 'inventory-frontend/dist/inventory-frontend' # optional: defaults to entire repository

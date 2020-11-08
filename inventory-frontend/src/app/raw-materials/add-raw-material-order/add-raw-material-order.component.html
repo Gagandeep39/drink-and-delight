@@ -1,1 +1,212 @@
-<p>add-raw-material-order works!</p>
+<div>
+  <div class="d-flex flex-column" id="content-wrapper">
+    <div id="content">
+      <div class="container-fluid">
+        <h3 class="text-dark mb-4">Create Product Order</h3>
+        <div class="card shadow">
+          <div class="card-header py-3">
+            <p class="text-primary m-0 font-weight-bold">Details</p>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="rawMaterialForm" (ngSubmit)="submitForm()">
+              <div class="form-row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="city"
+                      ><strong>Select Raw Material</strong><br
+                    /></label>
+                    <select
+                      [ngClass]="{'is-invalid': submitted && rawMaterialForm.get('rawMaterialId').invalid}"
+                      formControlName="rawMaterialId"
+                      class="form-control"
+                      (change)="updateUnit($event.target.value)"
+                    >
+                      <option
+                        *ngFor="let item of rawMaterials"
+                        [value]="item.rawMaterialId"
+                      >
+                        {{ item.materialName }}
+                      </option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="submitted && rawMaterialForm.get('rawMaterialId').invalid">
+                      <div *ngIf="rawMaterialForm.get('rawMaterialId').errors['required']">* Required</div>
+                      <div *ngIf="rawMaterialForm.get('rawMaterialId').errors['serverValidationError']"> 
+                          {{rawMaterialForm.controls['rawMaterialId'].errors.serverValidationError }} 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="supplierId"><strong>Supplier</strong><br /></label
+                    ><select 
+                    [ngClass]="{'is-invalid': submitted && rawMaterialForm.get('supplierId').invalid}" class="form-control" formControlName="supplierId">
+                      <optgroup label="Select Supplier">
+                        <option
+                          
+                          *ngFor="let item of suppliers"
+                          [value]="item.supplierId"
+                        >
+                          {{ item.name }}
+                        </option>
+                      </optgroup>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="submitted && rawMaterialForm.get('supplierId').invalid">
+                      <div *ngIf="rawMaterialForm.get('supplierId').errors['required']">* Required</div>
+                      <div *ngIf="rawMaterialForm.get('supplierId').errors['serverValidationError']"> 
+                          {{rawMaterialForm.controls['supplierId'].errors.serverValidationError }} 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="quantity"><strong>Quantity</strong><br /></label
+                    ><input
+                    
+                      [ngClass]="{'is-invalid': submitted && rawMaterialForm.get('quantity').invalid}"
+                      formControlName="quantity"
+                      class="form-control"
+                      type="number"
+                      placeholder="Quantity"
+                      name="quantity"
+                    />
+                    <div class="invalid-feedback" *ngIf="submitted && rawMaterialForm.get('quantity').invalid">
+                      <div *ngIf="rawMaterialForm.get('quantity').errors['required']">* Required</div>
+                      <div *ngIf="rawMaterialForm.get('quantity').errors['serverValidationError']"> 
+                          {{rawMaterialForm.controls['quantity'].errors.serverValidationError }} 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="unit"
+                      ><strong>Mesurement Unit</strong><br /></label
+                    ><input
+                      class="form-control"
+                      type="text"
+                      placeholder="unit"
+                      [value]="measurementUnit"
+                      name="unit"
+                      disabled
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="deliveryDate"
+                      ><strong>Delivery Date</strong><br /></label
+                    ><input
+                      class="form-control"
+                      type="date"
+                      formControlName="deliveryDate"
+                      
+                      [ngClass]="{'is-invalid': submitted && rawMaterialForm.get('deliveryDate').invalid}"
+                    />
+                  </div>
+                  <div class="invalid-feedback" *ngIf="submitted && rawMaterialForm.get('deliveryDate').invalid">
+                    <div *ngIf="rawMaterialForm.get('deliveryDate').errors['required']">* Required</div>
+                    <div *ngIf="rawMaterialForm.get('deliveryDate').errors['serverValidationError']"> 
+                        {{rawMaterialForm.controls['deliveryDate'].errors.serverValidationError }} 
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="expiryDate"
+                      ><strong>Expiry Date</strong><br /></label
+                    ><input
+                      formControlName="expiryDate"
+                      [ngClass]="{'is-invalid': submitted && rawMaterialForm.get('expiryDate').invalid}"
+                      class="form-control"
+                      type="date"
+                    />
+                    <div class="invalid-feedback" *ngIf="submitted && rawMaterialForm.get('expiryDate').invalid">
+                      <div *ngIf="rawMaterialForm.get('expiryDate').errors['required']">* Required</div>
+                      <div *ngIf="rawMaterialForm.get('expiryDate').errors['serverValidationError']"> 
+                          {{rawMaterialForm.controls['expiryDate'].errors.serverValidationError}}
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="qualityCheck"
+                      ><strong>Quality Check</strong><br /></label
+                    ><select
+                      class="form-control"
+                      formControlName="qualityCheck"
+                      name="qualityCheck"
+                      
+                      [ngClass]="{'is-invalid': submitted && rawMaterialForm.get('qualityCheck').invalid}"
+                    >
+                      <option value="">Quality Check Status</option>
+                      <option value="Passed">Passed</option>
+                      <option value="Failed">Failed</option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="submitted && rawMaterialForm.get('qualityCheck').invalid">
+                      <div *ngIf="rawMaterialForm.get('qualityCheck').errors['required']">* Required</div>
+                      <div *ngIf="rawMaterialForm.get('qualityCheck').errors['serverValidationError']"> 
+                          {{rawMaterialForm.controls['qualityCheck'].errors.serverValidationError }} 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="orderStatus"
+                      ><strong>Order Status</strong><br /></label
+                    ><input
+                      class="form-control"
+                      type="text"
+                      placeholder="Processing"
+                      disabled
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="pricePerUnit"
+                      ><strong>Price</strong><br /></label
+                    ><input
+                      formControlName="pricePerUnit"
+                      [ngClass]="{'is-invalid': submitted && rawMaterialForm.get('pricePerUnit').invalid}"
+                      class="form-control"
+                      type="number"
+                    />
+                  </div>
+                  <div class="invalid-feedback" *ngIf="submitted && rawMaterialForm.get('pricePerUnit').invalid">
+                      <div *ngIf="rawMaterialForm.get('pricePerUnit').errors['required']">* Required</div>
+                      <div *ngIf="rawMaterialForm.get('pricePerUnit').errors['serverValidationError']"> 
+                          {{rawMaterialForm.controls['pricePerUnit'].errors.serverValidationError }} 
+                      </div>
+                    </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="pricePerUnit"
+                      ><strong>  </strong></label
+                    ><br />
+                    <button class="btn btn-primary" type="submit">
+                      Purchase
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -21,9 +21,19 @@ export class ViewProfileComponent implements OnInit {
   }
 
   fetchUser() {
+    this.loadingService.enableLoading();
     this.manageUser
       .fetchById(this.authService.fetchFromSessionStorage()?.userId)
-      .subscribe((res: UserDetails) => (this.user = res));
+      .subscribe(
+        (res: UserDetails) => {
+          this.user = res;
+          this.loadingService.disableLoading();
+        },
+        (error) => {
+          this.loadingService.disableLoading();
+          throw new Error('Cannot connect to server');
+        }
+      );
   }
 
   ngOnInit(): void {}
