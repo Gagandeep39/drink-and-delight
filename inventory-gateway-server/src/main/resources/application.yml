@@ -21,6 +21,7 @@ jwt:
 # Fix CORS error in docker container after adding zuul gatemway
 # also add a CORS bean in main class
 zuul:
+  # Sesitive Header required to be bloank to prevent cors error
   sensitiveHeaders:
   # ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin  
   ribbon:

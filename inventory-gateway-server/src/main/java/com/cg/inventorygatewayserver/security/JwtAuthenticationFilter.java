@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -56,7 +57,12 @@ public class JwtAuthenticationFilter extends GenericFilter {
     } catch (Exception e) {
       log.info(e.getMessage());
     }
-    chain.doFilter(request, response);
+
+    // Fixes CORS Issue in Chrome*
+    HttpServletResponse modifiedResponse = (HttpServletResponse)response;
+    modifiedResponse.setHeader("Access-Control-Allow-Headers", "Authorization");
+
+    chain.doFilter(request, modifiedResponse);
 
   }
 
