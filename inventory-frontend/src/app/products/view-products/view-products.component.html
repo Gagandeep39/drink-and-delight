@@ -44,6 +44,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
                     <th scope="col">Qty</th>
+                    <th scope="col">Units</th>
                     <th scope="col">Warehouse Name</th>
                   </tr>
                 </thead>
@@ -53,8 +54,9 @@
                     <td>{{ product.materialName }}</td>
                     <td>{{ product.description }}</td>
                     <td>
-                      {{ product.quantityAvailable }}/{{ product.quantityUnit }}
+                      {{ product.quantityAvailable }}
                     </td>
+                    <td>{{ product.quantityUnit }}</td>
                     <td>{{ product.warehouse.name }}</td>
                   </tr>
                 </tbody>
