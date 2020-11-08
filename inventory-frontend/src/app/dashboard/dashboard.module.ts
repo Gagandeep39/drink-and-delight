@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddDistributorComponent } from '../distributor/add-distributor/add-distributor.component';
 import { ViewDistributorComponent } from '../distributor/view-distributor/view-distributor.component';
@@ -50,5 +50,6 @@ import { EditProfileComponent } from '../profile/edit-profile/edit-profile.compo
     DashboardRoutingModule,
     SharedModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class DashboardModule {}
