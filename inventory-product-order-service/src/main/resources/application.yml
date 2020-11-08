@@ -2,7 +2,7 @@ server:
   port: ${server_port:9200}
 spring:
   profiles:
-    active: mysql
+    active: dev
   application:
     name: inventory-product-order-service
 eureka:
