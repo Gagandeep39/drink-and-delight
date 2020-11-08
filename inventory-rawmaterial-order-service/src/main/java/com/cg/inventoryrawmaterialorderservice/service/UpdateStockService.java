@@ -7,10 +7,8 @@
  */
 package com.cg.inventoryrawmaterialorderservice.service;
 
-import com.cg.inventoryrawmaterialorderservice.entity.RawMaterial;
-
 public interface UpdateStockService {
 
-  RawMaterial updateProductStock(Long productId, Double quantity);
+  boolean updateProductStock(Long productId, Double quantity);
 
 }
