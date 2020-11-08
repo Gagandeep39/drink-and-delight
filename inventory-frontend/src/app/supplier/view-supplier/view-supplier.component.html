@@ -1,1 +1,47 @@
-<p>view-supplier works!</p>
+<!-- <p>view-profile works!</p> -->
+<br />
+<br />
+<div class="container">
+  <label>
+    <h1>Suppliers List</h1>
+  </label>
+  <br />
+  <br />
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Supplier Id</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Phone Number</th>
+        <small class="float-right" [routerLink]="['/dashboard/addsupplier']">
+          <h5>
+            <button type="submit" class="btn btn-success">
+              Add New Supplier
+            </button>
+          </h5>
+        </small>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let supplier of suppliers">
+        <td>{{ supplier.supplierId }}</td>
+        <td>{{ supplier.name }}</td>
+        <td>{{ supplier.location }}</td>
+        <td>{{ supplier.phoneNo }}</td>
+        <td>
+          <button
+            (click)="updateSupplier(supplier.supplierId)"
+            class="btn btn-primary"
+            style="margin-left: 10px"
+          >
+            Edit
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<br />
