@@ -1,0 +1,87 @@
+<br /><br />
+<h1>Update Distributor</h1>
+<br />
+<div style="width: 900px">
+  <form #distributordetails="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name of Distributor : </label>
+      <input
+        class="form-control"
+        type="name"
+        [(ngModel)]="distributor.name"
+        name="name"
+        required
+        placeholder="Enter Distributor's Name"
+        pattern="([a-zA-Z',.-]+( [a-zA-Z',.-]+)*){2,30}"
+        #name="ngModel"
+        [class.is-invalid]="name.invalid && name.touched"
+      />
+      <div *ngIf="name.errors && name.invalid && name.touched">
+        <small class="text-danger" *ngIf="name.errors.required"
+          >Name is required field</small
+        >
+        <small class="text-danger" *ngIf="name.errors.pattern"
+          >First letter must be capital! Name must be minimum 5 characters
+          long.</small
+        >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="location">Location : </label>
+      <input
+        class="form-control"
+        type="location"
+        [(ngModel)]="distributor.location"
+        name="location"
+        required
+        placeholder="Enter Distributor's Location"
+        pattern="[A-Z][A-Za-z]{2,}"
+        #location="ngModel"
+        [class.is-invalid]="location.invalid && location.touched"
+      />
+      <div *ngIf="location.errors && location.invalid && location.touched">
+        <small class="text-danger" *ngIf="location.errors.required"
+          >Location is required field</small
+        >
+        <small class="text-danger" *ngIf="location.errors.pattern"
+          >First letter must be capital! Location must be minimum 3 characters
+          long.</small
+        >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNo">Phone number : </label>
+      <input
+        class="form-control"
+        type="phoneNo"
+        [(ngModel)]="distributor.phoneNo"
+        name="phoneNo"
+        required
+        placeholder="Enter Distributor's Phone number"
+        pattern="[7-9][0-9]{9}"
+        #phoneNo="ngModel"
+        [class.is-invalid]="phoneNo.invalid && location.touched"
+      />
+      <div *ngIf="phoneNo.errors && phoneNo.invalid && phoneNo.touched">
+        <small class="text-danger" *ngIf="phoneNo.errors.required"
+          >Phone Number is required field</small
+        >
+        <small class="text-danger" *ngIf="phoneNo.errors.pattern"
+          >Phone number must have 10 digits starting from 7, 8 or 9</small
+        >
+      </div>
+    </div>
+
+    <br />
+
+    <button
+      type="submit"
+      [disabled]="distributordetails.invalid"
+      class="btn btn-primary"
+    >
+      Submit
+    </button>
+  </form>
+</div>
