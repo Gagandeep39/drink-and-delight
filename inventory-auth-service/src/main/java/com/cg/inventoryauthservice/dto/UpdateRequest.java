@@ -33,6 +33,7 @@ public class UpdateRequest {
   private Long userId;
   @Size(min = 5, max = 20)
   @NotBlank
+  @Pattern(regexp = "[a-zA-Z]{5,30}", message = "Enter a valid String between length 5-20")
   @Size(min = 5, max = 20)
   private String designation;
   @NotBlank
@@ -58,7 +59,9 @@ public class UpdateRequest {
   private String securityAnswer;
   
   @Size(min = 5, max = 30)
+  @Pattern(regexp = "[a-zA-Z]{5,30}", message = "Enter a valid First Name between length 5-30")
   private String firstName;
   @Size(min = 5, max = 30)
+  @Pattern(regexp = "[a-zA-Z]{5,30}", message = "Enter a valid Last Name between length 5-30")
   private String lastName;
 }

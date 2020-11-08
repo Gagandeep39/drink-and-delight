@@ -31,7 +31,8 @@ import lombok.NoArgsConstructor;
 public class RegisterRequest {
 
   @NotBlank
-  @Size(min = 5, max = 20)
+  @Size(min = 3, max = 20)
+  @Pattern(regexp = "[a-zA-Z]{3,20}", message = "Enter a valid UserName between length 3-20")
   private String username;
   @NotBlank
   @Size(min = 5, max = 20)
@@ -54,9 +55,11 @@ public class RegisterRequest {
   @Valid
   private Address address;
   @NotBlank
+  @Pattern(regexp = "[a-zA-Z]{5,30}", message = "Enter a valid First Name between length 5-30")
   @Size(min = 5, max = 30)
   private String firstName;
   @NotBlank
+  @Pattern(regexp = "[a-zA-Z]{5,30}", message = "Enter a valid Last Name between length 5-30")
   @Size(min = 5, max = 30)
   private String lastName;
 

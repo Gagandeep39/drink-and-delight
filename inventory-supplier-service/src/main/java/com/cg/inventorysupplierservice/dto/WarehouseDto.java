@@ -24,7 +24,7 @@ public class WarehouseDto {
 	
 	private Long warehouseId;
 
-	@Size(min = 5, max = 40)
+	@Size(min = 3, max = 40)
 	@NotBlank
 	private String name;
 

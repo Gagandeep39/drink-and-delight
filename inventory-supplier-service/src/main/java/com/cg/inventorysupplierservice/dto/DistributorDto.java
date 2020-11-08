@@ -24,10 +24,10 @@ public class DistributorDto {
 	private Long distributorId;
 
 	@NotBlank
-	@Size(min = 5, max = 50)
+	@Size(min = 3, max = 50)
 	private String name;
 	@NotBlank
-	@Size(min = 5, max = 50)
+	@Size(min = 3, max = 50)
 	private String location;
 	@NotBlank
 	@Size(min = 10, max = 10, message = "Length of phone number must be 10")
