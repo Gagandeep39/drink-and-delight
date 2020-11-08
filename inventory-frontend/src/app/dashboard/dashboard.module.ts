@@ -22,6 +22,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { EditProfileComponent } from '../profile/edit-profile/edit-profile.component';
 import { UpdateDistributorComponent } from '../distributor/update-distributor/update-distributor.component';
+import { UpdateSupplierComponent } from '../supplier/update-supplier/update-supplier.component';
 
 @NgModule({
   declarations: [
@@ -41,8 +42,9 @@ import { UpdateDistributorComponent } from '../distributor/update-distributor/up
     ViewDistributorComponent,
     AddDistributorComponent,
     DashboardComponent,
-    EditProfileComponent, 
-    UpdateDistributorComponent
+    EditProfileComponent,
+    UpdateDistributorComponent,
+    UpdateSupplierComponent,
   ],
   imports: [
     CommonModule,
@@ -50,8 +52,8 @@ import { UpdateDistributorComponent } from '../distributor/update-distributor/up
     FormsModule,
     HttpClientModule,
     DashboardRoutingModule,
-    SharedModule
+    SharedModule,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class DashboardModule {}
