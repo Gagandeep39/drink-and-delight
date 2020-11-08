@@ -1,8 +1,6 @@
 version: '3.8'
 services:
   inventory-gateway-server:
-    labels:
-      - com.centurylinklabs.watchtower.enable=true
     container_name: inventory-gateway-server
     image: gagandeep39/inventory-gateway-server
     ports:
@@ -22,8 +20,6 @@ services:
       - inventory-discovery-server
       - inventory-database-service
   inventory-discovery-server:
-    labels:
-      - com.centurylinklabs.watchtower.enable=true
     container_name: inventory-discovery-server
     image: gagandeep39/inventory-discovery-server
     ports:
@@ -32,15 +28,61 @@ services:
       - eureka.instance.lease-renewal-interval-in-seconds=30
       - eureka.instance.lease-expiration-duration-in-seconds=90
   inventory-auth-service:
-    labels:
-      - com.centurylinklabs.watchtower.enable=true
     # container_name: inventory-auth-service
     image: gagandeep39/inventory-auth-service
     environment:
       - SPRING_DATASOURCE_URL=jdbc:h2:tcp://inventory-database-service:9550/~/test
       - SPRING_PROFILES_ACTIVE=dev
       - eureka.client.serviceurl.defaultzone=http://inventory-discovery-server:8761/eureka
-      # - eureka.instance.preferIpAddress=true
+      - eureka.instance.preferIpAddress=true
+    restart: always
+    depends_on:
+      - inventory-discovery-server
+      - inventory-database-service
+  inventory-rawmaterial-order-service:
+    # container_name: inventory-rawmaterial-order-service
+    image: gagandeep39/inventory-rawmaterial-order-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:tcp://inventory-database-service:9550/~/test
+      - SPRING_PROFILES_ACTIVE=dev
+      - eureka.client.serviceurl.defaultzone=http://inventory-discovery-server:8761/eureka
+      - eureka.instance.preferIpAddress=true
+    restart: always
+    depends_on:
+      - inventory-discovery-server
+      - inventory-database-service
+  inventory-product-order-service:
+    # container_name: inventory-product-order-service
+    image: gagandeep39/inventory-product-order-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:tcp://inventory-database-service:9550/~/test
+      - SPRING_PROFILES_ACTIVE=dev
+      - eureka.client.serviceurl.defaultzone=http://inventory-discovery-server:8761/eureka
+      - eureka.instance.preferIpAddress=true
+    restart: always
+    depends_on:
+      - inventory-discovery-server
+      - inventory-database-service
+  inventory-stock-management-service:
+    # container_name: inventory-stock-management-service
+    image: gagandeep39/inventory-stock-management-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:tcp://inventory-database-service:9550/~/test
+      - SPRING_PROFILES_ACTIVE=dev
+      - eureka.client.serviceurl.defaultzone=http://inventory-discovery-server:8761/eureka
+      - eureka.instance.preferIpAddress=true
+    restart: always
+    depends_on:
+      - inventory-discovery-server
+      - inventory-database-service
+  inventory-supplier-service:
+    # container_name: inventory-supplier-service
+    image: gagandeep39/inventory-supplier-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:tcp://inventory-database-service:9550/~/test
+      - SPRING_PROFILES_ACTIVE=dev
+      - eureka.client.serviceurl.defaultzone=http://inventory-discovery-server:8761/eureka
+      - eureka.instance.preferIpAddress=true
     restart: always
     depends_on:
       - inventory-discovery-server
