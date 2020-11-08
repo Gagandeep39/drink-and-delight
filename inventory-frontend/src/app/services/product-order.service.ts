@@ -1,8 +1,8 @@
 /**
  * @author Gagandeep Singh
  * @email singh.gagandeep3911@gmail.com
- * @create date 2020-11-03 17:02:23
- * @modify date 2020-11-03 17:02:23
+ * @create date 2020-11-08 15:02:52
+ * @modify date 2020-11-08 15:02:52
  * @desc [description]
  */
 import { HttpClient } from '@angular/common/http';
@@ -22,5 +22,9 @@ export class ProductOrderService {
 
   createProductOrderRequest(productOrder) {
     return this.http.post(`${this.serviceUrl}/productOrder`, productOrder);
+  }
+
+  updateStatus(formData) {
+    return this.http.put(`${this.serviceUrl}/productOrder`, formData);
   }
 }
