@@ -1,1 +1,69 @@
-<p>add-raw-material works!</p>
+<div>
+  <div class="d-flex flex-column" id="content-wrapper">
+    <div id="content">
+      <div class="container-fluid">
+        <h3 class="text-dark mb-4">Add Raw Material</h3>
+        <div class="card shadow">
+          <div class="card-header py-3">
+            <p class="text-primary m-0 font-weight-bold">Details</p>
+          </div>
+          <div class="card-body">
+            <form (ngSubmit)="saveRawMaterial(addForm.value)" #addForm=ngForm class="needs-validation">
+              <div class="form-row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="rawMaterial"><strong>Raw Material Name</strong><br /></label>
+                    <input class="form-control" [(ngModel)]="rawMaterial.materialName" type="text" placeholder="Raw Material Name" name="materialName" #materialName=ngModel>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="description"><strong>Description</strong><br /></label>
+                    <input class="form-control" [(ngModel)]="rawMaterial.description" type="text" placeholder="Description" name="description" #description=ngModel>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="quantity"><strong>Quantity</strong><br /></label><input class="form-control"
+                      type="number" [(ngModel)]="rawMaterial.quantityAvailable" placeholder="Quantity" name="quantityAvailable" #quantityAvailable=ngModel>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="Qty Unit"><strong>Quantity Unit</strong><br /></label><select class="form-control" name="quantityUnit"[(ngModel)]="rawMaterial.quantityUnit" #quantityUnit=ngModel>
+                      <optgroup label="Quantity Parameters">
+                        <option value="Litre" selected="">Litre</option>
+                        <option value="Kilogram">Kilogram</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="Qty Unit"><strong>Warehouse</strong><br /></label><select class="form-control" name="warehouse"[(ngModel)]="rawMaterial.warehouse" #warehouse=ngModel>
+                      <optgroup label="Select Warehouses">
+                        <option *ngFor="let warehouse of warehouses" [value]="warehouse.warehouseId" selected="">{{warehouse.name}}</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group text-center">
+                    <label for="submit"></label><br>
+                    <button class="btn btn-primary" type="submit" name="submit">
+                      ADD RAW MATERIAL
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

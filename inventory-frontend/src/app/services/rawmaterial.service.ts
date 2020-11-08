@@ -11,8 +11,10 @@ export class RawmaterialService {
   constructor(private http: HttpClient) {}
 
   fetchAllRawmaterials() {
-    console.log('Executed');
-    
     return this.http.get(this.serviceUrl + '/rawMaterialStock');
+  }
+
+  createRawMaterial(formData) {
+    return this.http.post(this.serviceUrl + '/rawMaterialStock', formData);
   }
 }
