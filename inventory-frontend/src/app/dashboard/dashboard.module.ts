@@ -21,7 +21,6 @@ import { ViewUsersComponent } from '../users/view-users/view-users.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { EditProfileComponent } from '../profile/edit-profile/edit-profile.component';
-import { SelectProductComponent } from '../products/select-product/select-product.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +41,6 @@ import { SelectProductComponent } from '../products/select-product/select-produc
     AddDistributorComponent,
     DashboardComponent,
     EditProfileComponent, 
-    SelectProductComponent
   ],
   imports: [
     CommonModule,
