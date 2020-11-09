@@ -7,7 +7,7 @@
  */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Gender } from 'src/app/models/gender.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -30,11 +30,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     private userService: ManageUserService,
     public loadingService: LoadingService,
     private router: Router,
-    private authService: AuthService
-  ) {
-    this.initForm();
-    this.fetchUserDataFromServer();
-  }
+    private authService: AuthService,
+    private route: ActivatedRoute
+  ) { }
 
   fetchUserDataFromServer() {
     this.userService
@@ -133,9 +131,31 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+    this.initForm();
+    if (this.route.snapshot.params['id'])
+      this.adminEdit(this.route.snapshot.params['id'])
+    else
+      this.fetchUserDataFromServer();
+  }
+
+  adminEdit(id: number) {
+    this.userService
+      .fetchById(id)
+      .subscribe((res) => {
+        this.populateFormFields(res);
+      });
+  }
 
   ngOnDestroy(): void {
     if (this.userFormSubscription) this.userFormSubscription.unsubscribe();
+  }
+
+  goBack() {
+    if (this.route.snapshot.params['id'])
+      this.router.navigateByUrl('/dashboard/users');
+    else 
+      this.router.navigateByUrl('/dashboard');
   }
 }

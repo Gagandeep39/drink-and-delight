@@ -33,6 +33,7 @@ export class AddRawMaterialComponent implements OnInit {
 
   saveRawMaterial(formData) {
     let warehouse = new Warehouse();
+    this.rawMaterial.quantityAvailable = 0;
     warehouse.warehouseId = +formData.warehouse;
     this.rawMaterial.warehouse = warehouse;
 

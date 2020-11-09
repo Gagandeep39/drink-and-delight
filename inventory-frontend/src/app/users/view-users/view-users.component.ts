@@ -38,6 +38,7 @@ export class ViewUsersComponent implements OnInit, AfterViewInit, OnDestroy {
     'role',
     'phoneNo',
     'city',
+    'edit'
   ];
   userSubscription: Subscription;
 

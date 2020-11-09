@@ -8,52 +8,125 @@
             <p class="text-primary m-0 font-weight-bold">Details</p>
           </div>
           <div class="card-body">
-            <form (ngSubmit)="saveRawMaterial(addForm.value)" #addForm=ngForm class="needs-validation">
+            <form
+              (ngSubmit)="saveRawMaterial(addForm.value)"
+              #addForm="ngForm"
+              class="needs-validation"
+            >
               <div class="form-row">
                 <div class="col">
                   <div class="form-group">
-                    <label for="rawMaterial"><strong>Raw Material Name</strong><br /></label>
-                    <input class="form-control" [(ngModel)]="rawMaterial.materialName" type="text" placeholder="Raw Material Name" name="materialName" #materialName=ngModel>
+                    <label for="rawMaterial"
+                      ><strong>Raw Material Name</strong><br
+                    /></label>
+                    <input
+                      class="form-control"
+                      [(ngModel)]="rawMaterial.materialName"
+                      type="text"
+                      placeholder="Raw Material Name"
+                      required
+                      name="materialName"
+                      #materialName="ngModel"
+                      [class.is-invalid]="materialName.invalid && materialName.touched"
+                    />
+                    
+                    <div *ngIf="materialName.errors && materialName.invalid && materialName.touched">
+                      <small class="text-danger" *ngIf="materialName.errors.required">Material Name is required field</small>
+                    </div>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
-                    <label for="description"><strong>Description</strong><br /></label>
-                    <input class="form-control" [(ngModel)]="rawMaterial.description" type="text" placeholder="Description" name="description" #description=ngModel>
+                    <label for="description"
+                      ><strong>Description</strong><br
+                    /></label>
+                    <input
+                      class="form-control"
+                      [(ngModel)]="rawMaterial.description"
+                      type="text"
+                      placeholder="Description"
+                      required
+                      name="description"
+                      #description="ngModel"
+                      [class.is-invalid]="description.invalid && description.touched"
+                    />
+                    
+                    <div *ngIf="description.errors && description.invalid && description.touched">
+                      <small class="text-danger" *ngIf="description.errors.required">Descriptionis required field</small>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="form-row">
                 <div class="col">
                   <div class="form-group">
-                    <label for="quantity"><strong>Quantity</strong><br /></label><input class="form-control"
-                      type="number" [(ngModel)]="rawMaterial.quantityAvailable" placeholder="Quantity" name="quantityAvailable" #quantityAvailable=ngModel>
+                    <label for="quantity"><strong>Quantity</strong><br /></label
+                    ><input
+                      class="form-control"
+                      type="number"
+                      disabled
+                      value="0"
+                      [(ngModel)]="rawMaterial.quantityAvailable"
+                      placeholder="0"
+                      name="quantityAvailable"
+                      #quantityAvailable="ngModel"
+                    />
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
-                    <label for="Qty Unit"><strong>Quantity Unit</strong><br /></label><select class="form-control" name="quantityUnit"[(ngModel)]="rawMaterial.quantityUnit" #quantityUnit=ngModel>
+                    <label for="Qty Unit"
+                      ><strong>Quantity Unit</strong><br /></label
+                    ><select
+                      class="form-control"
+                      required
+                      name="quantityUnit"
+                      [(ngModel)]="rawMaterial.quantityUnit"
+                      #quantityUnit="ngModel"
+                      [class.is-invalid]="quantityUnit.invalid && quantityUnit.touched"
+                    >
                       <optgroup label="Quantity Parameters">
                         <option value="Litre" selected="">Litre</option>
                         <option value="Kilogram">Kilogram</option>
                       </optgroup>
                     </select>
+                    <div *ngIf="quantityUnit.errors && quantityUnit.invalid && quantityUnit.touched">
+                      <small class="text-danger" *ngIf="quantityUnit.errors.required">Quantity Unit required field</small>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="form-row">
                 <div class="col">
                   <div class="form-group">
-                    <label for="Qty Unit"><strong>Warehouse</strong><br /></label><select class="form-control" name="warehouse"[(ngModel)]="rawMaterial.warehouse" #warehouse=ngModel>
+                    <label for="Qty Unit"
+                      ><strong>Warehouse</strong><br /></label
+                    ><select
+                      class="form-control"
+                      required
+                      name="warehouse"
+                      [(ngModel)]="rawMaterial.warehouse"
+                      #warehouse="ngModel"
+                      [class.is-invalid]="warehouse.invalid && warehouse.touched"
+                    >
                       <optgroup label="Select Warehouses">
-                        <option *ngFor="let warehouse of warehouses" [value]="warehouse.warehouseId" selected="">{{warehouse.name}}</option>
+                        <option
+                          *ngFor="let warehouse of warehouses"
+                          [value]="warehouse.warehouseId"
+                          selected=""
+                        >
+                          {{ warehouse.name }}
+                        </option>
                       </optgroup>
                     </select>
+                    <div *ngIf="warehouse.errors && warehouse.invalid && warehouse.touched">
+                      <small class="text-danger" *ngIf="warehouse.errors.required">Warehouse is required field</small>
+                    </div>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group text-center">
-                    <label for="submit"></label><br>
+                    <label for="submit"></label><br />
                     <button class="btn btn-primary" type="submit" name="submit">
                       ADD RAW MATERIAL
                     </button>

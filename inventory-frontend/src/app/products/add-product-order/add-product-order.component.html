@@ -17,10 +17,10 @@
                   /></label>
                   <select
                     class="form-control"
-                    ngModel
                     (change)="selectProduct($event.target.value)"
                     name="material"
                     ngModel
+                    #materialName="ngModel"
                     required
                   >
                     <optgroup label="This is a group">
@@ -35,6 +35,10 @@
                       </option>
                     </optgroup>
                   </select>
+                  
+                  <div *ngIf="materialName.errors && materialName.invalid && materialName.touched">
+                    <small class="text-danger" *ngIf="materialName.errors.required">Product Name is required field</small>
+                  </div>
                 </div>
 
                 <div class="col">
@@ -47,7 +51,7 @@
                       ngModel
                       (change)="getSelectedOptionText($event.target.value)"
                       name="distributor"
-                      ngModel
+                      #dist="ngModel"
                       required
                     >
                       <optgroup label="This is a group">
@@ -62,6 +66,9 @@
                         </option>
                       </optgroup>
                     </select>
+                    <div *ngIf="dist.errors && dist.invalid && dist.touched">
+                      <small class="text-danger" *ngIf="dist.errors.required">Distributor Name is required field</small>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -92,7 +99,7 @@
                 <div class="col">
                   <div class="form-group">
                     <label for="email"
-                      ><strong>Delivery Date</strong><br
+                      ><strong>Estimated Delivery Date</strong><br
                     /></label>
                     <input
                       [(ngModel)]="productOrderRequest.deliveryDate"
@@ -103,6 +110,7 @@
                       #deliveryDate="ngModel"
                       ngModel
                       required
+                      [min]="validationDate"
                     />
                     <div
                       *ngIf="
@@ -133,6 +141,7 @@
                       #manufactureDate="ngModel"
                       ngModel
                       required
+                      [max]="validationDate"
                     />
                     <div
                       *ngIf="
@@ -160,6 +169,7 @@
                       type="date"
                       #expiryDate="ngModel"
                       ngModel
+                      [min]="validationDate"
                       required
                     />
                     <div
@@ -186,7 +196,7 @@
                       ngModel
                       class="form-control"
                       name="quality"
-                      ngModel
+                      #qualityCheck="ngModel"
                       required
                     >
                       <optgroup label="Select Quality">
@@ -195,6 +205,9 @@
                         <option value="13">Failed</option>
                       </optgroup>
                     </select>
+                    <div *ngIf="qualityCheck.errors && qualityCheck.invalid && qualityCheck.touched">
+                      <small class="text-danger" *ngIf="qualityCheck.errors.required">Quality check is required field</small>
+                    </div>
                   </div>
                 </div>
 

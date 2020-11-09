@@ -20,6 +20,7 @@ export class AddProductOrderComponent implements OnInit {
   orderStatus: string;
   products: Product[];
   unit: string = 'Select Product';
+  validationDate = new Date().toISOString().slice(0,10);
 
   constructor(
     private productOrderService: ProductOrderService,
@@ -61,7 +62,7 @@ export class AddProductOrderComponent implements OnInit {
     this.productOrderService
       .createProductOrderRequest(this.productOrderRequest)
       .subscribe((x) => {
-        this.router.navigate(['/dashboard/products']);
+        this.router.navigate(['/dashboard/productorders']);
       });
     
   }
