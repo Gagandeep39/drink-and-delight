@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RawMaterial } from 'src/app/models/raw-material.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { RawmaterialService } from 'src/app/services/rawmaterial.service';
 
 @Component({
@@ -10,13 +11,16 @@ import { RawmaterialService } from 'src/app/services/rawmaterial.service';
 })
 export class ViewRawMaterialComponent implements OnInit {
   rawMaterials: RawMaterial[] = [];
+  role;
 
   constructor(
     private rawMaterialService: RawmaterialService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
+    this.role = this.authService.getRole();
     this.rawMaterialService
       .fetchAllRawmaterials()
       .subscribe((data: RawMaterial[]) => {
