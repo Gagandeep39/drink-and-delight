@@ -21,13 +21,17 @@ jwt:
 # Fix CORS error in docker container after adding zuul gatemway
 # also add a CORS bean in main class
 zuul:
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
   # Sesitive Header required to be bloank to prevent cors error
   sensitiveHeaders:
   # ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin  
   ribbon:
     eager-load:
       enabled: true
-
+ribbon:
+  ReadTimeout: 60000
 management:
   endpoints:
     web:
