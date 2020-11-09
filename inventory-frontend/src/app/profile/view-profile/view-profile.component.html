@@ -1,5 +1,7 @@
 <div class="container">
-  <div class="spinner-border text-dark" *ngIf="loadingService.loading"></div>
+  <div class="spinner-container">
+    <div class="spinner-border text-dark" *ngIf="loadingService.loading"></div>
+  </div>
   <div class="panel panel-info" *ngIf="!loadingService.loading">
     <div class="panel-heading row">
       <h2 class="col panel-title display-4" style="text-align: left">

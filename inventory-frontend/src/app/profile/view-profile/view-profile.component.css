@@ -23,3 +23,7 @@
   font-weight: bold;
   font-size: larger;
 }
+
+.spinner-container {
+  text-align-last: center;
+}
