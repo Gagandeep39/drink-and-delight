@@ -15,13 +15,12 @@
         <th>Name</th>
         <th>Location</th>
         <th>Phone Number</th>
-        <small class="float-right" [routerLink]="['/dashboard/addsupplier']">
-          <h5>
-            <button type="submit" class="btn btn-success">
-              Add New Supplier
-            </button>
-          </h5>
-        </small>
+        
+        <th *ngIf="role==='Admin'" class="float-right" [routerLink]="['/dashboard/addsupplier']">
+          <button type="submit" class="btn btn-success">
+            Add New Supplier
+          </button>
+        </th>
       </tr>
     </thead>
     <tbody>

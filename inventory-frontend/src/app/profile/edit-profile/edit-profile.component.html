@@ -10,7 +10,8 @@
         >
           <mat-icon>home</mat-icon>
         </button>
-        Edit Profile
+        Edit Profile 
+        <div class="spinner-border text-dark" *ngIf="loadingService.loading"></div>
       </h1>
         <form (ngSubmit)="submitForm()" [formGroup]="userForm">
           <div class="card shadow mb-5">

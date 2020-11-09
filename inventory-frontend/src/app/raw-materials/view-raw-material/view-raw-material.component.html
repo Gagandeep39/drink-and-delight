@@ -6,7 +6,9 @@
         <div class="card shadow">
           <div class="card-header py-3">
             <p class="text-primary m-0 font-weight-bold">
-              Raw Materials<button
+              Raw Materials
+              <button
+                *ngIf="role==='Admin'"
                 class="btn btn-primary align-content-end float-right"
                 type="button"
                 (click)="navigate()"
