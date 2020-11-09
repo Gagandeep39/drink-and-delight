@@ -1,5 +1,8 @@
 <h1>Users</h1>
-<div class="mat-elevation-z8">
+<div class="spinner-container">
+  <div class="spinner-border text-dark" *ngIf="loadingService.loading"></div>
+</div>
+<div  *ngIf="!loadingService.loading" class="mat-elevation-z8">
   <mat-card class="mat-elevation-z0">
     <mat-form-field>
       <input
