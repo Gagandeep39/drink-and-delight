@@ -16,7 +16,7 @@
           <th>Name</th>
           <th>Location</th>
           <th>Phone Number</th>
-          <th class="float-right" [routerLink]="['/dashboard/adddistributors']">
+          <th *ngIf="role==='Admin'" class="float-right" [routerLink]="['/dashboard/adddistributors']">
               <button type="submit" class="btn btn-success">
                 Add New Distributor
               </button>
