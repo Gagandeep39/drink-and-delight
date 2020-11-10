@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Distributor } from 'src/app/models/distributor.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { DistributorService } from 'src/app/services/distributor.service';
 
 @Component({
@@ -11,12 +12,15 @@ import { DistributorService } from 'src/app/services/distributor.service';
 export class ViewDistributorComponent implements OnInit {
   distributor: Distributor;
   distributors: Distributor[];
+  role;
   constructor(
     private distributorService: DistributorService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
+    this.role = this.authService.getRole();
     this.distributorService
       .fetchAllDistributors()
       .subscribe((response: Distributor[]) => {

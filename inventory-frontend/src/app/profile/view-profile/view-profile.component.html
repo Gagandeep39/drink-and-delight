@@ -1,70 +1,80 @@
-<div class="container">
-  <div class="spinner-border text-dark" *ngIf="loadingService.loading"></div>
-  <div class="panel panel-info" *ngIf="!loadingService.loading">
-    <div class="panel-heading row">
-      <h2 class="col panel-title display-4" style="text-align: left">
-        <b> {{ user?.firstName }} {{ user?.lastName }} </b>
-      </h2>
 
-      <div class="edit">
-        <button
-          mat-icon-button
-          color="primary"
-          [routerLink]="['/dashboard/editprofile']"
-        >
-          <mat-icon>edit</mat-icon>
-        </button>
+<div>
+  <div class="spinner-container">
+    <div class="spinner-border text-dark" *ngIf="loadingService.loading"></div>
+  </div>
+  <div class="d-flex flex-column" id="content-wrapper" *ngIf="!loadingService.loading">
+    <div id="content">
+      <div class="container-fluid">
+        <div class="card shadow">
+          <div class="card-header py-3">
+            <div class="panel-heading row">
+              <h2 class="col panel-title display-4" style="text-align: left">
+                <b> {{ user?.firstName }} {{ user?.lastName }} </b>
+              </h2>
+        
+              <div class="edit">
+                <button
+                  mat-icon-button
+                  color="primary"
+                  [routerLink]="['/dashboard/editprofile']"
+                >
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </div>
+              <hr />
+            </div>
+          </div>
+
+          <div class="card-body">
+            <table class="table table-user-information table-hover table-borderless">
+              <tbody>
+                <tr>
+                  <td class="title">User ID</td>
+                  <td class="userdata">{{ user?.userId }}</td>
+                </tr>
+                <tr>
+                  <td class="title">Username</td>
+                  <td class="userdata">{{ user?.username }}</td>
+                </tr>
+                <tr>
+                  <td class="title">Date of birth</td>
+                  <td class="userdata">{{ user?.dob }}</td>
+                </tr>
+                <tr></tr>
+                <tr>
+                  <td class="title">Gender</td>
+                  <td class="userdata">{{ user?.gender }}</td>
+                </tr>
+                <tr>
+                  <td class="title">Designation</td>
+                  <td class="userdata">{{ user?.designation }}</td>
+                </tr>
+                <tr>
+                  <td class="title">Phone Number</td>
+                  <td class="userdata">{{ user?.phoneNo }}</td>
+                </tr>
+                <tr>
+                  <td class="title">Area</td>
+                  <td class="userdata">{{ user?.address.area }}</td>
+                </tr>
+                <tr>
+                  <td class="title">City</td>
+                  <td class="userdata">{{ user?.address.city }}</td>
+                </tr>
+                <tr>
+                  <td class="title">State</td>
+                  <td class="userdata">{{ user?.address.state }}</td>
+                </tr>
+                <tr>
+                  <td class="title">Pincode</td>
+                  <td class="userdata">{{ user?.address.pincode }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-      <hr />
     </div>
-    <div class="row panel-body">
-      <hr style="width: 100%;"/>
-      <table class="table table-user-information table-hover table-borderless">
-        <tbody>
-          <tr>
-            <td class="title">User ID</td>
-            <td class="userdata">{{ user?.userId }}</td>
-          </tr>
-          <tr>
-            <td class="title">Username</td>
-            <td class="userdata">{{ user?.username }}</td>
-          </tr>
-          <tr>
-            <td class="title">Date of birth</td>
-            <td class="userdata">{{ user?.dob }}</td>
-          </tr>
-          <tr></tr>
-          <tr>
-            <td class="title">Gender</td>
-            <td class="userdata">{{ user?.gender }}</td>
-          </tr>
-          <tr>
-            <td class="title">Designation</td>
-            <td class="userdata">{{ user?.designation }}</td>
-          </tr>
-          <tr>
-            <td class="title">Phone Number</td>
-            <td class="userdata">{{ user?.phoneNo }}</td>
-          </tr>
-          <tr>
-            <td class="title">Area</td>
-            <td class="userdata">{{ user?.address.area }}</td>
-          </tr>
-          <tr>
-            <td class="title">City</td>
-            <td class="userdata">{{ user?.address.city }}</td>
-          </tr>
-          <tr>
-            <td class="title">State</td>
-            <td class="userdata">{{ user?.address.state }}</td>
-          </tr>
-          <tr>
-            <td class="title">Pincode</td>
-            <td class="userdata">{{ user?.address.pincode }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <hr style="width: 100%;"/>
   </div>
 </div>

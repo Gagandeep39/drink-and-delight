@@ -1,6 +1,6 @@
 .panel-title {
   font-size: xx-large;
-  margin-bottom: 30px;
+  margin: 30px 0 30px 20px;
 }
 
 .panel {
@@ -12,14 +12,19 @@
 }
 
 .edit {
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  width: 200px;
+  /* align-items: flex-end; */
+  /* width: 200px; */
 }
 
 .userdata {
   color: #184e8e;
   font-weight: bold;
   font-size: larger;
+}
+
+.spinner-container {
+  text-align-last: center;
 }

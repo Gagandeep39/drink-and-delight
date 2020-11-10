@@ -33,5 +33,5 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BASE_BRANCH: dev
-          BRANCH: gh-pages
+          BRANCH: onhold-gh-pages
           FOLDER: inventory-frontend/dist/inventory-frontend
