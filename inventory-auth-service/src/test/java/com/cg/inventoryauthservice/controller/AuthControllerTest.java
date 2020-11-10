@@ -60,7 +60,7 @@ class AuthControllerTest {
                 mockMvc.perform(MockMvcRequestBuilders.post("/auth/login").contentType(MediaType.APPLICATION_JSON)
                                 .content(mapper.writeValueAsString(loginRequest))).andExpect(status().isOk())
                                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                                .andExpect(jsonPath("$.userId", Matchers.is("100001")));
+                                .andExpect(jsonPath("$.userId", Matchers.is(100001)));
         }
 
         /**
@@ -157,7 +157,7 @@ class AuthControllerTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(mapper.writeValueAsString(forgotPasswordRequest))).andExpect(status().isOk())
                                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                                .andExpect(jsonPath("$.success").exists());
+                                .andExpect(jsonPath("$.userId").exists());
         }
 
 }
