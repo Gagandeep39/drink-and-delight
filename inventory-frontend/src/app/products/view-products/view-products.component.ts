@@ -19,8 +19,6 @@ export class ViewProductsComponent implements OnInit {
     private authService: AuthService
   ) {}
 
-  constructor(private productService: ProductService, private router: Router, private authService: AuthService) {}
-
   ngOnInit(): void {
     this.role = this.authService.getRole();
     this.productService.fetchAllProducts().subscribe((data: Product[]) => {
