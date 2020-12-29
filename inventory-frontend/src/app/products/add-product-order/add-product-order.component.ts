@@ -21,6 +21,8 @@ export class AddProductOrderComponent implements OnInit {
   products: Product[];
   unit: string = 'Select Product';
   validationDate = new Date().toISOString().slice(0,10);
+  quantity:string;
+  price:string;
 
   constructor(
     private productOrderService: ProductOrderService,
@@ -56,9 +58,11 @@ export class AddProductOrderComponent implements OnInit {
 
   placeOrder() {
     this.productOrderRequest.productId = this.productId;
+    this.productOrderRequest.quantity=Number(this.quantity);
+    this.productOrderRequest.pricePerUnit=Number(this.price);
     this.productOrderRequest.qualityCheck = 'Passed';
     this.productOrderRequest.distributorId = this.distributorId;
-    
+
     this.productOrderService
       .createProductOrderRequest(this.productOrderRequest)
       .subscribe((x) => {

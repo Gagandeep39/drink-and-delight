@@ -147,6 +147,7 @@
                       class="form-control" 
                       type="Date" 
                       name="dob" 
+                      [max]="maxDate"
                       formControlName="dob"
                       [ngClass]="{'is-invalid': submitted && userForm.get('dob').invalid}" />
                       <div class="invalid-feedback" *ngIf="submitted && userForm.get('dob').invalid">

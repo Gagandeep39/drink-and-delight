@@ -11,12 +11,12 @@ import { RawmaterialService } from 'src/app/services/rawmaterial.service';
 })
 export class ViewRawMaterialComponent implements OnInit {
   rawMaterials: RawMaterial[] = [];
-  role = 'User';
+  role;
 
   constructor(
     private rawMaterialService: RawmaterialService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {

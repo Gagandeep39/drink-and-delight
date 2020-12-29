@@ -30,14 +30,16 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     private userService: ManageUserService,
     public loadingService: LoadingService,
     private router: Router,
-    private authService: AuthService,
+    public authService: AuthService,
     private route: ActivatedRoute
   ) { }
 
   fetchUserDataFromServer() {
+    this.loadingService.enableLoading();
     this.userService
       .fetchById(this.authService.fetchFromSessionStorage()?.userId)
       .subscribe((res) => {
+        this.loadingService.disableLoading();
         this.populateFormFields(res);
       });
   }
@@ -132,7 +134,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    
     this.initForm();
     if (this.route.snapshot.params['id'])
       this.adminEdit(this.route.snapshot.params['id'])
@@ -141,9 +142,11 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   adminEdit(id: number) {
+    this.loadingService.enableLoading();
     this.userService
       .fetchById(id)
       .subscribe((res) => {
+        this.loadingService.disableLoading();
         this.populateFormFields(res);
       });
   }

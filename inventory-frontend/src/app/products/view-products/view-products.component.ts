@@ -11,13 +11,15 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ViewProductsComponent implements OnInit {
   products: Product[] = [];
-  role = 'User';
+  role;
 
   constructor(
     private productService: ProductService,
     private router: Router,
     private authService: AuthService
   ) {}
+
+  constructor(private productService: ProductService, private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.role = this.authService.getRole();

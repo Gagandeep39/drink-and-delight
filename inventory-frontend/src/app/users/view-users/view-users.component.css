@@ -9,3 +9,8 @@ div {
 mat-card {
   border-radius: 0px;
 }
+
+.spinner-container {
+  text-align-last: center;
+}
+

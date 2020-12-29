@@ -24,6 +24,8 @@ export class AddUserComponent implements OnInit {
   userForm: FormGroup;
   addUserSubscription: Subscription;
   message = null;
+  maxDate = new Date(new Date().setFullYear(new Date().getFullYear() - 14)).toISOString().slice(0, 10)
+  // new Date().toISOString().slice(0,10) - ;
 
   constructor(
     private manageUserService: ManageUserService,
