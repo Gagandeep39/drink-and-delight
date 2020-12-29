@@ -13,6 +13,12 @@ export class ViewProductsComponent implements OnInit {
   products: Product[] = [];
   role;
 
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
+
   constructor(private productService: ProductService, private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {

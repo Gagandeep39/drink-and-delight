@@ -8,12 +8,12 @@ INSERT INTO user (user_id, password, username, role) VALUES (100005,'$2a$10$B4Fv
 INSERT INTO user (user_id, password, username, role) VALUES (100006,'$2a$10$B4FvjVc2oXqDTFdGGZjT5urzHS6TSdzrQ7p/vFi1rUuZgjXR4.m5K', 'john', 'User');
 
 -- Dummy data for Address
-INSERT INTO address (address_id, area, city, pincode, state) VALUES (100001,'Union Street','Seattle','98106','Washington');
-INSERT INTO address (address_id, area, city, pincode, state) VALUES (100002,'Stonepot Road','Newark','07102','New Jersey');
-INSERT INTO address (address_id, area, city, pincode, state) VALUES (100003,'Adams Drive','Houston','77002','Texas');
-INSERT INTO address (address_id, area, city, pincode, state) VALUES (100004,'Illinois Avenue','Tigard','97223','Oregon');
-INSERT INTO address (address_id, area, city, pincode, state) VALUES (100005,'Hog Camp Road','La Grange','60525','Illinois');
-INSERT INTO address (address_id, area, city, pincode, state) VALUES (100006,'West Fork Drive','CLEVELAND','44113','Ohio');
+INSERT INTO address (address_id, area, city, pincode, state) VALUES (100001,'Union Street','Seattle','198106','Washington');
+INSERT INTO address (address_id, area, city, pincode, state) VALUES (100002,'Stonepot Road','Newark','307102','New Jersey');
+INSERT INTO address (address_id, area, city, pincode, state) VALUES (100003,'Adams Drive','Houston','477002','Texas');
+INSERT INTO address (address_id, area, city, pincode, state) VALUES (100004,'Illinois Avenue','Tigard','597223','Oregon');
+INSERT INTO address (address_id, area, city, pincode, state) VALUES (100005,'Hog Camp Road','La Grange','660525','Illinois');
+INSERT INTO address (address_id, area, city, pincode, state) VALUES (100006,'West Fork Drive','CLEVELAND','744113','Ohio');
 
 -- Dummy data for User detail
 INSERT INTO user_details (user_details_id, first_name, last_name, designation, dob, email_id, gender, phone_no, security_question, security_answer, address_id) VALUES (100001, 'Gagandeep', 'Singh', 'Administrator', '1999-05-14', 'singh.gagandeep3911@gmail.com', 'Male', '8419969059', 'Default Question', 'answer', 100001);

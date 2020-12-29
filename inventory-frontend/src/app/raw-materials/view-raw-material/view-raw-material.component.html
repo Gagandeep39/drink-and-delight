@@ -2,7 +2,7 @@
   <div class="d-flex flex-column" id="content-wrapper">
     <div id="content">
       <div class="container-fluid">
-        <h3 class="text-dark mb-4">Raw Materials</h3>
+        <h2 class="text-dark mb-4">Raw Materials</h2>
         <div class="card shadow">
           <div class="card-header py-3">
             <p class="text-primary m-0 font-weight-bold">
@@ -12,6 +12,7 @@
                 class="btn btn-primary align-content-end float-right"
                 type="button"
                 (click)="navigate()"
+                *ngIf="role === 'Admin'"
               >
                 Add Raw Material
               </button>
