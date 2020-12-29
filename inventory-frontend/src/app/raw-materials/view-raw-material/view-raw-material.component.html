@@ -10,6 +10,7 @@
                 class="btn btn-primary align-content-end float-right"
                 type="button"
                 (click)="navigate()"
+                *ngIf="role === 'Admin'"
               >
                 Add Raw Material
               </button>

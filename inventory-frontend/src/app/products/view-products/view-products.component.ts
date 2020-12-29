@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -10,10 +11,16 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ViewProductsComponent implements OnInit {
   products: Product[] = [];
+  role = 'User';
 
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
+    this.role = this.authService.getRole();
     this.productService.fetchAllProducts().subscribe((data: Product[]) => {
       this.products = data;
     });
