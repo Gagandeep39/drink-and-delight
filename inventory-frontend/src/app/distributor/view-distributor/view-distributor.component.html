@@ -16,11 +16,14 @@
           <th>Name</th>
           <th>Location</th>
           <th>Phone Number</th>
-          <th *ngIf="role==='Admin'" class="float-right" [routerLink]="['/dashboard/adddistributors']">
-              <button type="submit" class="btn btn-success">
-                Add New Distributor
-              </button>
-            </th>
+          <th
+            *ngIf="role === 'Admin'"
+            [routerLink]="['/dashboard/adddistributors']"
+          >
+            <button type="submit" class="btn btn-success">
+              Add New Distributor
+            </button>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -34,6 +37,7 @@
               (click)="updateDistributor(distributor.distributorId)"
               class="btn btn-primary"
               style="margin-left: 10px"
+              *ngIf="role === 'Admin'"
             >
               Edit
             </button>

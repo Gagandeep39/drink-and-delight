@@ -15,8 +15,11 @@
         <th>Name</th>
         <th>Location</th>
         <th>Phone Number</th>
-        
-        <th *ngIf="role==='Admin'" class="float-right" [routerLink]="['/dashboard/addsupplier']">
+
+        <th
+          *ngIf="role === 'Admin'"
+          [routerLink]="['/dashboard/addsupplier']"
+        >
           <button type="submit" class="btn btn-success">
             Add New Supplier
           </button>
@@ -34,6 +37,7 @@
             (click)="updateSupplier(supplier.supplierId)"
             class="btn btn-primary"
             style="margin-left: 10px"
+            *ngIf="role === 'Admin'"
           >
             Edit
           </button>
