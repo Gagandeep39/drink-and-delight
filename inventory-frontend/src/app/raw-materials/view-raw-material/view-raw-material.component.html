@@ -8,11 +8,10 @@
             <p class="text-primary m-0 font-weight-bold">
               Raw Materials
               <button
-                *ngIf="role==='Admin'"
+                *ngIf="role === 'Admin'"
                 class="btn btn-primary align-content-end float-right"
                 type="button"
                 (click)="navigate()"
-                *ngIf="role === 'Admin'"
               >
                 Add Raw Material
               </button>
