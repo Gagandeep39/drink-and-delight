@@ -7,6 +7,8 @@
  */
 package com.cg.inventorygatewayserver.config;
 
+import java.util.Arrays;
+
 import com.cg.inventorygatewayserver.security.CustomAuthenticationEntryPoint;
 import com.cg.inventorygatewayserver.security.JwtAuthenticationFilter;
 import com.cg.inventorygatewayserver.service.implementation.JwtUserDetailsServiceImpl;
@@ -23,6 +25,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
 
 import lombok.AllArgsConstructor;
 
@@ -37,7 +40,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-      // .cors().and()
+    .cors()
+    .configurationSource(request -> {
+        CorsConfiguration source = new CorsConfiguration();
+        source.applyPermitDefaultValues();
+        // .applyPermitDefaultValues(); only allows GET, HEAD, POST
+        source.setAllowedMethods(Arrays.asList("GET", "HEAD", "POST", "DELETE", "PUT"));
+      return source;
+      }).and() // Required for accessing prpotected routes
       .csrf().disable()
       .authorizeRequests().antMatchers("/inventory-auth-service/**", "/actuator/**", "/**/h2/**", "/**/swagger*/**", "/**/v2/api-docs").permitAll().antMatchers("/h2").permitAll()
       .anyRequest().authenticated()
